@@ -52,7 +52,8 @@
 			isa = PBXGroup;
 			children = (
 				9C5FD78A2AED8C5800431842 /* DukeEventCalendarApp.swift */,
-				9C5FD78C2AED8C5800431842 /* ContentView.swift */,
+				9C5FD7992AED8D6B00431842 /* View */,
+				9C5FD7982AED8D6200431842 /* Model */,
 				9C5FD78E2AED8C5A00431842 /* Assets.xcassets */,
 				9C5FD7902AED8C5A00431842 /* Preview Content */,
 			);
@@ -65,6 +66,21 @@
 				9C5FD7912AED8C5A00431842 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		9C5FD7982AED8D6200431842 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9C5FD7992AED8D6B00431842 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9C5FD78C2AED8C5800431842 /* ContentView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
