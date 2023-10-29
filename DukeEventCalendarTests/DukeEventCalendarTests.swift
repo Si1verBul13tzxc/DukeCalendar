@@ -26,7 +26,7 @@ final class DukeEventCalendarTests: XCTestCase {
         // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
         let bundle = Bundle(for: DukeEventCalendarTests.self)
-        let url = bundle.bundleURL.appendingPathComponent("sample_5.json")
+        let url = bundle.bundleURL.appendingPathComponent("sample_90.json")
         let data = try Data(contentsOf: url)
         let decoder = JSONDecoder()
         let events = try decoder.decode([String: [Event]].self, from: data)

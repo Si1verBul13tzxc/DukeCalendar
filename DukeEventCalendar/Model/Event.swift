@@ -85,6 +85,17 @@ enum EventStatus: String, Decodable {
 struct Location: Decodable {
     let address: String
     let link: URL?
+    
+    enum CodingKeys: CodingKey {
+        case address
+        case link
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.address = try container.decode(String.self, forKey: .address)
+        self.link = (try? container.decodeIfPresent(URL.self, forKey: .link)) ?? URL(string: "Invalid Link")
+    }
 }
 
 struct Contact: Decodable {
