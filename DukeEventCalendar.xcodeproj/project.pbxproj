@@ -11,7 +11,21 @@
 		9C5FD78D2AED8C5800431842 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5FD78C2AED8C5800431842 /* ContentView.swift */; };
 		9C5FD78F2AED8C5A00431842 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C5FD78E2AED8C5A00431842 /* Assets.xcassets */; };
 		9C5FD7922AED8C5A00431842 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C5FD7912AED8C5A00431842 /* Preview Assets.xcassets */; };
+		9CAA0FB92AEEBA6C00BD1FEA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA0FB82AEEBA6C00BD1FEA /* Event.swift */; };
+		9CAA0FC32AEEEC0F00BD1FEA /* DukeEventCalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA0FC22AEEEC0F00BD1FEA /* DukeEventCalendarTests.swift */; };
+		9CAA0FC92AEEECA600BD1FEA /* sample_90.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA0FBA2AEEEA6200BD1FEA /* sample_90.json */; };
+		9CAA0FCA2AEEFB4300BD1FEA /* sample_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA0FB62AEEB9FA00BD1FEA /* sample_5.json */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9CAA0FC42AEEEC0F00BD1FEA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C5FD77F2AED8C5800431842 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9C5FD7862AED8C5800431842;
+			remoteInfo = DukeEventCalendar;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9C5FD7872AED8C5800431842 /* DukeEventCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeEventCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -19,10 +33,22 @@
 		9C5FD78C2AED8C5800431842 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9C5FD78E2AED8C5A00431842 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C5FD7912AED8C5A00431842 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		9CAA0FB62AEEB9FA00BD1FEA /* sample_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_5.json; sourceTree = "<group>"; };
+		9CAA0FB82AEEBA6C00BD1FEA /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		9CAA0FBA2AEEEA6200BD1FEA /* sample_90.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_90.json; sourceTree = "<group>"; };
+		9CAA0FC02AEEEC0F00BD1FEA /* DukeEventCalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DukeEventCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CAA0FC22AEEEC0F00BD1FEA /* DukeEventCalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeEventCalendarTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9C5FD7842AED8C5800431842 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9CAA0FBD2AEEEC0F00BD1FEA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -36,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				9C5FD7892AED8C5800431842 /* DukeEventCalendar */,
+				9CAA0FC12AEEEC0F00BD1FEA /* DukeEventCalendarTests */,
 				9C5FD7882AED8C5800431842 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				9C5FD7872AED8C5800431842 /* DukeEventCalendar.app */,
+				9CAA0FC02AEEEC0F00BD1FEA /* DukeEventCalendarTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,6 +99,7 @@
 		9C5FD7982AED8D6200431842 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9CAA0FB82AEEBA6C00BD1FEA /* Event.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -81,6 +110,16 @@
 				9C5FD78C2AED8C5800431842 /* ContentView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		9CAA0FC12AEEEC0F00BD1FEA /* DukeEventCalendarTests */ = {
+			isa = PBXGroup;
+			children = (
+				9CAA0FC22AEEEC0F00BD1FEA /* DukeEventCalendarTests.swift */,
+				9CAA0FB62AEEB9FA00BD1FEA /* sample_5.json */,
+				9CAA0FBA2AEEEA6200BD1FEA /* sample_90.json */,
+			);
+			path = DukeEventCalendarTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,6 +142,24 @@
 			productReference = 9C5FD7872AED8C5800431842 /* DukeEventCalendar.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9CAA0FBF2AEEEC0F00BD1FEA /* DukeEventCalendarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9CAA0FC62AEEEC0F00BD1FEA /* Build configuration list for PBXNativeTarget "DukeEventCalendarTests" */;
+			buildPhases = (
+				9CAA0FBC2AEEEC0F00BD1FEA /* Sources */,
+				9CAA0FBD2AEEEC0F00BD1FEA /* Frameworks */,
+				9CAA0FBE2AEEEC0F00BD1FEA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9CAA0FC52AEEEC0F00BD1FEA /* PBXTargetDependency */,
+			);
+			name = DukeEventCalendarTests;
+			productName = DukeEventCalendarTests;
+			productReference = 9CAA0FC02AEEEC0F00BD1FEA /* DukeEventCalendarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -115,6 +172,10 @@
 				TargetAttributes = {
 					9C5FD7862AED8C5800431842 = {
 						CreatedOnToolsVersion = 15.0.1;
+					};
+					9CAA0FBF2AEEEC0F00BD1FEA = {
+						CreatedOnToolsVersion = 15.0.1;
+						TestTargetID = 9C5FD7862AED8C5800431842;
 					};
 				};
 			};
@@ -132,6 +193,7 @@
 			projectRoot = "";
 			targets = (
 				9C5FD7862AED8C5800431842 /* DukeEventCalendar */,
+				9CAA0FBF2AEEEC0F00BD1FEA /* DukeEventCalendarTests */,
 			);
 		};
 /* End PBXProject section */
@@ -146,6 +208,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9CAA0FBE2AEEEC0F00BD1FEA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CAA0FC92AEEECA600BD1FEA /* sample_90.json in Resources */,
+				9CAA0FCA2AEEFB4300BD1FEA /* sample_5.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -154,11 +225,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C5FD78D2AED8C5800431842 /* ContentView.swift in Sources */,
+				9CAA0FB92AEEBA6C00BD1FEA /* Event.swift in Sources */,
 				9C5FD78B2AED8C5800431842 /* DukeEventCalendarApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9CAA0FBC2AEEEC0F00BD1FEA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9CAA0FC32AEEEC0F00BD1FEA /* DukeEventCalendarTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9CAA0FC52AEEEC0F00BD1FEA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9C5FD7862AED8C5800431842 /* DukeEventCalendar */;
+			targetProxy = 9CAA0FC42AEEEC0F00BD1FEA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		9C5FD7932AED8C5A00431842 /* Debug */ = {
@@ -336,6 +424,40 @@
 			};
 			name = Release;
 		};
+		9CAA0FC72AEEEC0F00BD1FEA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.duke.newbee.DukeEventCalendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DukeEventCalendar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DukeEventCalendar";
+			};
+			name = Debug;
+		};
+		9CAA0FC82AEEEC0F00BD1FEA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.duke.newbee.DukeEventCalendarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DukeEventCalendar.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DukeEventCalendar";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -353,6 +475,15 @@
 			buildConfigurations = (
 				9C5FD7962AED8C5A00431842 /* Debug */,
 				9C5FD7972AED8C5A00431842 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9CAA0FC62AEEEC0F00BD1FEA /* Build configuration list for PBXNativeTarget "DukeEventCalendarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9CAA0FC72AEEEC0F00BD1FEA /* Debug */,
+				9CAA0FC82AEEEC0F00BD1FEA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
