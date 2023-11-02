@@ -15,6 +15,7 @@
 		9CAA0FC32AEEEC0F00BD1FEA /* DukeEventCalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA0FC22AEEEC0F00BD1FEA /* DukeEventCalendarTests.swift */; };
 		9CAA0FC92AEEECA600BD1FEA /* sample_90.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA0FBA2AEEEA6200BD1FEA /* sample_90.json */; };
 		9CAA0FCA2AEEFB4300BD1FEA /* sample_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA0FB62AEEB9FA00BD1FEA /* sample_5.json */; };
+		B61424E92AF3D68C0068D096 /* DownloadUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61424E82AF3D68C0068D096 /* DownloadUrl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		9CAA0FBA2AEEEA6200BD1FEA /* sample_90.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_90.json; sourceTree = "<group>"; };
 		9CAA0FC02AEEEC0F00BD1FEA /* DukeEventCalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DukeEventCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CAA0FC22AEEEC0F00BD1FEA /* DukeEventCalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeEventCalendarTests.swift; sourceTree = "<group>"; };
+		B61424E82AF3D68C0068D096 /* DownloadUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadUrl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		9C5FD7892AED8C5800431842 /* DukeEventCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				B61424E72AF3D6510068D096 /* Utilities */,
 				9C5FD78A2AED8C5800431842 /* DukeEventCalendarApp.swift */,
 				9C5FD7992AED8D6B00431842 /* View */,
 				9C5FD7982AED8D6200431842 /* Model */,
@@ -120,6 +123,14 @@
 				9CAA0FBA2AEEEA6200BD1FEA /* sample_90.json */,
 			);
 			path = DukeEventCalendarTests;
+			sourceTree = "<group>";
+		};
+		B61424E72AF3D6510068D096 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				B61424E82AF3D68C0068D096 /* DownloadUrl.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +238,7 @@
 				9C5FD78D2AED8C5800431842 /* ContentView.swift in Sources */,
 				9CAA0FB92AEEBA6C00BD1FEA /* Event.swift in Sources */,
 				9C5FD78B2AED8C5800431842 /* DukeEventCalendarApp.swift in Sources */,
+				B61424E92AF3D68C0068D096 /* DownloadUrl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -47,4 +47,25 @@ final class DukeEventCalendarTests: XCTestCase {
         }
     }
 
+    func testDownloadJSON() throws{
+        if let url = URL(string: "https://calendar.duke.edu/events/index.json?&future_days=45&feed_type=simple") {
+            downloadUrl(from: url) { result in
+                switch result {
+                case .success(let data):
+                    // Process the JSON data here
+                    do {
+                        let decoder = JSONDecoder()
+                        let events = try decoder.decode([String: [Event]].self, from: data)
+                        let firstEvent = events["events"]!.first
+                    } catch {
+                        print("Error parsing JSON: \(error)")
+                    }
+
+                case .failure(let error):
+                    print("Error downloading JSON: \(error)")
+                }
+            }
+        }
+
+    }
 }
