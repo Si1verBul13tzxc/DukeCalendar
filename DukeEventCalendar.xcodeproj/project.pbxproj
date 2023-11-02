@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FC8A8E92AEF3CE000729E2B /* singleComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8A8E32AEF3CE000729E2B /* singleComment.swift */; };
+		4FC8A8EA2AEF3CE000729E2B /* singleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8A8E42AEF3CE000729E2B /* singleImage.swift */; };
+		4FC8A8EB2AEF3CE000729E2B /* newComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8A8E52AEF3CE000729E2B /* newComment.swift */; };
+		4FC8A8EC2AEF3CE000729E2B /* commentList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8A8E62AEF3CE000729E2B /* commentList.swift */; };
+		4FC8A8ED2AEF3CE000729E2B /* eventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8A8E72AEF3CE000729E2B /* eventDetail.swift */; };
+		4FC8A8F32AEF3F9900729E2B /* utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8A8F02AEF3E8300729E2B /* utility.swift */; };
+		4FC8A8F52AEF458F00729E2B /* eventEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8A8F42AEF458F00729E2B /* eventEdit.swift */; };
+		4FC8A8FB2AF2EEED00729E2B /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8A8FA2AF2EEED00729E2B /* Ticket.swift */; };
+		4FC8A8FF2AF308D800729E2B /* eventEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8A8FE2AF308D800729E2B /* eventEditView.swift */; };
+		4FC8A9022AF400D300729E2B /* sample_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FC8A9012AF400D300729E2B /* sample_5.json */; };
 		9C5FD78B2AED8C5800431842 /* DukeEventCalendarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5FD78A2AED8C5800431842 /* DukeEventCalendarApp.swift */; };
 		9C5FD78D2AED8C5800431842 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5FD78C2AED8C5800431842 /* ContentView.swift */; };
 		9C5FD78F2AED8C5A00431842 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C5FD78E2AED8C5A00431842 /* Assets.xcassets */; };
@@ -28,6 +38,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4FC8A8E32AEF3CE000729E2B /* singleComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = singleComment.swift; sourceTree = "<group>"; };
+		4FC8A8E42AEF3CE000729E2B /* singleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = singleImage.swift; sourceTree = "<group>"; };
+		4FC8A8E52AEF3CE000729E2B /* newComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newComment.swift; sourceTree = "<group>"; };
+		4FC8A8E62AEF3CE000729E2B /* commentList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = commentList.swift; sourceTree = "<group>"; };
+		4FC8A8E72AEF3CE000729E2B /* eventDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eventDetail.swift; sourceTree = "<group>"; };
+		4FC8A8F02AEF3E8300729E2B /* utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utility.swift; sourceTree = "<group>"; };
+		4FC8A8F42AEF458F00729E2B /* eventEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eventEdit.swift; sourceTree = "<group>"; };
+		4FC8A8FA2AF2EEED00729E2B /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
+		4FC8A8FE2AF308D800729E2B /* eventEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eventEditView.swift; sourceTree = "<group>"; };
+		4FC8A9012AF400D300729E2B /* sample_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_5.json; sourceTree = "<group>"; };
 		9C5FD7872AED8C5800431842 /* DukeEventCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeEventCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5FD78A2AED8C5800431842 /* DukeEventCalendarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeEventCalendarApp.swift; sourceTree = "<group>"; };
 		9C5FD78C2AED8C5800431842 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +78,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4FC8A8E12AEF3CE000729E2B /* eventDetail */ = {
+			isa = PBXGroup;
+			children = (
+				4FC8A8E32AEF3CE000729E2B /* singleComment.swift */,
+				4FC8A8E42AEF3CE000729E2B /* singleImage.swift */,
+				4FC8A8E52AEF3CE000729E2B /* newComment.swift */,
+				4FC8A8E62AEF3CE000729E2B /* commentList.swift */,
+				4FC8A8E72AEF3CE000729E2B /* eventDetail.swift */,
+				4FC8A8FE2AF308D800729E2B /* eventEditView.swift */,
+				4FC8A8FA2AF2EEED00729E2B /* Ticket.swift */,
+				4FC8A8F42AEF458F00729E2B /* eventEdit.swift */,
+				4FC8A8F02AEF3E8300729E2B /* utility.swift */,
+			);
+			path = eventDetail;
+			sourceTree = "<group>";
+		};
 		9C5FD77E2AED8C5800431842 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +115,7 @@
 		9C5FD7892AED8C5800431842 /* DukeEventCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				4FC8A9012AF400D300729E2B /* sample_5.json */,
 				9C5FD78A2AED8C5800431842 /* DukeEventCalendarApp.swift */,
 				9C5FD7992AED8D6B00431842 /* View */,
 				9C5FD7982AED8D6200431842 /* Model */,
@@ -108,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				9C5FD78C2AED8C5800431842 /* ContentView.swift */,
+				4FC8A8E12AEF3CE000729E2B /* eventDetail */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -203,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FC8A9022AF400D300729E2B /* sample_5.json in Resources */,
 				9C5FD7922AED8C5A00431842 /* Preview Assets.xcassets in Resources */,
 				9C5FD78F2AED8C5A00431842 /* Assets.xcassets in Resources */,
 			);
@@ -225,8 +264,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C5FD78D2AED8C5800431842 /* ContentView.swift in Sources */,
+				4FC8A8EB2AEF3CE000729E2B /* newComment.swift in Sources */,
 				9CAA0FB92AEEBA6C00BD1FEA /* Event.swift in Sources */,
+				4FC8A8ED2AEF3CE000729E2B /* eventDetail.swift in Sources */,
+				4FC8A8F52AEF458F00729E2B /* eventEdit.swift in Sources */,
+				4FC8A8EC2AEF3CE000729E2B /* commentList.swift in Sources */,
+				4FC8A8FB2AF2EEED00729E2B /* Ticket.swift in Sources */,
+				4FC8A8FF2AF308D800729E2B /* eventEditView.swift in Sources */,
+				4FC8A8E92AEF3CE000729E2B /* singleComment.swift in Sources */,
+				4FC8A8F32AEF3F9900729E2B /* utility.swift in Sources */,
 				9C5FD78B2AED8C5800431842 /* DukeEventCalendarApp.swift in Sources */,
+				4FC8A8EA2AEF3CE000729E2B /* singleImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +426,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DukeEventCalendar/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -406,6 +455,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DukeEventCalendar/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

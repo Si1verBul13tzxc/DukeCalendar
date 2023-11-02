@@ -45,6 +45,22 @@ struct Event: Decodable {
         case image
         case image_alt_text
     }
+    
+//    init(id:String, start:Date, end:Date, summary:String, description:String, status:EventStatus, sponsor: String, loc:Location, contact:Contact, link:URL, submit:[String]) {
+//        self.id = id
+//        self.start_timestamp = start
+//        self.end_timestamp = end
+//        self.summary = summary
+//        self.description = description
+//        self.status = status
+//        self.sponsor = sponsor
+//        self.location = loc
+//        self.contact = contact
+//        self.link = link
+//        self.submitted_by = submit
+//        
+//    }
+    
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -90,6 +106,10 @@ struct Location: Decodable {
         case address
         case link
     }
+    
+//    init(addr:String) {
+//        self.address = addr
+//    }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
