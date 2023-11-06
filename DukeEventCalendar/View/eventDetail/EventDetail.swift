@@ -9,13 +9,12 @@ import EventKit
 import EventKitUI
 import SwiftUI
 
-
-struct eventDetail: View {
+struct EventDetail: View {
     @State private var saveToCalendar = false
     @State private var store = EKEventStore()
 
     var event: Event
-    
+
     let time = "2023-10-01T04:00:00Z"
 
     private let ticket: Ticket = Ticket(
@@ -23,7 +22,8 @@ struct eventDetail: View {
         location: "Durham, NC",
         start: "2023-11-1T10:39:32Z",
         end: "2023-11-1T11:58:32Z",
-        notes: "Doing Good, Duke's annual employee giving campaign, encourages Duke employees to donate to five community-identified need categories, including the United Way of the Greater Triangle. Employees can make tax-deductible donations year-round which create big impacts for community organizations in the region. Learn more or donate at doinggood.duke.edu."
+        notes:
+            "Doing Good, Duke's annual employee giving campaign, encourages Duke employees to donate to five community-identified need categories, including the United Way of the Greater Triangle. Employees can make tax-deductible donations year-round which create big impacts for community organizations in the region. Learn more or donate at doinggood.duke.edu."
     )
 
     @State var commentViewVisible = false
@@ -37,14 +37,16 @@ struct eventDetail: View {
                     Text("By \(event.sponsor)")  //sponsor?
 
                     Text("")
-                    
-                    Text("\(dateToString(time:event.start_timestamp)) to \(dateToString(time:event.start_timestamp))")
+
+                    Text(
+                        "\(dateToString(time:event.start_timestamp)) to \(dateToString(time:event.end_timestamp))"
+                    )
                     HStack {
                         Image(systemName: "mappin")
                             .foregroundColor(.red)
                         Text(event.location.address)
                     }
-
+                    // 　link to map
                     ZStack {
                         RoundedRectangle(cornerRadius: 5)
                             .foregroundColor(Color(CGColor(gray: 0.3, alpha: 0.2)))
@@ -63,22 +65,25 @@ struct eventDetail: View {
                     ) {
                         Label("Add to calendar", systemImage: "calendar.badge.plus")
                             .labelStyle(.iconOnly)
-                    }.sheet(isPresented: $saveToCalendar, content: {
-                        EventEditViewController(ticket: self.ticket)
-                    })
+                    }
+                    .sheet(
+                        isPresented: $saveToCalendar,
+                        content: {
+                            EventEditViewController(ticket: self.ticket)
+                        }
+                    )
                 }
                 ToolbarItem(placement: .bottomBar) {
                     newComment(commentViewVisible: $commentViewVisible)
                 }
             }
-            .navigationBarTitle("Event", displayMode: .inline)
-
+            //.navigationBarTitle("Event", displayMode: .inline)
         }
     }
 }
 
 #Preview {
-    eventDetail(event: sample_event)
+    EventDetail(event: sample_event)
 }
 
 /*

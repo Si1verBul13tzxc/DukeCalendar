@@ -63,3 +63,12 @@ func dateToString(time:Date) -> String {
     let date_time_str = dateFormatter.string(from: time)
     return date_time_str
 }
+
+func getFormattedDate(time:Date) -> String{
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .medium
+    dateFormatter.timeStyle = .short
+    return dateFormatter.string(from: time)
+}
+
+
