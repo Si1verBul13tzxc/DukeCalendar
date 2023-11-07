@@ -40,7 +40,7 @@ struct EventRowView: View {
                     }
                 }
                 if showImage {
-                    eventImage.frame(width: UIScreen.main.bounds.width)
+                    eventImage.frame(width: UIScreen.main.bounds.width * 0.85)
                 }
             }
             .padding()
