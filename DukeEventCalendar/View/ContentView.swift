@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        eventDetail(event: sample_event)
+        EventDetail(event: sample_event)
     }
 }
 

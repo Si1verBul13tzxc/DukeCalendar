@@ -40,6 +40,17 @@ final class DukeEventCalendarTests: XCTestCase {
         )
     }
 
+    func testDataModelSample() {
+        XCTAssertNotNil(DataModel.sampleEvents)
+        XCTAssertEqual(
+            DataModel.sampleEvents!.first?.image,
+            URL(
+                string:
+                    "https://calendar.duke.edu/images//2023/20231001/e803641db77b22df79fb6aa807689c32-CR-PARK CHURCH (530 x 353 px)_20211025051033PM.png"
+            )
+        )
+    }
+
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         measure {
@@ -48,26 +59,3 @@ final class DukeEventCalendarTests: XCTestCase {
     }
 
 }
-
-//public func sampleEvent() -> Event? {
-//    let bundle = Bundle(for: DukeEventCalendarTests.self)
-//    let url = bundle.bundleURL.appendingPathComponent("sample_90.json")
-//    do {
-//        let data = try Data(contentsOf: url)
-//        let decoder = JSONDecoder()
-//        let events = try decoder.decode([String: [Event]].self, from: data)
-//        let firstEvent = events["events"]!.first
-//        XCTAssertEqual(
-//            firstEvent?.image,
-//            URL(
-//                string:
-//                    "https://calendar.duke.edu/images//2023/20231001/e803641db77b22df79fb6aa807689c32-CR-PARK CHURCH (530 x 353 px)_20211025051033PM.png"
-//            )
-//        )
-//        return firstEvent
-//    }
-//    catch let error as NSError {
-//        print(error)
-//    }
-//    return nil
-//}

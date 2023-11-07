@@ -26,7 +26,6 @@ struct singleComment: View {
                     Text(time).font(.system(size: 10)).foregroundColor(Color.gray).padding(.trailing)
                 }
                 .foregroundColor(Color.black)
-                
                     Text(content).font(.system(size: 15))
             }
         }
