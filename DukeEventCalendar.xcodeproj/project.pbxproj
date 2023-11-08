@@ -28,6 +28,10 @@
 		9CAA0FB92AEEBA6C00BD1FEA /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA0FB82AEEBA6C00BD1FEA /* Event.swift */; };
 		9CAA0FC32AEEEC0F00BD1FEA /* DukeEventCalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAA0FC22AEEEC0F00BD1FEA /* DukeEventCalendarTests.swift */; };
 		9CAA0FC92AEEECA600BD1FEA /* sample_90.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA0FBA2AEEEA6200BD1FEA /* sample_90.json */; };
+		9CAA0FCA2AEEFB4300BD1FEA /* sample_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 9CAA0FB62AEEB9FA00BD1FEA /* sample_5.json */; };
+		B61424E92AF3D68C0068D096 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61424E82AF3D68C0068D096 /* Utilities.swift */; };
+		B61424EC2AFA659D0068D096 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = B61424EB2AFA659D0068D096 /* SwiftSoup */; };
+		B61424EE2AFA70250068D096 /* WebPageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61424ED2AFA70250068D096 /* WebPageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +68,8 @@
 		9CAA0FBA2AEEEA6200BD1FEA /* sample_90.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_90.json; sourceTree = "<group>"; };
 		9CAA0FC02AEEEC0F00BD1FEA /* DukeEventCalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DukeEventCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CAA0FC22AEEEC0F00BD1FEA /* DukeEventCalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DukeEventCalendarTests.swift; sourceTree = "<group>"; };
+		B61424E82AF3D68C0068D096 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		B61424ED2AFA70250068D096 /* WebPageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B61424EC2AFA659D0068D096 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +176,15 @@
 			path = DukeEventCalendarTests;
 			sourceTree = "<group>";
 		};
+		B61424E72AF3D6510068D096 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				B61424E82AF3D68C0068D096 /* Utilities.swift */,
+				B61424ED2AFA70250068D096 /* WebPageLoader.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -185,6 +201,9 @@
 			dependencies = (
 			);
 			name = DukeEventCalendar;
+			packageProductDependencies = (
+				B61424EB2AFA659D0068D096 /* SwiftSoup */,
+			);
 			productName = DukeEventCalendar;
 			productReference = 9C5FD7872AED8C5800431842 /* DukeEventCalendar.app */;
 			productType = "com.apple.product-type.application";
@@ -235,6 +254,9 @@
 				Base,
 			);
 			mainGroup = 9C5FD77E2AED8C5800431842;
+			packageReferences = (
+				B61424EA2AFA659D0068D096 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 9C5FD7882AED8C5800431842 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -286,7 +308,8 @@
 				4FC8A8F32AEF3F9900729E2B /* utility.swift in Sources */,
 				9C93EEB32AF99BB4005A43AE /* FilterPageView.swift in Sources */,
 				9C5FD78B2AED8C5800431842 /* DukeEventCalendarApp.swift in Sources */,
-				4FC8A8EA2AEF3CE000729E2B /* singleImage.swift in Sources */,
+				B61424EE2AFA70250068D096 /* WebPageLoader.swift in Sources */,
+				B61424E92AF3D68C0068D096 /* Utilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,6 +574,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B61424EA2AFA659D0068D096 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B61424EB2AFA659D0068D096 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B61424EA2AFA659D0068D096 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9C5FD77F2AED8C5800431842 /* Project object */;
 }
