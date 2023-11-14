@@ -36,6 +36,7 @@
 		9C2907EB2B006DDA0027B7F3 /* sample_90.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C2907EA2B006DDA0027B7F3 /* sample_90.json */; };
 		9C2907F02B006E630027B7F3 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 9C2907EF2B006E630027B7F3 /* SwiftSoup */; };
 		9C2907F72B0083C60027B7F3 /* DukeEventCalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2907F62B0083C60027B7F3 /* DukeEventCalendarTests.swift */; };
+		9C2907FA2B02F8AC0027B7F3 /* iOSToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2907F92B02F8AC0027B7F3 /* iOSToggle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		9C2907E62B0059750027B7F3 /* WebPageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebPageLoader.swift; sourceTree = "<group>"; };
 		9C2907EA2B006DDA0027B7F3 /* sample_90.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_90.json; sourceTree = "<group>"; };
 		9C2907F62B0083C60027B7F3 /* DukeEventCalendarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DukeEventCalendarTests.swift; sourceTree = "<group>"; };
+		9C2907F92B02F8AC0027B7F3 /* iOSToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSToggle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				9C2907BA2B00594B0027B7F3 /* MainPage */,
 				9C2907BE2B00594B0027B7F3 /* Interested & Following */,
 				9C2907C12B00594B0027B7F3 /* eventDetail */,
+				9C2907F82B02F8750027B7F3 /* HelperView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -254,6 +257,14 @@
 				9C2907E62B0059750027B7F3 /* WebPageLoader.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		9C2907F82B02F8750027B7F3 /* HelperView */ = {
+			isa = PBXGroup;
+			children = (
+				9C2907F92B02F8AC0027B7F3 /* iOSToggle.swift */,
+			);
+			path = HelperView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,6 +410,7 @@
 				9C2907D82B00594B0027B7F3 /* ContentView.swift in Sources */,
 				9C2907CB2B00594B0027B7F3 /* GroupEventList.swift in Sources */,
 				9C2907E92B0059750027B7F3 /* WebPageLoader.swift in Sources */,
+				9C2907FA2B02F8AC0027B7F3 /* iOSToggle.swift in Sources */,
 				9C2907D72B00594B0027B7F3 /* eventDetail.swift in Sources */,
 				9C2907D42B00594B0027B7F3 /* commentList.swift in Sources */,
 				9C2907E82B0059750027B7F3 /* utility.swift in Sources */,

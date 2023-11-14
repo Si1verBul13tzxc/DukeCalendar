@@ -8,23 +8,44 @@
 import Foundation
 
 class DataModel: ObservableObject {
-    @Published var futureDays: Double = 1.0
     typealias EventFilter = (Event) -> Bool
+    @Published var futureDays: Double = 1.0
+    @Published var dukeEvents: [Event]?
+    @Published var excludeOngoing: Bool = false
 
-    init() {
-        self.EventFilters.append(futureDaysFilter)
+    var EventFilters: [EventFilter] {
+        var filters: [EventFilter] = []
+        filters.append(futureDaysFilter)
+        if(excludeOngoing){
+            filters.append(notOnGoingFilter)
+        }
+        return filters
     }
 
     var filteredEvents: [Event] {
-        guard var events = DataModel.sampleEvents else { return [] }
+        guard var events = self.dukeEvents else { return [] }
         for filter in EventFilters {
             events = events.filter(filter)
         }
-        print(events.count)
+        print("Filtered Events' count: \(events.count)")
         return events
     }
 
-    var EventFilters: [EventFilter] = []
+    init() {
+        generateAndFetchEvents(groups: nil, categories: nil, futureDays: 30, dataModel: self)
+        loadCateAndGroup()
+    }
+
+    func loadEvents() {
+        //load data from events.json
+        do {
+            let tmpEvents: [String: [Event]] = try load("events.json")
+            self.dukeEvents = tmpEvents["events"]
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+    }
 
     func futureDaysFilter(event: Event) -> Bool {
         if event.start_timestamp
@@ -32,11 +53,17 @@ class DataModel: ObservableObject {
                 timeIntervalSinceNow: futureDays * 24 * 3600
             ) && event.end_timestamp > Date.now
         {
-            print("include in \(futureDays)")
             return true
         }
-        print("not include in \(futureDays)")
         return false
+    }
+
+    //exclude the event if it already starts
+    func notOnGoingFilter(event: Event) -> Bool {
+        if event.start_timestamp < Date.now {
+            return false
+        }
+        return true
     }
 
     static let sampleEvents: [Event]? = getSampleEvents()
@@ -54,15 +81,18 @@ class DataModel: ObservableObject {
             return nil
         }
     }
-    
+
     func getGroupEvents(groupName: String) -> [Event] {
-        guard var events = DataModel.sampleEvents else { return [] }
-        events = events.filter({$0.sponsor == groupName || (($0.co_sponsors?.contains(groupName)) != nil)})
+        guard var events = self.dukeEvents else { return [] }
+        events = events.filter({
+            $0.sponsor == groupName || (($0.co_sponsors?.contains(groupName)) != nil)
+        })
         return events
     }
+
     func getEvent(eventid: String) -> Event? {
-        guard var events = DataModel.sampleEvents else { return nil }
-        events = events.filter({$0.id == eventid})
+        guard var events = self.dukeEvents else { return nil }
+        events = events.filter({ $0.id == eventid })
         return events[0]
     }
 }

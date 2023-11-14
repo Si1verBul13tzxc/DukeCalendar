@@ -23,6 +23,12 @@ struct FilterPageView: View {
                     Text("\(Int(datamodel.futureDays)) days").padding()
                 }
                 Divider()
+                Toggle(isOn: $datamodel.excludeOngoing) {
+                    Text("Show events that haven't started")
+                }
+                .toggleStyle(iOSCheckboxToggleStyle())
+                .fontWeight(.bold)
+                .foregroundColor(.black)
             }
             .padding()
         }
