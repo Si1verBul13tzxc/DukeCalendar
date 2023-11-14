@@ -12,27 +12,29 @@ struct FilterPageView: View {
     @StateObject var tagRows = TagRows()
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading) {
-                Text("Sort and Filter")
-                    .font(.title)
-                Text("Show events within").fontWeight(.bold)
+            ScrollView {
+                VStack(alignment: .leading) {
+                    Text("Sort and Filter")
+                        .font(.title)
+                    Text("Show events within").fontWeight(.bold)
 
-                HStack {
-                    Slider(value: $datamodel.futureDays, in: 1.0...30.0, step: 1.0)
-                        .frame(width: 250)
-                    Spacer()
-                    Text("\(Int(datamodel.futureDays)) days").padding()
+                    HStack {
+                        Slider(value: $datamodel.futureDays, in: 1.0...30.0, step: 1.0)
+                            .frame(width: 250)
+                        Spacer()
+                        Text("\(Int(datamodel.futureDays)) days").padding()
+                    }
+                    Divider()
+                    Toggle(isOn: $datamodel.excludeOngoing) {
+                        Text("Show events that haven't started")
+                    }
+                    .toggleStyle(iOSCheckboxToggleStyle())
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                    TagRowsView(tagRows: tagRows)
                 }
-                Divider()
-                Toggle(isOn: $datamodel.excludeOngoing) {
-                    Text("Show events that haven't started")
-                }
-                .toggleStyle(iOSCheckboxToggleStyle())
-                .fontWeight(.bold)
-                .foregroundColor(.black)
-                TagRowsView(tagRows: tagRows)
+                .padding()
             }
-            .padding()
         }
         .onAppear {
             do{

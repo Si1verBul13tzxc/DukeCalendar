@@ -168,34 +168,6 @@ func load<T: Decodable>(_ filename: String) throws -> T {
     return try decoder.decode(T.self, from: data)
 }
 
-func loadCateAndGroup() {
-    let loader1 = WebPageLoader()
-    let loader2 = WebPageLoader()
-    let urlString = "https://urlbuilder.calendar.duke.edu/"
-    if let url = URL(string: urlString) {
-        loader1.loadOptions(from: url, selectElementID: "categorieselect") {
-            (options, error) in
-            if let options = options {
-                // Output to console
-                saveOptions(options: options, withFileName: "Categories.json")
-                //print(options.count)
-            }
-            else if let error = error {
-                print("Error: \(error)")
-            }
-        }
-        loader2.loadOptions(from: url, selectElementID: "groupselect") { (options, error) in
-            if let options = options {
-                // Output to console
-                saveOptions(options: options, withFileName: "Groups.json")
-                //print(options.count)
-            }
-            else if let error = error {
-                print("Error: \(error)")
-            }
-        }
-    }
-}
 
 enum Myerror: Error {
     case fileError(String)

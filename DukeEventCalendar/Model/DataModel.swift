@@ -33,7 +33,6 @@ class DataModel: ObservableObject {
 
     init() {
         generateAndFetchEvents(groups: nil, categories: nil, futureDays: 30, dataModel: self)
-        loadCateAndGroup()
     }
 
     func loadEvents() {
