@@ -37,6 +37,10 @@
 		9C2907F02B006E630027B7F3 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 9C2907EF2B006E630027B7F3 /* SwiftSoup */; };
 		9C2907F72B0083C60027B7F3 /* DukeEventCalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2907F62B0083C60027B7F3 /* DukeEventCalendarTests.swift */; };
 		9C2907FA2B02F8AC0027B7F3 /* iOSToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2907F92B02F8AC0027B7F3 /* iOSToggle.swift */; };
+		9C2907FC2B0321870027B7F3 /* CategoryTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2907FB2B0321870027B7F3 /* CategoryTag.swift */; };
+		9C2907FE2B03290A0027B7F3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2907FD2B03290A0027B7F3 /* Theme.swift */; };
+		9CACAA7C2B032D9100B29C6B /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACAA7B2B032D9100B29C6B /* Tags.swift */; };
+		9CACAA7E2B0335FE00B29C6B /* TagRowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACAA7D2B0335FE00B29C6B /* TagRowsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +93,10 @@
 		9C2907EA2B006DDA0027B7F3 /* sample_90.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sample_90.json; sourceTree = "<group>"; };
 		9C2907F62B0083C60027B7F3 /* DukeEventCalendarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DukeEventCalendarTests.swift; sourceTree = "<group>"; };
 		9C2907F92B02F8AC0027B7F3 /* iOSToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSToggle.swift; sourceTree = "<group>"; };
+		9C2907FB2B0321870027B7F3 /* CategoryTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTag.swift; sourceTree = "<group>"; };
+		9C2907FD2B03290A0027B7F3 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		9CACAA7B2B032D9100B29C6B /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
+		9CACAA7D2B0335FE00B29C6B /* TagRowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRowsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +245,8 @@
 				9C2907DA2B00595D0027B7F3 /* DataModel.swift */,
 				9C2907DB2B00595D0027B7F3 /* Event.swift */,
 				9C2907DC2B00595D0027B7F3 /* User.swift */,
+				9C2907FD2B03290A0027B7F3 /* Theme.swift */,
+				9CACAA7B2B032D9100B29C6B /* Tags.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -263,6 +273,8 @@
 			isa = PBXGroup;
 			children = (
 				9C2907F92B02F8AC0027B7F3 /* iOSToggle.swift */,
+				9C2907FB2B0321870027B7F3 /* CategoryTag.swift */,
+				9CACAA7D2B0335FE00B29C6B /* TagRowsView.swift */,
 			);
 			path = HelperView;
 			sourceTree = "<group>";
@@ -407,16 +419,20 @@
 			files = (
 				9C2907CE2B00594B0027B7F3 /* EventRowView.swift in Sources */,
 				9C2907D32B00594B0027B7F3 /* newComment.swift in Sources */,
+				9CACAA7E2B0335FE00B29C6B /* TagRowsView.swift in Sources */,
 				9C2907D82B00594B0027B7F3 /* ContentView.swift in Sources */,
+				9CACAA7C2B032D9100B29C6B /* Tags.swift in Sources */,
 				9C2907CB2B00594B0027B7F3 /* GroupEventList.swift in Sources */,
 				9C2907E92B0059750027B7F3 /* WebPageLoader.swift in Sources */,
 				9C2907FA2B02F8AC0027B7F3 /* iOSToggle.swift in Sources */,
 				9C2907D72B00594B0027B7F3 /* eventDetail.swift in Sources */,
 				9C2907D42B00594B0027B7F3 /* commentList.swift in Sources */,
 				9C2907E82B0059750027B7F3 /* utility.swift in Sources */,
+				9C2907FE2B03290A0027B7F3 /* Theme.swift in Sources */,
 				9C2907A12B00588C0027B7F3 /* DukeEventCalendarApp.swift in Sources */,
 				9C2907D12B00594B0027B7F3 /* singleComment.swift in Sources */,
 				9C2907CD2B00594B0027B7F3 /* FilterPageView.swift in Sources */,
+				9C2907FC2B0321870027B7F3 /* CategoryTag.swift in Sources */,
 				9C2907DE2B00595D0027B7F3 /* Event.swift in Sources */,
 				9C2907D22B00594B0027B7F3 /* singleImage.swift in Sources */,
 				9C2907D62B00594B0027B7F3 /* EventEditView.swift in Sources */,

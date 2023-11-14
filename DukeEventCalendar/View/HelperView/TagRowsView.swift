@@ -1,0 +1,30 @@
+//
+//  TagRowsView.swift
+//  DukeEventCalendar
+//
+//  Created by xz353 on 11/13/23.
+//
+
+import SwiftUI
+
+struct TagRowsView: View {
+    @StateObject var tagRows = TagRows()
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            ForEach(tagRows.rows, id: \.self) { row in
+                HStack(spacing: 6) {
+                    ForEach(row) { tag in
+                        CategoryTag(category: tag.name)
+                    }
+                }
+                .frame(height: 28)
+                .padding(.bottom, 10)
+            }
+        }
+        .padding(24)
+    }
+}
+
+#Preview {
+    TagRowsView()
+}

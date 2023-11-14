@@ -135,9 +135,13 @@ func generateAndFetchEvents(
 
 func saveDataToLocalFile(data: Data, filename: String) {
     do {
-        let fileURL = try FileManager.default
-            .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-            .appendingPathComponent(filename)
+        guard
+            let documentDirectory = FileManager.default
+                .urls(for: .documentDirectory, in: .userDomainMask).first
+        else {
+            return
+        }
+        let fileURL = documentDirectory.appendingPathComponent(filename)
 
         // 写入数据到文件
         try data.write(to: fileURL, options: .atomic)
@@ -151,22 +155,22 @@ func saveDataToLocalFile(data: Data, filename: String) {
 func load<T: Decodable>(_ filename: String) throws -> T {
     let data: Data
 
-    let fileURL = try? FileManager.default
-        .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        .appendingPathComponent(filename)
-
-    guard let file = fileURL else {
-        throw Myerror.fileError("Cannot find file: \(filename)")
+    guard
+        let documentDirectory = FileManager.default
+            .urls(for: .documentDirectory, in: .userDomainMask).first
+    else {
+        throw Myerror.fileError("Cannot access documentDirectory")
     }
+    let fileURL = documentDirectory.appendingPathComponent(filename)
 
-    data = try Data(contentsOf: file)
+    data = try Data(contentsOf: fileURL)
     let decoder = JSONDecoder()
     return try decoder.decode(T.self, from: data)
 }
 
-func loadCateAndGroup(){
-    var loader1 = WebPageLoader()
-    var loader2 = WebPageLoader()
+func loadCateAndGroup() {
+    let loader1 = WebPageLoader()
+    let loader2 = WebPageLoader()
     let urlString = "https://urlbuilder.calendar.duke.edu/"
     if let url = URL(string: urlString) {
         loader1.loadOptions(from: url, selectElementID: "categorieselect") {

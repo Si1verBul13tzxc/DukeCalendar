@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FilterPageView: View {
     @EnvironmentObject var datamodel: DataModel
+    @StateObject var tagRows = TagRows()
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -29,8 +30,17 @@ struct FilterPageView: View {
                 .toggleStyle(iOSCheckboxToggleStyle())
                 .fontWeight(.bold)
                 .foregroundColor(.black)
+                TagRowsView(tagRows: tagRows)
             }
             .padding()
+        }
+        .onAppear {
+            do{
+                let categories: [String] = try load("Categories.json")
+                tagRows.addTags(tagNames: categories)
+            }catch{
+                print(error.localizedDescription)
+            }
         }
     }
 }
