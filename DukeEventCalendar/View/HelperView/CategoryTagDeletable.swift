@@ -1,15 +1,16 @@
 //
-//  CategoryTag.swift
+//  CategoryTagDeletable.swift
 //  DukeEventCalendar
 //
-//  Created by xz353 on 11/13/23.
+//  Created by xz353 on 11/14/23.
 //
 
 import SwiftUI
 
-struct CategoryTag: View {
+//just the capsule with the delete symbol
+struct CategoryTagDeletable: View {
     let category: String
-    var theme:Theme{
+    var theme: Theme {
         Theme[Int(category.getSize())]
     }
     var body: some View {
@@ -23,11 +24,15 @@ struct CategoryTag: View {
                 ZStack(alignment: .trailing) {
                     Capsule()
                         .fill(theme.mainColor)
+                    Image(systemName: "multiply.circle.fill")
+                        .padding(.trailing, -10)
+                        .padding(.top, -20)
+                        .foregroundColor(.red)
                 }
             )
     }
 }
 
 #Preview {
-    CategoryTag(category: "asdasdas")
+    CategoryTagDeletable(category: "asdadf")
 }

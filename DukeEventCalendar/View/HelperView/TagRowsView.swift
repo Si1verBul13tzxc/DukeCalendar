@@ -8,23 +8,32 @@
 import SwiftUI
 
 struct TagRowsView: View {
-    @StateObject var tagRows = TagRows()
+    @ObservedObject var tagRows: TagRows
+    @ObservedObject var tagRowsSaved: TagRows
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            ForEach(tagRows.rows, id: \.self) { row in
-                HStack(spacing: 6) {
-                    ForEach(row) { tag in
-                        CategoryTag(category: tag.name)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 4) {
+                ForEach(tagRows.rows, id: \.self) { row in
+                    HStack(spacing: 6) {
+                        ForEach(row) { tag in
+                            Button {
+                                withAnimation {
+                                    tagRowsSaved.addTag(tag: tag)
+                                }
+                            } label: {
+                                CategoryTag(category: tag.name)
+                            }
+                        }
                     }
+                    .frame(height: 28)
+                    .padding(.bottom, 10)
                 }
-                .frame(height: 28)
-                .padding(.bottom, 10)
             }
+            .padding(.top)
         }
-        .padding(24)
     }
 }
 
 #Preview {
-    TagRowsView()
+    TagRowsView(tagRows: TagRows.categoriesTagRows, tagRowsSaved: TagRows())
 }

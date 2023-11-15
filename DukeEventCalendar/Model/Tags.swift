@@ -16,16 +16,11 @@ struct Tag: Identifiable, Hashable {
 }
 
 class TagRows: ObservableObject {
-
-    @Published var rows: [[Tag]] = []
-    @Published var tags: [Tag] = []
+    var tags: [Tag] = []
     @Published var tagText = ""
+    var chooseTag: (Tag) -> Bool = { tag in return true }
 
-    init() {
-        buildTagRows()
-    }
-
-    func buildTagRows() {
+    var rows: [[Tag]] {
         var rows: [[Tag]] = []
         var currentRow: [Tag] = []
 
@@ -43,17 +38,18 @@ class TagRows: ObservableObject {
             }
 
             tags.forEach { tag in
+                if chooseTag(tag) {
+                    totalWidth += (tag.size + tagSpaceing)
 
-                totalWidth += (tag.size + tagSpaceing)
-
-                if totalWidth > screenWidth {
-                    totalWidth = (tag.size + tagSpaceing)
-                    rows.append(currentRow)
-                    currentRow.removeAll()
-                    currentRow.append(tag)
-                }
-                else {
-                    currentRow.append(tag)
+                    if totalWidth > screenWidth {
+                        totalWidth = (tag.size + tagSpaceing)
+                        rows.append(currentRow)
+                        currentRow.removeAll()
+                        currentRow.append(tag)
+                    }
+                    else {
+                        currentRow.append(tag)
+                    }
                 }
             }
 
@@ -62,10 +58,10 @@ class TagRows: ObservableObject {
                 currentRow.removeAll()
             }
 
-            self.rows = rows
+            return rows
         }
         else {
-            self.rows = []
+            return []
         }
     }
 
@@ -73,19 +69,48 @@ class TagRows: ObservableObject {
         for name in tagNames {
             tags.append(Tag(name: name))
         }
-        buildTagRows()
     }
 
-    // add and build rows on the fly
-    func addTag() {
-        tags.append(Tag(name: tagText))
-        tagText = ""
-        buildTagRows()
+    func addTag(tag: Tag) {
+        if tags.filter({ $0.name == tag.name }).isEmpty {
+            tags.append(tag)
+            tagText = tag.name  // to enable change on published property
+        }
     }
 
-    //remove and build rows on the fly
     func removeTag(by id: String) {
         tags = tags.filter { $0.id != id }
-        buildTagRows()
+        tagText = id  // to enable change on published property
+    }
+
+    //for testing in preview
+    static var categoriesTagRows: TagRows {
+        let tagrows = TagRows()
+        do {
+            let categories: [String] = try load("Categories.json")
+            tagrows.addTags(tagNames: categories)
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+        return tagrows
+    }
+
+    static var suggestedCategoriesTagRows: TagRows {
+        let tagrows = TagRows()
+        tagrows.addTag(tag: Tag(name: "Training"))
+        tagrows.addTag(tag: Tag(name: "Free Food and Beverages"))
+        tagrows.addTag(tag: Tag(name: "Party"))
+        tagrows.addTag(tag: Tag(name: "Leadership"))
+        tagrows.addTag(tag: Tag(name: "Social"))
+        tagrows.addTag(tag: Tag(name: "Technology"))
+        return tagrows
+    }
+}
+
+class TagRowsSearchable: TagRows {
+    override init() {
+        super.init()
+        chooseTag = { tag in return tag.name.lowercased().contains(self.tagText.lowercased()) }
     }
 }

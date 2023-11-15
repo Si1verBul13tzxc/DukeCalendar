@@ -9,12 +9,13 @@ import SwiftUI
 
 struct FilterPageView: View {
     @EnvironmentObject var datamodel: DataModel
-    @StateObject var tagRows = TagRows()
+    @StateObject var tagRows = TagRowsSearchable()
+    @StateObject var savedTags = TagRows()
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(alignment: .leading) {
-                    Text("Sort and Filter")
+                    Text("Filter")
                         .font(.title)
                     Text("Show events within").fontWeight(.bold)
 
@@ -28,19 +29,37 @@ struct FilterPageView: View {
                     Toggle(isOn: $datamodel.excludeOngoing) {
                         Text("Show events that haven't started")
                     }
+                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                     .toggleStyle(iOSCheckboxToggleStyle())
                     .fontWeight(.bold)
                     .foregroundColor(.black)
-                    TagRowsView(tagRows: tagRows)
+                    Divider()
+                    SearchBarView(
+                        searchFieldDefault: "Search Categories",
+                        searchText: $tagRows.tagText
+                    )
+                    TagRowsDeletableView(tagRows: savedTags)
+                    Divider()
+                    Text("Category Suggestions:")
+                    if tagRows.tagText == "" {
+                        TagRowsView(
+                            tagRows: TagRows.suggestedCategoriesTagRows,
+                            tagRowsSaved: savedTags
+                        )
+                    }
+                    else {
+                        TagRowsView(tagRows: tagRows, tagRowsSaved: savedTags)
+                    }
                 }
                 .padding()
             }
         }
         .onAppear {
-            do{
+            do {
                 let categories: [String] = try load("Categories.json")
                 tagRows.addTags(tagNames: categories)
-            }catch{
+            }
+            catch {
                 print(error.localizedDescription)
             }
         }
