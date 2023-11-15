@@ -11,18 +11,11 @@ struct ContentView: View {
     var loader1 = WebPageLoader()
     var loader2 = WebPageLoader()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-
-            Button("Load Options") {
-                generateAndFetchEvents(groups: nil, categories: nil, futureDays: 1)
-            }
-
+        TabView{
+            MainPageView().tabItem { Label("Events",systemImage: "list.dash") }
+            FollowingGroups(user: sampleUser).tabItem { Label("Following",systemImage: "person.3.fill") }
+            InterestedEvents(user: sampleUser).tabItem { Label("Interested",systemImage: "star") }
         }
-        .padding()
         .onAppear {
             let urlString = "https://urlbuilder.calendar.duke.edu/"
             if let url = URL(string: urlString) {
@@ -54,4 +47,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environmentObject(DataModel())
 }

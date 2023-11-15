@@ -17,7 +17,9 @@ func downloadUrl(from url: URL, completion: @escaping (Result<Data, Error>) -> V
             completion(.failure(error))
             return
         }
-        guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
+        guard let httpResponse = response as? HTTPURLResponse,
+            (200...299).contains(httpResponse.statusCode)
+        else {
             let statusCode = (response as? HTTPURLResponse)?.statusCode ?? -1
             let statusError = NSError(domain: "HTTP", code: statusCode, userInfo: nil)
             completion(.failure(statusError))
@@ -26,7 +28,8 @@ func downloadUrl(from url: URL, completion: @escaping (Result<Data, Error>) -> V
 
         if let data = data {
             completion(.success(data))
-        } else {
+        }
+        else {
             let unknownError = NSError(domain: "UnknownError", code: -1, userInfo: nil)
             completion(.failure(unknownError))
         }
@@ -62,19 +65,28 @@ func downloadUrl(from url: URL, completion: @escaping (Result<Data, Error>) -> V
  */
 
 func saveOptions(options: [String], withFileName fileName: String) {
-    guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-    
+    guard
+        let documentDirectory = FileManager.default
+            .urls(for: .documentDirectory, in: .userDomainMask).first
+    else { return }
+
     let fileURL = documentDirectory.appendingPathComponent(fileName)
     do {
         let data = try JSONSerialization.data(withJSONObject: options, options: [])
         try data.write(to: fileURL, options: .atomicWrite)
         print("Options saved to: \(fileURL)")
-    } catch {
+    }
+    catch {
         print("Failed to save options: \(error.localizedDescription)")
     }
 }
 
-func generateAndFetchEvents(groups: [String]?, categories: [String]?, futureDays: Int) {
+func generateAndFetchEvents(
+    groups: [String]?,
+    categories: [String]?,
+    futureDays: Int,
+    dataModel: DataModel
+) {
     var components = URLComponents(string: "https://calendar.duke.edu/events/index.json")
 
     var queryItems: [URLQueryItem] = []
@@ -107,25 +119,56 @@ func generateAndFetchEvents(groups: [String]?, categories: [String]?, futureDays
         // 确保没有错误，并且数据非空
         guard let data = data, error == nil else {
             print("Error fetching data: \(error?.localizedDescription ?? "Unknown error")")
+            // load previous saved json
+            dataModel.loadEvents()
             return
         }
-        
+
         // 尝试将数据保存到本地文件
         saveDataToLocalFile(data: data, filename: "events.json")
+        dataModel.loadEvents()
     }
-    
+
     // 启动任务
     task.resume()
 }
 
 func saveDataToLocalFile(data: Data, filename: String) {
     do {
-        let fileURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent(filename)
-        
+        guard
+            let documentDirectory = FileManager.default
+                .urls(for: .documentDirectory, in: .userDomainMask).first
+        else {
+            return
+        }
+        let fileURL = documentDirectory.appendingPathComponent(filename)
+
         // 写入数据到文件
         try data.write(to: fileURL, options: .atomic)
         print("File saved: \(fileURL.absoluteString)")
-    } catch {
+    }
+    catch {
         print("Error saving file: \(error.localizedDescription)")
     }
+}
+
+func load<T: Decodable>(_ filename: String) throws -> T {
+    let data: Data
+
+    guard
+        let documentDirectory = FileManager.default
+            .urls(for: .documentDirectory, in: .userDomainMask).first
+    else {
+        throw Myerror.fileError("Cannot access documentDirectory")
+    }
+    let fileURL = documentDirectory.appendingPathComponent(filename)
+
+    data = try Data(contentsOf: fileURL)
+    let decoder = JSONDecoder()
+    return try decoder.decode(T.self, from: data)
+}
+
+
+enum Myerror: Error {
+    case fileError(String)
 }

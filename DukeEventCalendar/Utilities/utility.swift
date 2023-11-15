@@ -7,7 +7,7 @@
 
 import Foundation
 import CoreLocation
-
+import UIKit
 
 func geocodeLocation(address: String, completion: @escaping (CLPlacemark?, Error?) -> Void) {
     let geocoder = CLGeocoder()
@@ -74,3 +74,16 @@ func getFormattedDate(time:Date) -> String{
 
 let sampleUser = User(userid: "userid")
 let sampleUser2 = User(userid: "userid2", interestedEvents: [sample_event.id], followingGroups: ["Duke Chapel"])
+
+extension UIScreen{
+    static let screenWidth = UIScreen.main.bounds.width
+}
+
+extension String{
+    func getSize() -> CGFloat{
+        let font = UIFont.systemFont(ofSize: 16)
+        let attributes = [NSAttributedString.Key.font: font]
+        let size = (self as NSString).size(withAttributes: attributes)
+        return size.width
+    }
+}

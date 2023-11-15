@@ -8,28 +8,40 @@
 import SwiftUI
 
 struct MainPageView: View {
-    @EnvironmentObject var datamodel:DataModel
+    @EnvironmentObject var datamodel: DataModel
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(datamodel.filteredEvents, id: \.id) { event in
-                    NavigationLink {
-                        EventDetail(event: event, user: sampleUser)
-                    } label: {
-                        EventRowView(event: event)
-                    }
+            if datamodel.filteredEvents.isEmpty {
+                VStack {
+                    Text("One moment...")
+                    ProgressView()
+                        .navigationTitle("Events")
                 }
             }
-            .listStyle(.inset)
-            .toolbarTitleDisplayMode(.inlineLarge)
-            .navigationTitle("Events")
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    NavigationLink {
-                        FilterPageView()
-                    } label: {
-                        Image(systemName: "slider.horizontal.3")
+            else {
+                List {
+                    ForEach(datamodel.filteredEvents, id: \.id) { event in
+                        NavigationLink {
+                            EventDetail(event: event, user: sampleUser)
+                        } label: {
+                            EventRowView(event: event)
+                        }
                     }
+                }
+                .listStyle(.inset)
+                .toolbarTitleDisplayMode(.inlineLarge)
+                .navigationTitle("Events")
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        NavigationLink {
+                            FilterPageView()
+                        } label: {
+                            Image(systemName: "slider.horizontal.3")
+                        }
+                    }
+                }
+                .refreshable {
+                    generateAndFetchEvents(groups: nil, categories: nil, futureDays: 30, dataModel: datamodel)
                 }
             }
         }
