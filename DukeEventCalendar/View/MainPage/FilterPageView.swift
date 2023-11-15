@@ -42,13 +42,13 @@ struct FilterPageView: View {
                     Divider()
                     Text("Category Suggestions:")
                     if tagRows.tagText == "" {
-                        TagRowsView(
+                        TagRowsAddableView(
                             tagRows: TagRows.suggestedCategoriesTagRows,
                             tagRowsSaved: savedTags
                         )
                     }
                     else {
-                        TagRowsView(tagRows: tagRows, tagRowsSaved: savedTags)
+                        TagRowsAddableView(tagRows: tagRows, tagRowsSaved: savedTags)
                     }
                 }
                 .padding()

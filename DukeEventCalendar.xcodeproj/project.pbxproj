@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C1AD6FC2B047B2B00B3647A /* TagRowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1AD6FB2B047B2B00B3647A /* TagRowsView.swift */; };
 		9C29077B2B0058230027B7F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C29077A2B0058230027B7F3 /* Assets.xcassets */; };
 		9C29077E2B0058230027B7F3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C29077D2B0058230027B7F3 /* Preview Assets.xcassets */; };
 		9C2907922B0058230027B7F3 /* DukeEventCalendarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2907912B0058230027B7F3 /* DukeEventCalendarUITests.swift */; };
@@ -44,7 +45,7 @@
 		9C9976282B0443DB00ABB1DE /* shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9976272B0443DB00ABB1DE /* shake.swift */; };
 		9C99762A2B045AF900ABB1DE /* CategoryTagDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9976292B045AF900ABB1DE /* CategoryTagDeletable.swift */; };
 		9CACAA7C2B032D9100B29C6B /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACAA7B2B032D9100B29C6B /* Tags.swift */; };
-		9CACAA7E2B0335FE00B29C6B /* TagRowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACAA7D2B0335FE00B29C6B /* TagRowsView.swift */; };
+		9CACAA7E2B0335FE00B29C6B /* TagRowsAddableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACAA7D2B0335FE00B29C6B /* TagRowsAddableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C1AD6FB2B047B2B00B3647A /* TagRowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRowsView.swift; sourceTree = "<group>"; };
 		9C2907732B0058220027B7F3 /* DukeEventCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeEventCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C29077A2B0058230027B7F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C29077D2B0058230027B7F3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -104,7 +106,7 @@
 		9C9976272B0443DB00ABB1DE /* shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shake.swift; sourceTree = "<group>"; };
 		9C9976292B045AF900ABB1DE /* CategoryTagDeletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTagDeletable.swift; sourceTree = "<group>"; };
 		9CACAA7B2B032D9100B29C6B /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
-		9CACAA7D2B0335FE00B29C6B /* TagRowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRowsView.swift; sourceTree = "<group>"; };
+		9CACAA7D2B0335FE00B29C6B /* TagRowsAddableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRowsAddableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,10 +283,11 @@
 			isa = PBXGroup;
 			children = (
 				9C2907F92B02F8AC0027B7F3 /* iOSToggle.swift */,
-				9C2907FB2B0321870027B7F3 /* CategoryTag.swift */,
-				9CACAA7D2B0335FE00B29C6B /* TagRowsView.swift */,
-				9C9976232B03E7EC00ABB1DE /* SearchBarView.swift */,
+				9C1AD6FB2B047B2B00B3647A /* TagRowsView.swift */,
+				9CACAA7D2B0335FE00B29C6B /* TagRowsAddableView.swift */,
 				9C9976252B0418DC00ABB1DE /* TagRowsDeletableView.swift */,
+				9C2907FB2B0321870027B7F3 /* CategoryTag.swift */,
+				9C9976232B03E7EC00ABB1DE /* SearchBarView.swift */,
 				9C9976272B0443DB00ABB1DE /* shake.swift */,
 				9C9976292B045AF900ABB1DE /* CategoryTagDeletable.swift */,
 			);
@@ -431,7 +434,7 @@
 			files = (
 				9C2907CE2B00594B0027B7F3 /* EventRowView.swift in Sources */,
 				9C2907D32B00594B0027B7F3 /* newComment.swift in Sources */,
-				9CACAA7E2B0335FE00B29C6B /* TagRowsView.swift in Sources */,
+				9CACAA7E2B0335FE00B29C6B /* TagRowsAddableView.swift in Sources */,
 				9C2907D82B00594B0027B7F3 /* ContentView.swift in Sources */,
 				9CACAA7C2B032D9100B29C6B /* Tags.swift in Sources */,
 				9C2907CB2B00594B0027B7F3 /* GroupEventList.swift in Sources */,
@@ -443,6 +446,7 @@
 				9C99762A2B045AF900ABB1DE /* CategoryTagDeletable.swift in Sources */,
 				9C2907E82B0059750027B7F3 /* utility.swift in Sources */,
 				9C2907FE2B03290A0027B7F3 /* Theme.swift in Sources */,
+				9C1AD6FC2B047B2B00B3647A /* TagRowsView.swift in Sources */,
 				9C2907A12B00588C0027B7F3 /* DukeEventCalendarApp.swift in Sources */,
 				9C9976282B0443DB00ABB1DE /* shake.swift in Sources */,
 				9C2907D12B00594B0027B7F3 /* singleComment.swift in Sources */,
