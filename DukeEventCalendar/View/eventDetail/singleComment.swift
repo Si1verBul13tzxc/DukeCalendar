@@ -8,12 +8,10 @@
 import SwiftUI
 
 struct singleComment: View {
-    let comment_id = 1
-    let user_id = 1
-    let event_id = 1
-    let content = "This is my comment"
+    @EnvironmentObject var datamodel: DataModel
+    var comment: Comment
     let time = "2023-10-01 4:00PM"
-    //find user info by user_id
+    var userid: String
 
     var body: some View {
         HStack {
@@ -21,17 +19,26 @@ struct singleComment: View {
                 .padding(.leading)
             VStack(alignment: .leading) {
                 HStack {
-                    Text("Aoli Zhou").font(.system(size: 15)).fontWeight(.heavy)
+                    Text(comment.userid).font(.system(size: 15)).fontWeight(.heavy)
                     Spacer()
-                    Text(time).font(.system(size: 10)).foregroundColor(Color.gray).padding(.trailing)
+                    Text(dateToString(time: comment.time)).font(.system(size: 10)).foregroundColor(Color.gray).padding(.trailing)
                 }
                 .foregroundColor(Color.black)
-                    Text(content).font(.system(size: 15))
-            }
+                Text(comment.content).font(.system(size: 15))
+                
+                HStack{
+                    Spacer()
+                    if comment.userid == userid {
+                        Button("delete", systemImage: "trash"){
+                            datamodel.deleteComment(cmtid: comment.id)
+                        }.font(.system(size: 10)).padding(.trailing).labelStyle(.iconOnly)
+                }
+                }
+            }.padding(.leading, 1.0)
         }
     }
 }
 
 #Preview {
-    singleComment()
+    singleComment(comment: sampleComment, userid: sampleUser.userid).environmentObject(DataModel())
 }

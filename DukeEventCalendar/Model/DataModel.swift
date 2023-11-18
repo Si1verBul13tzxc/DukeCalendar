@@ -12,6 +12,8 @@ class DataModel: ObservableObject {
     @Published var futureDays: Double = 1.0
     @Published var dukeEvents: [Event]?
     @Published var excludeOngoing: Bool = false
+    @Published var comments: [Comment]?
+    
 
     var EventFilters: [EventFilter] {
         var filters: [EventFilter] = []
@@ -84,7 +86,7 @@ class DataModel: ObservableObject {
     func getGroupEvents(groupName: String) -> [Event] {
         guard var events = self.dukeEvents else { return [] }
         events = events.filter({
-            $0.sponsor == groupName || (($0.co_sponsors?.contains(groupName)) != nil)
+            $0.sponsor == groupName || (($0.co_sponsors != nil)&&($0.co_sponsors!.contains(groupName)))
         })
         return events
     }
@@ -93,5 +95,37 @@ class DataModel: ObservableObject {
         guard var events = self.dukeEvents else { return nil }
         events = events.filter({ $0.id == eventid })
         return events[0]
+    }
+    
+    func addComment(comment: Comment) {
+        if self.comments == nil {
+            self.comments = [comment]
+        }
+        else {
+            self.comments!.append(comment)
+        }
+    }
+    
+    func getComments(eventid: String) -> [Comment] {
+        if self.comments == nil {
+            return []
+        }
+        else {
+            return self.comments!.filter({$0.eventid == eventid})
+        }
+    }
+    
+    func findComment(cmtid: UUID) -> Bool {
+        return self.comments?.filter({$0.id == cmtid}) != nil
+    }
+    
+    func deleteComment(cmtid: UUID) {
+        self.comments = self.comments?.filter({$0.id != cmtid})
+//        if findComment(cmtid: cmtid){
+//            self.comments = self.comments?.filter({$0.id != cmtid})
+//        }
+//        else {
+//            return
+//        }
     }
 }
