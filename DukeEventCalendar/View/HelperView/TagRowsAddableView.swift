@@ -21,7 +21,7 @@ struct TagRowsAddableView: View {
                                     tagRowsSaved.addTag(tag: tag)
                                 }
                             } label: {
-                                CategoryTag(category: tag.name)
+                                CategoryTag(category: tag.name, fontSize: 16)
                             }
                         }
                     }

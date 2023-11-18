@@ -9,13 +9,14 @@ import SwiftUI
 
 struct CategoryTag: View {
     let category: String
+    var fontSize: Int
     var theme:Theme{
         Theme[Int(category.getSize())]
     }
     var body: some View {
         Text(category)
             .foregroundColor(theme.accentColor)
-            .font(.system(size: 16))
+            .font(.system(size: CGFloat(fontSize)))
             .padding(.leading, 14)
             .padding(.trailing, 14)
             .padding(.vertical, 8)
@@ -29,5 +30,5 @@ struct CategoryTag: View {
 }
 
 #Preview {
-    CategoryTag(category: "asdasdas")
+    CategoryTag(category: "asdasdas", fontSize: 16)
 }

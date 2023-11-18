@@ -18,7 +18,7 @@ struct TagRowsDeletableView: View {
                     HStack(spacing: 6) {
                         ForEach(row) { tag in
                             if !isDeleting {
-                                CategoryTag(category: tag.name)
+                                CategoryTag(category: tag.name, fontSize: 16)
                             }
                             else {
                                 Button {

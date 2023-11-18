@@ -15,7 +15,7 @@ struct TagRowsView: View {
                 ForEach(tagRows.rows, id: \.self) { row in
                     HStack(spacing: 6) {
                         ForEach(row) { tag in
-                            CategoryTag(category: tag.name)
+                            CategoryTag(category: tag.name, fontSize: 16)
                         }
                     }
                     .frame(height: 28)

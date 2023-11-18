@@ -54,7 +54,7 @@ func sampleEvent() -> [Event]? {
 }
 
 let sampleEvents = sampleEvent()
-let sample_event = sampleEvents![2]
+let sample_event = sampleEvents![0]
 
 
 func dateToString(time:Date) -> String {
@@ -72,7 +72,7 @@ func getFormattedDate(time:Date) -> String{
 }
 
 
-let sampleUser = User(userid: "userid")
+let sampleUser = User(userid: "Aoli")
 let sampleUser2 = User(userid: "userid2", interestedEvents: [sample_event.id], followingGroups: ["Duke Chapel"])
 
 extension UIScreen{
@@ -87,3 +87,6 @@ extension String{
         return size.width
     }
 }
+
+
+let sampleComment = Comment(eventid: sample_event.id, userid: sampleUser.userid, content: "This is a comment.", time: .now)

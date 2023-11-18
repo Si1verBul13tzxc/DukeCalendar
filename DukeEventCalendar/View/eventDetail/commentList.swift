@@ -8,20 +8,25 @@
 import SwiftUI
 
 struct commentList: View {
-    var cmtNum = 10
+    @EnvironmentObject var datamodel: DataModel
+    var userid: String
+    
+    var eventid: String
     var body: some View {
         VStack(alignment: .leading) {
-            Text("\(cmtNum) comments").font(.system(size: 15)).foregroundColor(Color.blue).padding(.leading)
-            ForEach(1...10, id: \.self) { _ in
-                singleComment()
+            Text("\(datamodel.getComments(eventid: eventid).count) comments").font(.system(size: 15)).foregroundColor(Color.blue)
+                .padding(.leading)
+
+            ForEach(datamodel.getComments(eventid: eventid), id: \.self) { comment in
+                singleComment(comment: comment, userid: userid)
                 Divider().background(Color.gray)
             }
 
-        }
+        }//.onAppear{ datamodel.addComment(comment: sampleComment) }
 
     }
 }
 
 #Preview {
-    commentList()
+    commentList(userid: sampleUser.userid, eventid: sample_event.id).environmentObject(DataModel())
 }
