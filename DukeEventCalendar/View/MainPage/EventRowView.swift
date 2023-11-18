@@ -11,7 +11,8 @@ struct EventRowView: View {
     let event: Event
     var body: some View {
         VStack(alignment: .leading) {
-            eventImage
+            EventImage(imgURL: event.image).aspectRatio(2.5, contentMode: .fit)
+                .shadow(radius: 15)
             Text(event.summary).fontWeight(.bold)
             Text(getFormattedDate(time: event.start_timestamp)).fontWeight(.semibold)
                 .foregroundStyle(.gray)
@@ -23,34 +24,6 @@ struct EventRowView: View {
             }
         }
 
-    }
-
-    var eventImage: some View {
-        AsyncImage(url: event.image) { image in
-            image
-                .resizable()
-                .clipShape(
-                    RoundedRectangle(
-                        cornerSize: CGSize(
-                            width: 10,
-                            height: 10
-                        )
-                    )
-                )
-        } placeholder: {
-            Image("event_default")
-                .resizable()
-                .clipShape(
-                    RoundedRectangle(
-                        cornerSize: CGSize(
-                            width: 10,
-                            height: 10
-                        )
-                    )
-                )
-        }
-        .aspectRatio(2.5, contentMode: .fit)
-        .shadow(radius: 15)
     }
 }
 
