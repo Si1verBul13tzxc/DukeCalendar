@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Static TagRowsView
 struct TagRowsView: View {
     @ObservedObject var tagRows: TagRows
     var body: some View {
