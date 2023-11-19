@@ -24,84 +24,17 @@ struct EventDetail: View {
         NavigationView {
             GeometryReader { geometry in
                 ScrollView {
-                    eventImage.scaledToFill().frame(height: 200).clipped()
+                    EventImage(imgURL: event.image).scaledToFit()
+                        .transition(.opacity).scaledToFill().frame(height: 200).clipped()
                     VStack(alignment: .leading) {
-                        Text(event.summary).font(.system(size: 25)).fontWeight(.heavy)  //summary
-                        Text(event.status.rawValue).font(.system(size: 10)).foregroundColor(Color.gray)  //status
+                        Text(event.summary).font(.system(size: 28)).fontWeight(.heavy)  //summary
+                        Text(event.status.rawValue).font(.system(size: 12)).foregroundColor(Color.gray)  //status
                         
-                        HStack {
-                            Text("By")  //sponsor?
-                            NavigationLink(destination: groupDetail(user: user, group: event.sponsor)) {
-                                Text(event.sponsor).multilineTextAlignment(.leading)
-                                    .underline().scaledToFit()
-                            }
-                            
-                            if event.co_sponsors != nil {
-                                if showCoSponsors {
-                                    Text(",")
-                                }
-                                else {
-                                    Button("+ \(event.co_sponsors!.count)") {
-                                        showCoSponsors.toggle()
-                                    }
-                                }
-                            }
-                        }
-                        VStack(alignment: .leading) {
-                            if showCoSponsors {
-                                ForEach(event.co_sponsors!, id: \.self) { sponsor in
-                                    HStack(alignment: .bottom) {
-                                        NavigationLink(
-                                            destination: groupDetail(user: user, group: sponsor)
-                                        ) {
-                                            Text("\(sponsor)").multilineTextAlignment(.leading)
-                                                .underline()
-                                        }
-                                        if sponsor != event.co_sponsors!.last {
-                                            Text(",")
-                                        }
-                                    }
-                                }
-                                HStack{
-                                    Spacer()
-                                    Button("Hide") {
-                                        showCoSponsors.toggle()
-                                    }
-                                    .padding(.trailing, 20.0)
-                                }
-                            }
-                        }.padding(.leading, 28.0)
+                        SponsorInfo(user: user, sponsor: event.sponsor, co_sponsors: event.co_sponsors)
                         
                         Text("")
                         
-                        Text(
-                            "\(dateToString(time:event.start_timestamp)) to \(dateToString(time:event.end_timestamp))"
-                        )
-                        HStack {
-                            Image(systemName: "mappin")
-                                .foregroundColor(.red)
-                            Text(event.location.address)
-                            
-                            if let url = event.location.link {
-                                Button(
-                                    "",
-                                    systemImage: "map",
-                                    action: { UIApplication.shared.open(url) }
-                                )
-                            }
-                        }
-                        // 　link to map
-                        if showDesc {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .foregroundColor(Color(CGColor(gray: 0.3, alpha: 0.2)))
-                                Text(event.description).font(.system(size: 13))
-                            }
-                            Button("Hide Description") { showDesc.toggle() }
-                        }
-                        else {
-                            Button("Show Description") { showDesc.toggle() }
-                        }
+                        Time_Loc_Desc(event: event)
                     }
                     .padding(.horizontal)
                     
@@ -126,7 +59,7 @@ struct EventDetail: View {
                             isPresented: $saveToCalendar,
                             content: {
                                 EventEditViewController(dukeEvent: event)
-                            }  //!!!
+                            }
                         )
                     }
                     
@@ -165,27 +98,9 @@ struct EventDetail: View {
 
         newComment(eventid: event.id, userid: user.userid)
     }
-
-    var eventImage: some View {
-        AsyncImage(url: event.image) { image in
-            image.resizable()
-                .clipShape(
-                    RoundedRectangle(
-                        cornerSize: CGSize(
-                            width: 10,
-                            height: 10
-                        )
-                    )
-                )
-        } placeholder: {
-            Text(event.image_alt_text ?? "Image Unavailable")
-        }
-        .scaledToFit()
-        .transition(.opacity)
-    }
     
     
-    
+    //https://github.com/qizhemotuosangeyan/blog/blob/master/SwiftUI%E8%87%AA%E5%8A%A8%E6%8D%A2%E8%A1%8CHStack.md
     private func catTags(in g: GeometryProxy, in cats: [String]) -> some View {
         var width = CGFloat.zero
         var height = CGFloat.zero
@@ -227,5 +142,5 @@ struct EventDetail: View {
 }
 
 #Preview {
-    EventDetail(event: sample_event, user: sampleUser).environmentObject(DataModel())
+    EventDetail(event: sampleEvents![6], user: sampleUser).environmentObject(DataModel())
 }

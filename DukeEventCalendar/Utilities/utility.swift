@@ -64,6 +64,21 @@ func dateToString(time:Date) -> String {
     return date_time_str
 }
 
+func dateToStringDate(time:Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+    let date_str = dateFormatter.string(from: time)
+    return date_str
+}
+
+func dateToStringTime(time:Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "HH:mm"
+    let time_str = dateFormatter.string(from: time)
+    return time_str
+}
+
+
 func getFormattedDate(time:Date) -> String{
     let dateFormatter = DateFormatter()
     dateFormatter.dateStyle = .medium
