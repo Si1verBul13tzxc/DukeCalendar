@@ -307,6 +307,7 @@
 				9C9976232B03E7EC00ABB1DE /* SearchBarView.swift */,
 				9C9976272B0443DB00ABB1DE /* shake.swift */,
 				9C9976292B045AF900ABB1DE /* CategoryTagDeletable.swift */,
+                4FBDE9D12B097201008CB150 /* EventImage.swift */,
 				9CEC2BB42B0972060053BD8A /* GroupTag.swift */,
 				9CEC2BB62B09816B0053BD8A /* GroupTagDeletable.swift */,
 			);
