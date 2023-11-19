@@ -24,7 +24,7 @@ struct ContentView: View {
                     if let options = options {
                         // Output to console
                         saveOptions(options: options, withFileName: "Categories.json")
-                        //print(options.count)
+                        print(options.count)
                     }
                     else if let error = error {
                         print("Error: \(error)")
@@ -34,7 +34,7 @@ struct ContentView: View {
                     if let options = options {
                         // Output to console
                         saveOptions(options: options, withFileName: "Groups.json")
-                        //print(options.count)
+                        print(options.count)
                     }
                     else if let error = error {
                         print("Error: \(error)")

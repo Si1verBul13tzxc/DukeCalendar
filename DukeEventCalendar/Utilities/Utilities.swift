@@ -120,13 +120,19 @@ func generateAndFetchEvents(
         guard let data = data, error == nil else {
             print("Error fetching data: \(error?.localizedDescription ?? "Unknown error")")
             // load previous saved json
-            dataModel.loadEvents()
+            DispatchQueue.main.async {
+                dataModel.loadEvents()
+                dataModel.isLoading = false
+            }
             return
         }
 
         // 尝试将数据保存到本地文件
         saveDataToLocalFile(data: data, filename: "events.json")
-        dataModel.loadEvents()
+        DispatchQueue.main.async {
+            dataModel.loadEvents()
+            dataModel.isLoading = false
+        }
     }
 
     // 启动任务
@@ -167,7 +173,6 @@ func load<T: Decodable>(_ filename: String) throws -> T {
     let decoder = JSONDecoder()
     return try decoder.decode(T.self, from: data)
 }
-
 
 enum Myerror: Error {
     case fileError(String)
