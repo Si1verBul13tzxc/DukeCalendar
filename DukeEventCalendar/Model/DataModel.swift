@@ -113,14 +113,15 @@ class DataModel: ObservableObject {
         events = events.filter({ $0.id == eventid })
         return events[0]
     }
-
-    func addComment(comment: Comment) {
+    
+    func addComment(comment: Comment) -> Bool {
         if self.comments == nil {
             self.comments = [comment]
         }
         else {
             self.comments!.append(comment)
         }
+        return findComment(cmtid: comment.id)
     }
 
     func getComments(eventid: String) -> [Comment] {
@@ -135,14 +136,29 @@ class DataModel: ObservableObject {
     func findComment(cmtid: UUID) -> Bool {
         return self.comments?.filter({ $0.id == cmtid }) != nil
     }
-
+    
+    
     func deleteComment(cmtid: UUID) {
-        self.comments = self.comments?.filter({ $0.id != cmtid })
-        //        if findComment(cmtid: cmtid){
-        //            self.comments = self.comments?.filter({$0.id != cmtid})
-        //        }
-        //        else {
-        //            return
-        //        }
+        self.comments = self.comments?.filter({($0.id != cmtid)&&($0.upperComment != cmtid)})
+//        if findComment(cmtid: cmtid){
+//            self.comments = self.comments?.filter({$0.id != cmtid})
+//        }
+//        else {
+//            return
+//        }
+    }
+    
+    func getSubComments(cmtid: UUID) -> [Comment] {
+        if self.findComment(cmtid: cmtid) {
+            return self.comments!.filter({$0.upperComment == cmtid})
+        }
+        return []
+    }
+    
+    func getMainComments() -> [Comment] {
+        if self.comments != nil {
+            return self.comments!.filter({$0.upperComment == nil})
+        }
+        return []
     }
 }
