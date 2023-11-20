@@ -9,16 +9,18 @@ import Foundation
 
 class DataModel: ObservableObject {
     typealias EventFilter = (Event) -> Bool
-    @Published var futureDays: Double = 1.0
+    @Published var futureDays: Double
     @Published var dukeEvents: [Event]?
     @Published var excludeOngoing: Bool = false
     @Published var comments: [Comment]?
+    @Published var savedCateTags = TagRows()
+    @Published var savedGroupTags = TagRows()
+    @Published var isLoading = false
     
-
     var EventFilters: [EventFilter] {
         var filters: [EventFilter] = []
         filters.append(futureDaysFilter)
-        if(excludeOngoing){
+        if excludeOngoing {
             filters.append(notOnGoingFilter)
         }
         return filters
@@ -34,7 +36,21 @@ class DataModel: ObservableObject {
     }
 
     init() {
+        self.futureDays = 1.0
         generateAndFetchEvents(groups: nil, categories: nil, futureDays: 30, dataModel: self)
+        isLoading = true
+    }
+
+    func updateEvents() {
+        let groups: [String] = savedGroupTags.tags.map { $0.name }
+        let categories: [String] = savedCateTags.tags.map { $0.name }
+        generateAndFetchEvents(
+            groups: groups,
+            categories: categories,
+            futureDays: 30,
+            dataModel: self
+        )
+        isLoading = true
     }
 
     func loadEvents() {
@@ -86,7 +102,8 @@ class DataModel: ObservableObject {
     func getGroupEvents(groupName: String) -> [Event] {
         guard var events = self.dukeEvents else { return [] }
         events = events.filter({
-            $0.sponsor == groupName || (($0.co_sponsors != nil)&&($0.co_sponsors!.contains(groupName)))
+            $0.sponsor == groupName
+                || (($0.co_sponsors != nil) && ($0.co_sponsors!.contains(groupName)))
         })
         return events
     }
@@ -106,18 +123,18 @@ class DataModel: ObservableObject {
         }
         return findComment(cmtid: comment.id)
     }
-    
+
     func getComments(eventid: String) -> [Comment] {
         if self.comments == nil {
             return []
         }
         else {
-            return self.comments!.filter({$0.eventid == eventid})
+            return self.comments!.filter({ $0.eventid == eventid })
         }
     }
-    
+
     func findComment(cmtid: UUID) -> Bool {
-        return self.comments?.filter({$0.id == cmtid}) != nil
+        return self.comments?.filter({ $0.id == cmtid }) != nil
     }
     
     

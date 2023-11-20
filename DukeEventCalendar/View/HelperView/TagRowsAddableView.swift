@@ -7,7 +7,11 @@
 
 import SwiftUI
 
+
+//Shows group or category tags
+//On click Tag: add to tagRowsSaved.
 struct TagRowsAddableView: View {
+    let tagType:TagType
     @ObservedObject var tagRows: TagRows
     @ObservedObject var tagRowsSaved: TagRows
     var body: some View {
@@ -21,7 +25,12 @@ struct TagRowsAddableView: View {
                                     tagRowsSaved.addTag(tag: tag)
                                 }
                             } label: {
-                                CategoryTag(category: tag.name, fontSize: 16)
+                                if(tagType == .Category){
+                                    CategoryTag(category: tag.name, fontSize: 16)
+                                }else{
+                                    GroupTag(group: tag.name, fontSize: 16)
+                                }
+                                
                             }
                         }
                     }
@@ -35,5 +44,10 @@ struct TagRowsAddableView: View {
 }
 
 #Preview {
-    TagRowsAddableView(tagRows: TagRows.categoriesTagRows, tagRowsSaved: TagRows())
+    TabView{
+        TagRowsAddableView(tagType:.Category,tagRows: TagRows.categoriesTagRows, tagRowsSaved: TagRows())
+            .tabItem { Text("category") }
+        TagRowsAddableView(tagType: .Group, tagRows: TagRows.groupTagRows, tagRowsSaved: TagRows())
+            .tabItem { Text("group") }
+    }
 }

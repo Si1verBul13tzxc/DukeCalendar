@@ -4,31 +4,32 @@
 
 import SwiftUI
 
-enum Theme: String{
+enum Theme: String {
 
-    case bubblegum
-    case buttercup
-    case indigo
-    case lavender
-    case magenta
-    case navy
-    case orange
-    case oxblood
-    case periwinkle
-    case poppy
-    case purple
-    case seafoam
-    case sky
-    case tan
-    case teal
-    case yellow
+    case mybubblegum
+    case mybuttercup
+    case myindigo
+    case mylavender
+    case mymagenta
+    case mynavy
+    case myorange
+    case myoxblood
+    case myperiwinkle
+    case mypoppy
+    case mypurple
+    case myseafoam
+    case mysky
+    case mytan
+    case myteal
+    case myyellow
 
     var accentColor: Color {
         switch self {
-            case .bubblegum, .buttercup, .lavender, .orange, .periwinkle, .poppy, .seafoam, .sky,
-                .tan, .teal, .yellow:
+            case .mybubblegum, .mybuttercup, .mylavender, .myorange, .myperiwinkle, .mypoppy,
+                .myseafoam, .mysky,
+                .mytan, .myteal, .myyellow:
                 return .black
-            case .indigo, .magenta, .navy, .oxblood, .purple: return .white
+            case .myindigo, .mymagenta, .mynavy, .myoxblood, .mypurple: return .white
         }
     }
 
@@ -36,26 +37,26 @@ enum Theme: String{
         Color(rawValue)
     }
 
-    static subscript(n: Int) -> Theme { //Theme[2]
+    static subscript(n: Int) -> Theme {  //Theme[2]
         let index = n % 16
         switch index {
-            case 0: return .bubblegum
-            case 1: return .buttercup
-            case 2: return .indigo
-            case 3: return .lavender
-            case 4: return .magenta
-            case 5: return .navy
-            case 6: return .orange
-            case 7: return .oxblood
-            case 8: return .periwinkle
-            case 9: return .poppy
-            case 10: return .purple
-            case 11: return .seafoam
-            case 12: return .sky
-            case 13: return .tan
-            case 14: return .teal
-            case 15: return .yellow
-            default: return .bubblegum
+            case 0: return .mybubblegum
+            case 1: return .mybuttercup
+            case 2: return .myindigo
+            case 3: return .mylavender
+            case 4: return .mymagenta
+            case 5: return .mynavy
+            case 6: return .myorange
+            case 7: return .myoxblood
+            case 8: return .myperiwinkle
+            case 9: return .mypoppy
+            case 10: return .mypurple
+            case 11: return .myseafoam
+            case 12: return .mysky
+            case 13: return .mytan
+            case 14: return .myteal
+            case 15: return .myyellow
+            default: return .mybubblegum
         }
     }
 }

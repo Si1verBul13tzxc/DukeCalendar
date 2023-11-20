@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+enum TagType{
+    case Category
+    case Group
+}
+
 //source: https://medium.com/geekculture/tags-view-in-swiftui-e47dc6ce52e8
 struct Tag: Identifiable, Hashable {
     var id = UUID().uuidString
@@ -104,6 +109,18 @@ class TagRows: ObservableObject {
         tagrows.addTag(tag: Tag(name: "Leadership"))
         tagrows.addTag(tag: Tag(name: "Social"))
         tagrows.addTag(tag: Tag(name: "Technology"))
+        return tagrows
+    }
+
+    static var groupTagRows: TagRows {
+        let tagrows = TagRows()
+        do {
+            let groups: [String] = try load("Groups.json")
+            tagrows.addTags(tagNames: groups)
+        }
+        catch {
+            print(error.localizedDescription)
+        }
         return tagrows
     }
 }

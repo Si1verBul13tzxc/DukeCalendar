@@ -9,8 +9,9 @@ import SwiftUI
 
 struct FilterPageView: View {
     @EnvironmentObject var datamodel: DataModel
-    @StateObject var tagRows = TagRowsSearchable()
-    @StateObject var savedTags = TagRows()
+    @StateObject var categoryTagRows = TagRowsSearchable()
+    @StateObject var groupTagRows = TagRowsSearchable()
+    //@StateObject var savedTags = TagRows()
     var body: some View {
         NavigationView {
             ScrollView {
@@ -34,22 +35,9 @@ struct FilterPageView: View {
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                     Divider()
-                    SearchBarView(
-                        searchFieldDefault: "Search Categories",
-                        searchText: $tagRows.tagText
-                    )
-                    TagRowsDeletableView(tagRows: savedTags)
+                    categoriesEdit
                     Divider()
-                    Text("Category Suggestions:")
-                    if tagRows.tagText == "" {
-                        TagRowsAddableView(
-                            tagRows: TagRows.suggestedCategoriesTagRows,
-                            tagRowsSaved: savedTags
-                        )
-                    }
-                    else {
-                        TagRowsAddableView(tagRows: tagRows, tagRowsSaved: savedTags)
-                    }
+                    groupEdit
                 }
                 .padding()
             }
@@ -57,11 +45,60 @@ struct FilterPageView: View {
         .onAppear {
             do {
                 let categories: [String] = try load("Categories.json")
-                tagRows.addTags(tagNames: categories)
+                categoryTagRows.addTags(tagNames: categories)
+                let groups: [String] = try load("Groups.json")
+                groupTagRows.addTags(tagNames: groups)
             }
             catch {
                 print(error.localizedDescription)
             }
+        }
+        .onDisappear {
+            datamodel.updateEvents()
+        }
+    }
+
+    var categoriesEdit: some View {
+        Group {
+            SearchBarView(
+                searchFieldDefault: "Search Categories",
+                searchText: $categoryTagRows.tagText
+            )
+            Text("Added Categories")
+            TagRowsDeletableView(tagType: .Category, tagRows: datamodel.savedCateTags)
+            Divider()
+            Text("Category Suggestions:")
+            if categoryTagRows.tagText == "" {
+                TagRowsAddableView(
+                    tagType: .Category,
+                    tagRows: TagRows.suggestedCategoriesTagRows,
+                    tagRowsSaved: datamodel.savedCateTags
+                )
+            }
+            else {
+                TagRowsAddableView(
+                    tagType: .Category,
+                    tagRows: categoryTagRows,
+                    tagRowsSaved: datamodel.savedCateTags
+                )
+            }
+        }
+    }
+
+    var groupEdit: some View {
+        Group {
+            SearchBarView(
+                searchFieldDefault: "Search Groups",
+                searchText: $groupTagRows.tagText
+            )
+            Text("Added Groups")
+            TagRowsDeletableView(tagType: .Group, tagRows: datamodel.savedGroupTags)
+            Divider()
+            TagRowsAddableView(
+                tagType: .Group,
+                tagRows: groupTagRows,
+                tagRowsSaved: datamodel.savedGroupTags
+            )
         }
     }
 }

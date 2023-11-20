@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TagRowsDeletableView: View {
+    let tagType: TagType
     @ObservedObject var tagRows: TagRows
     @State private var shake: Bool = false
     @State private var isDeleting: Bool = false
@@ -18,7 +19,12 @@ struct TagRowsDeletableView: View {
                     HStack(spacing: 6) {
                         ForEach(row) { tag in
                             if !isDeleting {
-                                CategoryTag(category: tag.name, fontSize: 16)
+                                if tagType == .Category {
+                                    CategoryTag(category: tag.name, fontSize: 16)
+                                }
+                                else {
+                                    GroupTag(group: tag.name, fontSize: 16)
+                                }
                             }
                             else {
                                 Button {
@@ -26,7 +32,12 @@ struct TagRowsDeletableView: View {
                                         tagRows.removeTag(by: tag.id)
                                     }
                                 } label: {
-                                    CategoryTagDeletable(category: tag.name)
+                                    if tagType == .Category {
+                                        CategoryTagDeletable(category: tag.name)
+                                    }
+                                    else {
+                                        GroupTagDeletable(group: tag.name, fontSize: 16)
+                                    }
                                 }
                             }
                         }
@@ -48,6 +59,10 @@ struct TagRowsDeletableView: View {
 }
 
 #Preview {
-
-    TagRowsDeletableView(tagRows: TagRows.categoriesTagRows)
+    TabView {
+        TagRowsDeletableView(tagType: .Category, tagRows: TagRows.categoriesTagRows)
+            .tabItem { Text("cate") }
+        TagRowsDeletableView(tagType: .Group, tagRows: TagRows.groupTagRows)
+            .tabItem { Text("group") }
+    }
 }

@@ -51,6 +51,8 @@
 		9C99762A2B045AF900ABB1DE /* CategoryTagDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9976292B045AF900ABB1DE /* CategoryTagDeletable.swift */; };
 		9CACAA7C2B032D9100B29C6B /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACAA7B2B032D9100B29C6B /* Tags.swift */; };
 		9CACAA7E2B0335FE00B29C6B /* TagRowsAddableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACAA7D2B0335FE00B29C6B /* TagRowsAddableView.swift */; };
+		9CEC2BB52B0972060053BD8A /* GroupTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC2BB42B0972060053BD8A /* GroupTag.swift */; };
+		9CEC2BB72B09816B0053BD8A /* GroupTagDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC2BB62B09816B0053BD8A /* GroupTagDeletable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,9 @@
 		9C9976292B045AF900ABB1DE /* CategoryTagDeletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTagDeletable.swift; sourceTree = "<group>"; };
 		9CACAA7B2B032D9100B29C6B /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
 		9CACAA7D2B0335FE00B29C6B /* TagRowsAddableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRowsAddableView.swift; sourceTree = "<group>"; };
+		9CEC2BB42B0972060053BD8A /* GroupTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTag.swift; sourceTree = "<group>"; };
+		9CEC2BB62B09816B0053BD8A /* GroupTagDeletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTagDeletable.swift; sourceTree = "<group>"; };
+		9CEC2BB82B0990160053BD8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +173,7 @@
 		9C2907752B0058220027B7F3 /* DukeEventCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				9CEC2BB82B0990160053BD8A /* Info.plist */,
 				9C2907A02B00588C0027B7F3 /* DukeEventCalendarApp.swift */,
 				9C2907E32B0059750027B7F3 /* Utilities */,
 				9C2907E02B00596B0027B7F3 /* SampleData */,
@@ -305,6 +311,8 @@
 				9C9976292B045AF900ABB1DE /* CategoryTagDeletable.swift */,
 				4FBDE9D12B097201008CB150 /* EventImage.swift */,
 				4FBDE9D92B0BACB9008CB150 /* FloatingWindow.swift */,
+				9CEC2BB42B0972060053BD8A /* GroupTag.swift */,
+				9CEC2BB62B09816B0053BD8A /* GroupTagDeletable.swift */,
 			);
 			path = HelperView;
 			sourceTree = "<group>";
@@ -457,6 +465,7 @@
 				9C2907E92B0059750027B7F3 /* WebPageLoader.swift in Sources */,
 				9C2907FA2B02F8AC0027B7F3 /* iOSToggle.swift in Sources */,
 				9C2907D72B00594B0027B7F3 /* eventDetail.swift in Sources */,
+				9CEC2BB52B0972060053BD8A /* GroupTag.swift in Sources */,
 				9C9976262B0418DC00ABB1DE /* TagRowsDeletableView.swift in Sources */,
 				9C2907D42B00594B0027B7F3 /* commentList.swift in Sources */,
 				9C99762A2B045AF900ABB1DE /* CategoryTagDeletable.swift in Sources */,
@@ -471,6 +480,7 @@
 				9C2907FC2B0321870027B7F3 /* CategoryTag.swift in Sources */,
 				9C2907DE2B00595D0027B7F3 /* Event.swift in Sources */,
 				9C2907D22B00594B0027B7F3 /* singleImage.swift in Sources */,
+				9CEC2BB72B09816B0053BD8A /* GroupTagDeletable.swift in Sources */,
 				9C2907D62B00594B0027B7F3 /* EventEditView.swift in Sources */,
 				9C9976242B03E7EC00ABB1DE /* SearchBarView.swift in Sources */,
 				9C2907CF2B00594B0027B7F3 /* FollowingGroups.swift in Sources */,
@@ -649,6 +659,7 @@
 				DEVELOPMENT_TEAM = U6J58C8CJT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DukeEventCalendar/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -678,6 +689,7 @@
 				DEVELOPMENT_TEAM = U6J58C8CJT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = DukeEventCalendar/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
