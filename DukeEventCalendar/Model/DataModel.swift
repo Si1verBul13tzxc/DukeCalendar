@@ -119,6 +119,7 @@ class DataModel: ObservableObject {
         return self.comments?.filter({$0.id == cmtid}) != nil
     }
     
+    
     func deleteComment(cmtid: UUID) {
         self.comments = self.comments?.filter({$0.id != cmtid})
 //        if findComment(cmtid: cmtid){
@@ -127,5 +128,19 @@ class DataModel: ObservableObject {
 //        else {
 //            return
 //        }
+    }
+    
+    func getSubComments(cmtid: UUID) -> [Comment] {
+        if self.findComment(cmtid: cmtid) {
+            return self.comments!.filter({$0.upperComment == cmtid})
+        }
+        return []
+    }
+    
+    func getMainComments() -> [Comment] {
+        if self.comments != nil {
+            return self.comments!.filter({$0.upperComment == nil})
+        }
+        return []
     }
 }

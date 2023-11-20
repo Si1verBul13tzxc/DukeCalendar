@@ -14,6 +14,7 @@ struct EventDetail: View {
     @State private var saveToCalendar = false
     @State private var showCoSponsors = false
     @State private var showDesc = false
+    @State var replyTo: Comment?
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -44,7 +45,7 @@ struct EventDetail: View {
                     }
                     
                     Divider()
-                    commentList(userid: user.userid, eventid: event.id)
+                    commentList(replyTo: $replyTo, userid: user.userid, eventid: event.id)
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -96,7 +97,7 @@ struct EventDetail: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarHidden(true)
 
-        newComment(eventid: event.id, userid: user.userid)
+        newComment(replyTo: $replyTo, eventid: event.id, userid: user.userid)
     }
     
     

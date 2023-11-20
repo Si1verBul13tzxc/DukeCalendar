@@ -10,30 +10,39 @@ import SwiftUI
 struct newComment: View {
     //@Binding var comment: String
     @EnvironmentObject var datamodel: DataModel
+    @Binding var replyTo: Comment?
     @State var input = ""
     var eventid: String
     var userid: String
     
     var body: some View {
-        HStack{
-                TextField("", text: $input, prompt: Text("Add a comment...")).disableAutocorrection(true).frame(height: 20.0)
-                    .textFieldStyle(.roundedBorder).onSubmit {
+        VStack{
+            HStack{
+                TextField("",  text: $input, prompt: Text("Add a comment...")).disableAutocorrection(true).frame(height: 20.0)
+                        .textFieldStyle(.roundedBorder)//.onSubmit {}
+                        .onChange(of: replyTo) { 
+                            input = (replyTo != nil) ? "@\(replyTo!.userid) " : ""
+                        }
+                    if input != "" {
+                        Button(action: {
+                            datamodel.addComment(comment: Comment(eventid: eventid, userid: userid, content: input, time: .now, upperComment: replyTo?.upperComment ?? replyTo?.id ))
+                            input = ""
+                            replyTo = nil
+                        }) {
+                            Label("Post", systemImage: "paperplane")
+                                .labelStyle(.titleOnly)
+                        }
                     }
-                if input != "" {
-                    Button(action: {
-                        
-                        datamodel.addComment(comment: Comment(eventid: eventid, userid: userid, content: input, time: .now))
-                    }) {
-                        Label("Post", systemImage: "paperplane")
-                            .labelStyle(.titleOnly)
-                    }
-                }
+            }
+            .padding(.horizontal).onAppear() {
+                input = (replyTo != nil) ? "@\(replyTo!.userid)" : ""
+            }
         }
-        .padding(.horizontal)
+        .padding(.bottom, 20.0).padding(.top, 10)
     }
 }
 
 #Preview {
     //@State var visible = true
-    newComment(eventid: sample_event.id, userid: sampleUser.userid).environmentObject(DataModel())
+    newComment(replyTo: .constant(sampleComment), eventid: sample_event.id, userid: sampleUser.userid).environmentObject(DataModel())
 }
