@@ -11,6 +11,7 @@
 		4FBDE9D22B097201008CB150 /* EventImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBDE9D12B097201008CB150 /* EventImage.swift */; };
 		4FBDE9D62B09747B008CB150 /* SponsorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBDE9D52B09747B008CB150 /* SponsorInfo.swift */; };
 		4FBDE9D82B0975FE008CB150 /* Time&Loc&Desc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBDE9D72B0975FE008CB150 /* Time&Loc&Desc.swift */; };
+		4FBDE9DA2B0BACB9008CB150 /* FloatingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBDE9D92B0BACB9008CB150 /* FloatingWindow.swift */; };
 		9C1AD6FC2B047B2B00B3647A /* TagRowsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1AD6FB2B047B2B00B3647A /* TagRowsView.swift */; };
 		9C29077B2B0058230027B7F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C29077A2B0058230027B7F3 /* Assets.xcassets */; };
 		9C29077E2B0058230027B7F3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C29077D2B0058230027B7F3 /* Preview Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		4FBDE9D12B097201008CB150 /* EventImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventImage.swift; sourceTree = "<group>"; };
 		4FBDE9D52B09747B008CB150 /* SponsorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorInfo.swift; sourceTree = "<group>"; };
 		4FBDE9D72B0975FE008CB150 /* Time&Loc&Desc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Time&Loc&Desc.swift"; sourceTree = "<group>"; };
+		4FBDE9D92B0BACB9008CB150 /* FloatingWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingWindow.swift; sourceTree = "<group>"; };
 		9C1AD6FB2B047B2B00B3647A /* TagRowsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRowsView.swift; sourceTree = "<group>"; };
 		9C2907732B0058220027B7F3 /* DukeEventCalendar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DukeEventCalendar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C29077A2B0058230027B7F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				9C9976272B0443DB00ABB1DE /* shake.swift */,
 				9C9976292B045AF900ABB1DE /* CategoryTagDeletable.swift */,
 				4FBDE9D12B097201008CB150 /* EventImage.swift */,
+				4FBDE9D92B0BACB9008CB150 /* FloatingWindow.swift */,
 			);
 			path = HelperView;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				9C2907D62B00594B0027B7F3 /* EventEditView.swift in Sources */,
 				9C9976242B03E7EC00ABB1DE /* SearchBarView.swift in Sources */,
 				9C2907CF2B00594B0027B7F3 /* FollowingGroups.swift in Sources */,
+				4FBDE9DA2B0BACB9008CB150 /* FloatingWindow.swift in Sources */,
 				9C2907D02B00594B0027B7F3 /* InterestedEvents.swift in Sources */,
 				9C2907DD2B00595D0027B7F3 /* DataModel.swift in Sources */,
 				4FBDE9CC2B0480E7008CB150 /* Comment.swift in Sources */,
@@ -642,6 +646,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DukeEventCalendar/Preview Content\"";
+				DEVELOPMENT_TEAM = U6J58C8CJT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -670,6 +675,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DukeEventCalendar/Preview Content\"";
+				DEVELOPMENT_TEAM = U6J58C8CJT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

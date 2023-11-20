@@ -97,13 +97,14 @@ class DataModel: ObservableObject {
         return events[0]
     }
     
-    func addComment(comment: Comment) {
+    func addComment(comment: Comment) -> Bool {
         if self.comments == nil {
             self.comments = [comment]
         }
         else {
             self.comments!.append(comment)
         }
+        return findComment(cmtid: comment.id)
     }
     
     func getComments(eventid: String) -> [Comment] {
@@ -121,7 +122,7 @@ class DataModel: ObservableObject {
     
     
     func deleteComment(cmtid: UUID) {
-        self.comments = self.comments?.filter({$0.id != cmtid})
+        self.comments = self.comments?.filter({($0.id != cmtid)&&($0.upperComment != cmtid)})
 //        if findComment(cmtid: cmtid){
 //            self.comments = self.comments?.filter({$0.id != cmtid})
 //        }
