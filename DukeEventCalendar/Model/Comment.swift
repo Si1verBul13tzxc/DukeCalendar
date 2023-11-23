@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Comment:Hashable {
-    let id = UUID()
+struct Comment:Hashable, Codable {
+    let id: UUID
     let upperComment: UUID?
     let eventid: String
     let userid: String
@@ -17,10 +17,11 @@ struct Comment:Hashable {
 //    let subComments: [Comment]?
     
     init(eventid: String, userid: String, content: String, time: Date, upperComment: UUID? = nil) {
-            self.upperComment = upperComment
-            self.eventid = eventid
-            self.userid = userid
-            self.content = content
-            self.time = time
-        }
+        self.id = UUID()
+        self.upperComment = upperComment
+        self.eventid = eventid
+        self.userid = userid
+        self.content = content
+        self.time = time
+    }
 }
