@@ -53,6 +53,7 @@
 		9CACAA7E2B0335FE00B29C6B /* TagRowsAddableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACAA7D2B0335FE00B29C6B /* TagRowsAddableView.swift */; };
 		9CEC2BB52B0972060053BD8A /* GroupTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC2BB42B0972060053BD8A /* GroupTag.swift */; };
 		9CEC2BB72B09816B0053BD8A /* GroupTagDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC2BB62B09816B0053BD8A /* GroupTagDeletable.swift */; };
+		B635CEBF2B0FA8AA004944F6 /* FetchServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635CEBE2B0FA8AA004944F6 /* FetchServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		9CEC2BB42B0972060053BD8A /* GroupTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTag.swift; sourceTree = "<group>"; };
 		9CEC2BB62B09816B0053BD8A /* GroupTagDeletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTagDeletable.swift; sourceTree = "<group>"; };
 		9CEC2BB82B0990160053BD8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B635CEBE2B0FA8AA004944F6 /* FetchServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -294,6 +296,7 @@
 				9C2907E42B0059750027B7F3 /* Utilities.swift */,
 				9C2907E52B0059750027B7F3 /* utility.swift */,
 				9C2907E62B0059750027B7F3 /* WebPageLoader.swift */,
+				B635CEBE2B0FA8AA004944F6 /* FetchServer.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				9C2907D22B00594B0027B7F3 /* singleImage.swift in Sources */,
 				9CEC2BB72B09816B0053BD8A /* GroupTagDeletable.swift in Sources */,
 				9C2907D62B00594B0027B7F3 /* EventEditView.swift in Sources */,
+				B635CEBF2B0FA8AA004944F6 /* FetchServer.swift in Sources */,
 				9C9976242B03E7EC00ABB1DE /* SearchBarView.swift in Sources */,
 				9C2907CF2B00594B0027B7F3 /* FollowingGroups.swift in Sources */,
 				4FBDE9DA2B0BACB9008CB150 /* FloatingWindow.swift in Sources */,
