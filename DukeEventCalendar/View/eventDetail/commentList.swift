@@ -29,7 +29,6 @@ struct commentList: View {
             }
 
         }  //.onAppear{ datamodel.addComment(comment: sampleComment) }
-
     }
 }
 

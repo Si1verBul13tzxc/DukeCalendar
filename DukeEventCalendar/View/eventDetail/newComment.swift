@@ -52,6 +52,7 @@ struct newComment: View {
                             )
                         ) {
                             isCommentPublished = true
+                            hideKeyboard()
                         }
                         else {
                             isCommentPublished = false
@@ -71,6 +72,15 @@ struct newComment: View {
             }
         }
         .padding(.bottom, 20.0).padding(.top, 10)
+    }
+    
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(
+            #selector(UIResponder.resignFirstResponder),
+            to: nil,
+            from: nil,
+            for: nil
+        )
     }
 }
 

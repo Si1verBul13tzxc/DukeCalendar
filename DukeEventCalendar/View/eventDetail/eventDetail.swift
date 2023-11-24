@@ -121,6 +121,9 @@ struct EventDetail: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarHidden(true)
+//        .onTapGesture {
+//            hideKeyboard()
+//        }
 
         newComment(
             replyTo: $replyTo,
