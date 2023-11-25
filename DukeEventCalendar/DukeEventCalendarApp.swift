@@ -12,10 +12,12 @@ struct DukeEventCalendarApp: App {
     var loader1 = WebPageLoader()
     var loader2 = WebPageLoader()
     @StateObject var datamodel: DataModel = DataModel()
+    @StateObject var user: User = User()
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(datamodel)
+                .environmentObject(user)
                 .onAppear {
                     let urlString = "https://urlbuilder.calendar.duke.edu/"
                     if let url = URL(string: urlString) {

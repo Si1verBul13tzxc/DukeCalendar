@@ -243,7 +243,7 @@ func createUser(_ userDTO: CreateUserDTO, completion: @escaping (Bool, Error?) -
             completion(false, error)
             return
         }
-        guard let data = data else {
+        guard let _ = data else {
             completion(false, NSError(domain: "", code: -1, userInfo: nil))
             return
         }

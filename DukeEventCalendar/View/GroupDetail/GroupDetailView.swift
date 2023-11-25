@@ -9,36 +9,42 @@ import SwiftUI
 
 struct groupDetail: View {
     @EnvironmentObject var datamodel: DataModel
-    @ObservedObject var user: User
+    @EnvironmentObject var user: User
     var group: String
 
+    @State var isFollowing: Bool = false
+
     var body: some View {
-        //NavigationView {
         VStack {
             Text(group).font(.system(size: 20)).fontWeight(.heavy)
             ZStack {
                 RoundedRectangle(cornerSize: CGSize(width: 20, height: 20))
-                    .fill(user.isFollowing(groupName: group) ? Color.gray : Color.blue)
+                    .fill(isFollowing ? Color.gray : Color.blue)
                     .frame(width: 70, height: 30)
-                Button(user.isFollowing(groupName: group) ? "Following" : "Follow") {
-                    if user.isFollowing(groupName: group) {
+                Button(isFollowing ? "Following" : "Follow") {
+                    if isFollowing {
                         user.unfollow(groupName: group)
+                        isFollowing = false
                     }
                     else {
                         user.follow(groupName: group)
+                        isFollowing = true
                     }
                 }
                 .font(.system(size: 11)).fontWeight(.bold)
-                .tint(user.isFollowing(groupName: group) ? Color.black : Color.white)
+                .tint(isFollowing ? Color.black : Color.white)
             }
             GroupEventList(group: group)
         }
-        //}
-        //.navigationBarTitle("Group Page", displayMode: .inline)
+        .onAppear {
+            isFollowing = user.followingGroups.contains(group)
+        }
 
     }
 }
 
 #Preview {
-    groupDetail(user: sampleUser, group: "Duke Chapel").environmentObject(DataModel())
+    groupDetail(group: "Duke Chapel")
+        .environmentObject(DataModel())
+        .environmentObject(User())
 }

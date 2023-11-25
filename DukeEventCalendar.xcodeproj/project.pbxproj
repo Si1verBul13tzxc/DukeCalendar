@@ -45,6 +45,7 @@
 		9C2907FA2B02F8AC0027B7F3 /* iOSToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2907F92B02F8AC0027B7F3 /* iOSToggle.swift */; };
 		9C2907FC2B0321870027B7F3 /* CategoryTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2907FB2B0321870027B7F3 /* CategoryTag.swift */; };
 		9C2907FE2B03290A0027B7F3 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2907FD2B03290A0027B7F3 /* Theme.swift */; };
+		9C341C8B2B116112006B0897 /* LogInPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C341C8A2B116112006B0897 /* LogInPage.swift */; };
 		9C9976242B03E7EC00ABB1DE /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9976232B03E7EC00ABB1DE /* SearchBarView.swift */; };
 		9C9976262B0418DC00ABB1DE /* TagRowsDeletableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9976252B0418DC00ABB1DE /* TagRowsDeletableView.swift */; };
 		9C9976282B0443DB00ABB1DE /* shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9976272B0443DB00ABB1DE /* shake.swift */; };
@@ -114,6 +115,7 @@
 		9C2907F92B02F8AC0027B7F3 /* iOSToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSToggle.swift; sourceTree = "<group>"; };
 		9C2907FB2B0321870027B7F3 /* CategoryTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTag.swift; sourceTree = "<group>"; };
 		9C2907FD2B03290A0027B7F3 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		9C341C8A2B116112006B0897 /* LogInPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInPage.swift; sourceTree = "<group>"; };
 		9C9976232B03E7EC00ABB1DE /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		9C9976252B0418DC00ABB1DE /* TagRowsDeletableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRowsDeletableView.swift; sourceTree = "<group>"; };
 		9C9976272B0443DB00ABB1DE /* shake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shake.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				9C2907C92B00594B0027B7F3 /* ContentView.swift */,
+				9C341C8A2B116112006B0897 /* LogInPage.swift */,
 				9C2907B72B00594B0027B7F3 /* GroupDetail */,
 				9C2907BA2B00594B0027B7F3 /* MainPage */,
 				9C2907BE2B00594B0027B7F3 /* Interested & Following */,
@@ -458,6 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C341C8B2B116112006B0897 /* LogInPage.swift in Sources */,
 				9C2907CE2B00594B0027B7F3 /* EventRowView.swift in Sources */,
 				9C2907D32B00594B0027B7F3 /* newComment.swift in Sources */,
 				4FBDE9D62B09747B008CB150 /* SponsorInfo.swift in Sources */,
