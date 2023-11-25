@@ -10,7 +10,12 @@ import EventKitUI
 import SwiftUI
 
 struct EventDetail: View {
+    let event: Event
+
     @EnvironmentObject var datamodel: DataModel
+    @EnvironmentObject var user: User
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     @State private var saveToCalendar = false
     @State private var showCoSponsors = false
     @State private var showDesc = false
@@ -18,10 +23,9 @@ struct EventDetail: View {
     @State var isWindowVisible = false
     @State var isCommentPublished = false
 
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
-    var event: Event
-    @ObservedObject var user: User
+    var isInterested:Bool{
+        user.interestedEvents.contains(self.event.id)
+    }
 
     var body: some View {
         NavigationView {
@@ -74,25 +78,7 @@ struct EventDetail: View {
                             }
 
                             ToolbarItem(placement: .navigationBarTrailing) {
-                                Button(action: {
-                                    if user.isInterested(event: event) {
-                                        self.user.rmInterested(event: event)
-                                    }
-                                    else {
-                                        user.setAsInterested(event: event)
-                                    }
-                                }
-                                ) {
-                                    if user.isInterested(event: event) {
-                                        Label("Set as interested", systemImage: "star.fill")
-                                            .labelStyle(.iconOnly)
-                                    }
-                                    else {
-                                        Label("Set as not interested", systemImage: "star")
-                                            .labelStyle(.iconOnly)
-                                    }
-                                }
-                                .tint(user.isInterested(event: event) ? Color.yellow : Color.gray)
+                                interestedButton
                             }
 
                             ToolbarItem(placement: .topBarLeading) {
@@ -121,9 +107,6 @@ struct EventDetail: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarHidden(true)
-        //        .onTapGesture {
-        //            hideKeyboard()
-        //        }
 
         newComment(
             replyTo: $replyTo,
@@ -132,6 +115,26 @@ struct EventDetail: View {
             eventid: event.id,
             userid: user.userid
         )
+    }
+
+    var interestedButton: some View {
+        if isInterested{
+            Button{
+                self.user.rmInterested(event: event)
+            }label: {
+                Label("Interested", systemImage: "star.fill")
+                    .labelStyle(.iconOnly)
+            }
+            .tint(Color.yellow)
+        }else{
+            Button{
+                self.user.setAsInterested(event: event)
+            }label: {
+                Label("Not Interested", systemImage: "star")
+                    .labelStyle(.iconOnly)
+            }
+            .tint(Color.gray)
+        }
     }
 
     //https://github.com/qizhemotuosangeyan/blog/blob/master/SwiftUI%E8%87%AA%E5%8A%A8%E6%8D%A2%E8%A1%8CHStack.md
@@ -176,5 +179,7 @@ struct EventDetail: View {
 }
 
 #Preview {
-    EventDetail(event: sampleEvents![6], user: sampleUser).environmentObject(DataModel())
+    EventDetail(event: sampleEvents![6])
+        .environmentObject(DataModel())
+        .environmentObject(User())
 }

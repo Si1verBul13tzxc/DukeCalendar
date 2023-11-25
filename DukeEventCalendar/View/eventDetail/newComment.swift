@@ -91,7 +91,7 @@ struct newComment: View {
         isWindowVisible: .constant(true),
         isCommentPublished: .constant(true),
         eventid: sample_event.id,
-        userid: sampleUser.userid
+        userid: User.sampleUser.userid
     )
     .environmentObject(DataModel())
 }

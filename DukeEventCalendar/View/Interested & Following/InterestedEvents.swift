@@ -8,26 +8,31 @@
 import SwiftUI
 
 struct InterestedEvents: View {
-    @EnvironmentObject var datamodel:DataModel
-    @ObservedObject var user: User
-    
+    @EnvironmentObject var datamodel: DataModel
+    @EnvironmentObject var user: User
+
     var body: some View {
-        NavigationView{
-            List{
-                ForEach(user.getInterested(), id: \.self){ id in
+        NavigationView {
+            List {
+                ForEach(user.interestedEvents, id: \.self) { id in
                     if let event = datamodel.getEvent(eventid: id) {
-                        NavigationLink(destination: EventDetail(event: event, user: user)) {
+                        NavigationLink(destination: EventDetail(event: event)) {
                             EventRowView(event: event)
                         }
 
                     }
-                                    }
+                }
             }
             .navigationTitle("Interested")
+        }
+        .onAppear{
+            user.getInterested()
         }
     }
 }
 
 #Preview {
-    InterestedEvents(user: sampleUser2).environmentObject(DataModel())
+    InterestedEvents()
+        .environmentObject(DataModel())
+        .environmentObject(User())
 }

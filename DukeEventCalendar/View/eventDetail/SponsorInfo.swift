@@ -60,5 +60,5 @@ struct SponsorInfo: View {
 }
 
 #Preview {
-    SponsorInfo(user: sampleUser, sponsor: sample_event.sponsor, co_sponsors: sample_event.co_sponsors)
+    SponsorInfo(user: User.sampleUser, sponsor: sample_event.sponsor, co_sponsors: sample_event.co_sponsors)
 }

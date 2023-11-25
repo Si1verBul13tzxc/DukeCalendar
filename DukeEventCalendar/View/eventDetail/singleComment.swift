@@ -45,5 +45,5 @@ struct singleComment: View {
 }
 
 #Preview {
-    singleComment(replyTo: .constant(nil), comment: sampleComment, userid: sampleUser.userid).environmentObject(DataModel())
+    singleComment(replyTo: .constant(nil), comment: sampleComment, userid: User.sampleUser.userid).environmentObject(DataModel())
 }

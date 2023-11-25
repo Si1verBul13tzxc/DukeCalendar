@@ -86,10 +86,6 @@ func getFormattedDate(time:Date) -> String{
     return dateFormatter.string(from: time)
 }
 
-
-let sampleUser = User(userid: "Aoli")
-let sampleUser2 = User(userid: "userid2", interestedEvents: [sample_event.id], followingGroups: ["Duke Chapel"])
-
 extension UIScreen{
     static let screenWidth = UIScreen.main.bounds.width
 }
@@ -104,4 +100,4 @@ extension String{
 }
 
 
-let sampleComment = Comment(eventid: sample_event.id, userid: sampleUser.userid, content: "This is a comment.", time: .now)
+let sampleComment = Comment(eventid: sample_event.id, userid: "aoli", content: "This is a comment.", time: .now)

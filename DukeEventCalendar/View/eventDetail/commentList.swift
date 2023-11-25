@@ -33,6 +33,6 @@ struct commentList: View {
 }
 
 #Preview {
-    commentList(replyTo: .constant(nil), userid: sampleUser.userid, eventid: sample_event.id)
+    commentList(replyTo: .constant(nil), userid: "aoli", eventid: sample_event.id)
         .environmentObject(DataModel())
 }

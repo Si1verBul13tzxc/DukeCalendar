@@ -18,7 +18,7 @@ struct ContentView: View {
                     .tabItem { Label("Events", systemImage: "list.dash") }
                 FollowingGroups()
                     .tabItem { Label("Following", systemImage: "person.3.fill") }
-                InterestedEvents(user: sampleUser)
+                InterestedEvents()
                     .tabItem { Label("Interested", systemImage: "star") }
             }
         }
