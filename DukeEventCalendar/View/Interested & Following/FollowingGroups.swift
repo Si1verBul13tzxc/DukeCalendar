@@ -8,23 +8,30 @@
 import SwiftUI
 
 struct FollowingGroups: View {
-    @EnvironmentObject var datamodel:DataModel
-    @ObservedObject var user: User
-    
+    @EnvironmentObject var datamodel: DataModel
+    @EnvironmentObject var user: User
+
     var body: some View {
-        NavigationView{
-            List{
-                ForEach(user.getFollowings(), id: \.self){ group in
-                    NavigationLink (group){
-                        groupDetail(user: user, group: group)
+        NavigationView {
+            List {
+                ForEach(user.followingGroups, id: \.self) { group in
+                    NavigationLink {
+                        groupDetail(group: group)
+                    } label: {
+                        Text(group)
                     }
                 }
             }
             .navigationTitle("Following")
+            .onAppear{
+                user.getFollowings()
+            }
         }
     }
 }
 
 #Preview {
-    FollowingGroups(user: sampleUser2).environmentObject(DataModel())
+    FollowingGroups()
+        .environmentObject(DataModel())
+        .environmentObject(User())
 }

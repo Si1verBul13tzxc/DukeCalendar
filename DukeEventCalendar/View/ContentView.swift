@@ -8,12 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var datamodel: DataModel
+    @EnvironmentObject var user:User
+    
     var body: some View {
-        TabView {
-            MainPageView().tabItem { Label("Events", systemImage: "list.dash") }
-            FollowingGroups(user: sampleUser)
-                .tabItem { Label("Following", systemImage: "person.3.fill") }
-            InterestedEvents(user: sampleUser).tabItem { Label("Interested", systemImage: "star") }
+        if user.isLoggedin {
+            TabView {
+                MainPageView()
+                    .tabItem { Label("Events", systemImage: "list.dash") }
+                FollowingGroups()
+                    .tabItem { Label("Following", systemImage: "person.3.fill") }
+                InterestedEvents(user: sampleUser)
+                    .tabItem { Label("Interested", systemImage: "star") }
+            }
+        }
+        else {
+            LogInPage()
         }
     }
 }
@@ -21,4 +31,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(DataModel())
+        .environmentObject(User())
 }

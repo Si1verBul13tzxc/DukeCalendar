@@ -16,7 +16,7 @@ struct SponsorInfo: View {
     var body: some View {
         HStack {
             Text("By")
-            NavigationLink(destination: groupDetail(user: user, group: sponsor)) {
+            NavigationLink(destination: groupDetail(group: sponsor)) {
                 Text(sponsor).multilineTextAlignment(.leading)
                     .underline().scaledToFit()
             }
@@ -37,7 +37,7 @@ struct SponsorInfo: View {
                 ForEach(co_sponsors!, id: \.self) { sp in
                     HStack(alignment: .bottom) {
                         NavigationLink(
-                            destination: groupDetail(user: user, group: sp)
+                            destination: groupDetail(group: sp)
                         ) {
                             Text("\(sp)").multilineTextAlignment(.leading)
                                 .underline()

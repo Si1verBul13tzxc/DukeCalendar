@@ -76,7 +76,7 @@ func fetchGroups(forUser userName: String, completion: @escaping ([String]?, Err
         return
     }
     
-    let urlString = "\(serverURL)/user-groups/add?username=\(encodedUserName)"
+    let urlString = "\(serverURL)/user-groups/groups?username=\(encodedUserName)"
 
     guard let url = URL(string: urlString) else {
         completion(nil, NSError(domain: "", code: -1, userInfo: nil))
@@ -243,7 +243,7 @@ func createUser(_ userDTO: CreateUserDTO, completion: @escaping (Bool, Error?) -
             completion(false, error)
             return
         }
-        guard let data = data else {
+        guard let _ = data else {
             completion(false, NSError(domain: "", code: -1, userInfo: nil))
             return
         }

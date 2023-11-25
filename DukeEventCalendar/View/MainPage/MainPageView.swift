@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainPageView: View {
     @EnvironmentObject var datamodel: DataModel
+    @EnvironmentObject var user: User
     var body: some View {
         NavigationStack {
             if datamodel.isLoading {
@@ -27,7 +28,7 @@ struct MainPageView: View {
                 }
                 .listStyle(.inset)
                 .toolbarTitleDisplayMode(.automatic)
-                .navigationTitle("Events (\(datamodel.filteredEvents.count))")
+                .navigationTitle("Welcome \(user.userid)!")
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         NavigationLink {
@@ -48,4 +49,5 @@ struct MainPageView: View {
 #Preview {
     MainPageView()
         .environmentObject(DataModel())
+        .environmentObject(User())
 }
