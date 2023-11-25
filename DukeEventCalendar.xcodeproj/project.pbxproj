@@ -52,6 +52,7 @@
 		9C99762A2B045AF900ABB1DE /* CategoryTagDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9976292B045AF900ABB1DE /* CategoryTagDeletable.swift */; };
 		9CACAA7C2B032D9100B29C6B /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACAA7B2B032D9100B29C6B /* Tags.swift */; };
 		9CACAA7E2B0335FE00B29C6B /* TagRowsAddableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CACAA7D2B0335FE00B29C6B /* TagRowsAddableView.swift */; };
+		9CEB6F0E2B12691F009044C3 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEB6F0D2B12691F009044C3 /* ProfilePage.swift */; };
 		9CEC2BB52B0972060053BD8A /* GroupTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC2BB42B0972060053BD8A /* GroupTag.swift */; };
 		9CEC2BB72B09816B0053BD8A /* GroupTagDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CEC2BB62B09816B0053BD8A /* GroupTagDeletable.swift */; };
 		B635CEBF2B0FA8AA004944F6 /* FetchServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B635CEBE2B0FA8AA004944F6 /* FetchServer.swift */; };
@@ -122,6 +123,7 @@
 		9C9976292B045AF900ABB1DE /* CategoryTagDeletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTagDeletable.swift; sourceTree = "<group>"; };
 		9CACAA7B2B032D9100B29C6B /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
 		9CACAA7D2B0335FE00B29C6B /* TagRowsAddableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagRowsAddableView.swift; sourceTree = "<group>"; };
+		9CEB6F0D2B12691F009044C3 /* ProfilePage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		9CEC2BB42B0972060053BD8A /* GroupTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTag.swift; sourceTree = "<group>"; };
 		9CEC2BB62B09816B0053BD8A /* GroupTagDeletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTagDeletable.swift; sourceTree = "<group>"; };
 		9CEC2BB82B0990160053BD8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				9C2907C92B00594B0027B7F3 /* ContentView.swift */,
 				9C341C8A2B116112006B0897 /* LogInPage.swift */,
+				9CEB6F0D2B12691F009044C3 /* ProfilePage.swift */,
 				9C2907B72B00594B0027B7F3 /* GroupDetail */,
 				9C2907BA2B00594B0027B7F3 /* MainPage */,
 				9C2907BE2B00594B0027B7F3 /* Interested & Following */,
@@ -477,6 +480,7 @@
 				9C2907D42B00594B0027B7F3 /* commentList.swift in Sources */,
 				9C99762A2B045AF900ABB1DE /* CategoryTagDeletable.swift in Sources */,
 				9C2907E82B0059750027B7F3 /* utility.swift in Sources */,
+				9CEB6F0E2B12691F009044C3 /* ProfilePage.swift in Sources */,
 				9C2907FE2B03290A0027B7F3 /* Theme.swift in Sources */,
 				9C1AD6FC2B047B2B00B3647A /* TagRowsView.swift in Sources */,
 				9C2907A12B00588C0027B7F3 /* DukeEventCalendarApp.swift in Sources */,

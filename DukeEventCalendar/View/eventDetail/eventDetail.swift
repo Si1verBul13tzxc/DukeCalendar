@@ -118,22 +118,24 @@ struct EventDetail: View {
     }
 
     var interestedButton: some View {
-        if isInterested{
-            Button{
-                self.user.rmInterested(event: event)
-            }label: {
-                Label("Interested", systemImage: "star.fill")
-                    .labelStyle(.iconOnly)
+        Group{// to suppress the "if" fake error below
+            if isInterested{
+                Button{
+                    self.user.rmInterested(event: event)
+                }label: {
+                    Label("Interested", systemImage: "star.fill")
+                        .labelStyle(.iconOnly)
+                }
+                .tint(Color.yellow)
+            }else{
+                Button{
+                    self.user.setAsInterested(event: event)
+                }label: {
+                    Label("Not Interested", systemImage: "star")
+                        .labelStyle(.iconOnly)
+                }
+                .tint(Color.gray)
             }
-            .tint(Color.yellow)
-        }else{
-            Button{
-                self.user.setAsInterested(event: event)
-            }label: {
-                Label("Not Interested", systemImage: "star")
-                    .labelStyle(.iconOnly)
-            }
-            .tint(Color.gray)
         }
     }
 

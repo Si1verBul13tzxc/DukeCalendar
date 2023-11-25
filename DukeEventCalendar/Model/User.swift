@@ -10,8 +10,10 @@ import Foundation
 class User: ObservableObject {
     var userid: String = "" {
         didSet {
-            getFollowings()  // update following groups at the beginning
-            getInterested()
+            if(userid != ""){
+                getFollowings()  // update following groups at the beginning
+                getInterested()
+            }
         }
     }
     @Published var interestedEvents: [String] = []  //event id string
