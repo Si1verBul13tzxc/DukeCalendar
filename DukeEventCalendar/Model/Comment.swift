@@ -34,9 +34,13 @@ struct Comment: Hashable, Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(UUID.self, forKey: .id)
-        let uppercomment_json = try container.decodeIfPresent(UppercommentJson.self, forKey: .upperComment)
-        //self.upperComment = try container.decodeIfPresent(UUID.self, forKey: .upperComment)
-        self.upperComment = uppercomment_json?.id
+        let uppercomment_json = try? container.decodeIfPresent(UppercommentJson.self, forKey: .upperComment)
+        var uppercomment_uuid = uppercomment_json?.id
+        if let uuid_upper = uppercomment_uuid{
+            self.upperComment = uuid_upper
+        }else{
+            self.upperComment = try? container.decodeIfPresent(UUID.self, forKey: .upperComment)
+        }
         self.eventid = try container.decode(String.self, forKey: .eventid)
         self.userid = try container.decode(String.self, forKey: .userid)
         self.content = try container.decode(String.self, forKey: .content)

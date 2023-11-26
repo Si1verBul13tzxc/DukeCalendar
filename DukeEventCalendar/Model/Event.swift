@@ -135,11 +135,14 @@ class Event: Decodable, ObservableObject {
                     self.comments = self.comments.filter {
                         ($0.id != cmtid) && ($0.upperComment != cmtid)
                     }
+                    print("comment deleted")
                 }
             }
             else {
                 if let error = error {
                     print(error.localizedDescription)
+                }else{
+                    print("delete ##nil nil##")
                 }
             }
 

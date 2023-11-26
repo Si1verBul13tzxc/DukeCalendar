@@ -25,7 +25,7 @@ func fetchComments(forEventID eventID: String, completion: @escaping ([Comment]?
                 completion(nil, NSError(domain: "", code: -1, userInfo: nil))
                 return
             }
-            print(String(data: data, encoding: .utf8)!)//***** data have no uppercomment attribute
+            //print(String(data: data, encoding: .utf8)!)//***** data have no uppercomment attribute
             let comments = try? JSONDecoder().decode([Comment].self, from: data)
             completion(comments, nil)
         }
@@ -40,7 +40,7 @@ func createComment(_ comment: Comment, completion: @escaping (Comment?, Error?) 
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.httpBody = try? JSONEncoder().encode(comment)
-    print(String(data: try! JSONEncoder().encode(comment), encoding: .utf8)!)
+    //print(String(data: try! JSONEncoder().encode(comment), encoding: .utf8)!)
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
     URLSession.shared
@@ -53,7 +53,7 @@ func createComment(_ comment: Comment, completion: @escaping (Comment?, Error?) 
                 completion(nil, NSError(domain: "", code: -1, userInfo: nil))
                 return
             }
-            print(String(data: data, encoding: .utf8)!)
+            //print(String(data: data, encoding: .utf8)!)
             let createdComment = try? JSONDecoder().decode(Comment.self, from: data)
             completion(createdComment, nil)
         }
