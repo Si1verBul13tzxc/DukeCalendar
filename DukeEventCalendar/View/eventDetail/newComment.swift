@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct newComment: View {
-    @ObservedObject var event:Event
+    @ObservedObject var event: Event
     @EnvironmentObject var datamodel: DataModel
     @Binding var replyTo: Comment?
     @Binding var isWindowVisible: Bool
@@ -43,15 +43,17 @@ struct newComment: View {
                         input = (replyTo != nil) ? "@\(replyTo!.userid) " : ""
                     }
                 if input != "" {
+                    let comment_content = input  // copy input to avoid race condition on line 65
+                    let replyto_uuid = replyTo  //copy
                     Button {
                         Task {
                             if await event.addComment(
                                 comment: Comment(
                                     eventid: eventid,
                                     userid: userid,
-                                    content: input,
+                                    content: comment_content,
                                     time: .now,
-                                    upperComment: replyTo?.upperComment ?? replyTo?.id
+                                    upperComment: replyto_uuid?.upperComment ?? replyto_uuid?.id
                                 )
                             ) {
                                 isCommentPublished = true
@@ -91,7 +93,7 @@ struct newComment: View {
 
 #Preview {
     newComment(
-        event:DataModel.sampleEvents![0],
+        event: DataModel.sampleEvents![0],
         replyTo: .constant(sampleComment),
         isWindowVisible: .constant(true),
         isCommentPublished: .constant(true),

@@ -112,6 +112,9 @@ struct EventDetail: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarHidden(true)
+        .onAppear{
+            self.event.fetchCommentsFromServer()
+        }
 
         newComment(
             event: event,

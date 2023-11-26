@@ -93,11 +93,14 @@ class Event: Decodable, ObservableObject {
             if let comments = comments {
                 DispatchQueue.main.async {
                     self.comments = comments
+                    print("\(self.comments.count) comments")
                 }
             }
             else {
                 if let error = error {
-                    print(error.localizedDescription)
+                    print(error)
+                }else{
+                    print("fetch comments: nil nil")
                 }
             }
         }
@@ -107,22 +110,21 @@ class Event: Decodable, ObservableObject {
         await withCheckedContinuation { continuation in
             var res = false
             createComment(comment) { createdComment, error in
-                print("hi")
-                if let _ = createdComment {
-                    print("yes ")
+                if let createdComment = createdComment {
+                    DispatchQueue.main.async {
+                        self.comments.append(createdComment)
+                    }
                     res = true
                 }
                 else {
                     if let error = error {
-                        print("### \(error.localizedDescription)")
+                        print(error)
                     }else{
-                        print("nono")
+                        print("##nil nil##")
                     }
                 }
-                print("res: \(res)")
                 continuation.resume(returning: res)
             }
-
         }
     }
 

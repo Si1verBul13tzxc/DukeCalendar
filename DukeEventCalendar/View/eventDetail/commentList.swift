@@ -35,7 +35,6 @@ struct commentList: View {
                 Divider()
                     .background(Color.gray)
             }
-
         }
     }
 }
