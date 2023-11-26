@@ -15,7 +15,7 @@ struct GroupEventList: View {
                 Text("Future Events (\(datamodel.getGroupEvents(groupName: group).count))").padding(.leading, 10.0).font(.system(size: 18)).fontWeight(.bold)
                 ForEach(datamodel.getGroupEvents(groupName: group) , id: \.id) { event in
                     NavigationLink {
-                        EventDetail(event: event, user: sampleUser)
+                        EventDetail(event: event)
                     } label: {
                         EventRowView(event: event)
                     }

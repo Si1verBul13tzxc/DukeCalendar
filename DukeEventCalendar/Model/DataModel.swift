@@ -12,7 +12,7 @@ class DataModel: ObservableObject {
     @Published var futureDays: Double
     @Published var dukeEvents: [Event]?
     @Published var excludeOngoing: Bool = false
-    @Published var comments: [Comment]?
+    //@Published var comments: [Comment]?
     @Published var savedCateTags = TagRows()
     @Published var savedGroupTags = TagRows()
     @Published var isLoading = false
@@ -114,51 +114,51 @@ class DataModel: ObservableObject {
         return events[0]
     }
     
-    func addComment(comment: Comment) -> Bool {
-        if self.comments == nil {
-            self.comments = [comment]
-        }
-        else {
-            self.comments!.append(comment)
-        }
-        return findComment(cmtid: comment.id)
-    }
-
-    func getComments(eventid: String) -> [Comment] {
-        if self.comments == nil {
-            return []
-        }
-        else {
-            return self.comments!.filter({ $0.eventid == eventid })
-        }
-    }
-
-    func findComment(cmtid: UUID) -> Bool {
-        return self.comments?.filter({ $0.id == cmtid }) != nil
-    }
-    
-    
-    func deleteComment(cmtid: UUID) {
-        self.comments = self.comments?.filter({($0.id != cmtid)&&($0.upperComment != cmtid)})
-//        if findComment(cmtid: cmtid){
-//            self.comments = self.comments?.filter({$0.id != cmtid})
+//    func addComment(comment: Comment) -> Bool {
+//        if self.comments == nil {
+//            self.comments = [comment]
 //        }
 //        else {
-//            return
+//            self.comments!.append(comment)
 //        }
-    }
+//        return findComment(cmtid: comment.id)
+//    }
+//
+//    func getComments(eventid: String) -> [Comment] {
+//        if self.comments == nil {
+//            return []
+//        }
+//        else {
+//            return self.comments!.filter({ $0.eventid == eventid })
+//        }
+//    }
+//
+//    func findComment(cmtid: UUID) -> Bool {
+//        return self.comments?.filter({ $0.id == cmtid }) != nil
+//    }
+//    
+//    
+//    func deleteComment(cmtid: UUID) {
+//        self.comments = self.comments?.filter({($0.id != cmtid)&&($0.upperComment != cmtid)})
+////        if findComment(cmtid: cmtid){
+////            self.comments = self.comments?.filter({$0.id != cmtid})
+////        }
+////        else {
+////            return
+////        }
+//    }
     
-    func getSubComments(cmtid: UUID) -> [Comment] {
-        if self.findComment(cmtid: cmtid) {
-            return self.comments!.filter({$0.upperComment == cmtid})
-        }
-        return []
-    }
-    
-    func getMainComments() -> [Comment] {
-        if self.comments != nil {
-            return self.comments!.filter({$0.upperComment == nil})
-        }
-        return []
-    }
+//    func getSubComments(cmtid: UUID) -> [Comment] {
+//        if self.findComment(cmtid: cmtid) {
+//            return self.comments!.filter({$0.upperComment == cmtid})
+//        }
+//        return []
+//    }
+//    
+//    func getMainComments() -> [Comment] {
+//        if self.comments != nil {
+//            return self.comments!.filter({$0.upperComment == nil})
+//        }
+//        return []
+//    }
 }

@@ -15,18 +15,21 @@ func fetchComments(forEventID eventID: String, completion: @escaping ([Comment]?
         return
     }
 
-    URLSession.shared.dataTask(with: url) { data, response, error in
-        if let error = error {
-            completion(nil, error)
-            return
+    URLSession.shared
+        .dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            guard let data = data else {
+                completion(nil, NSError(domain: "", code: -1, userInfo: nil))
+                return
+            }
+            //print(String(data: data, encoding: .utf8)!)//***** data have no uppercomment attribute
+            let comments = try? JSONDecoder().decode([Comment].self, from: data)
+            completion(comments, nil)
         }
-        guard let data = data else {
-            completion(nil, NSError(domain: "", code: -1, userInfo: nil))
-            return
-        }
-        let comments = try? JSONDecoder().decode([Comment].self, from: data)
-        completion(comments, nil)
-    }.resume()
+        .resume()
 }
 
 func createComment(_ comment: Comment, completion: @escaping (Comment?, Error?) -> Void) {
@@ -37,20 +40,24 @@ func createComment(_ comment: Comment, completion: @escaping (Comment?, Error?) 
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.httpBody = try? JSONEncoder().encode(comment)
+    //print(String(data: try! JSONEncoder().encode(comment), encoding: .utf8)!)
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-    URLSession.shared.dataTask(with: request) { data, response, error in
-        if let error = error {
-            completion(nil, error)
-            return
+    URLSession.shared
+        .dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            guard let data = data else {
+                completion(nil, NSError(domain: "", code: -1, userInfo: nil))
+                return
+            }
+            //print(String(data: data, encoding: .utf8)!)
+            let createdComment = try? JSONDecoder().decode(Comment.self, from: data)
+            completion(createdComment, nil)
         }
-        guard let data = data else {
-            completion(nil, NSError(domain: "", code: -1, userInfo: nil))
-            return
-        }
-        let createdComment = try? JSONDecoder().decode(Comment.self, from: data)
-        completion(createdComment, nil)
-    }.resume()
+        .resume()
 }
 
 func deleteComment(withID commentID: UUID, completion: @escaping (Bool, Error?) -> Void) {
@@ -61,21 +68,28 @@ func deleteComment(withID commentID: UUID, completion: @escaping (Bool, Error?) 
     var request = URLRequest(url: url)
     request.httpMethod = "DELETE"
 
-    URLSession.shared.dataTask(with: request) { _, _, error in
-        if let error = error {
-            completion(false, error)
-        } else {
-            completion(true, nil)
+    URLSession.shared
+        .dataTask(with: request) { _, _, error in
+            if let error = error {
+                completion(false, error)
+            }
+            else {
+                completion(true, nil)
+            }
         }
-    }.resume()
+        .resume()
 }
 
 func fetchGroups(forUser userName: String, completion: @escaping ([String]?, Error?) -> Void) {
-    guard let encodedUserName = userName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+    guard
+        let encodedUserName = userName.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        )
+    else {
         completion(nil, NSError(domain: "", code: -1, userInfo: nil))
         return
     }
-    
+
     let urlString = "\(serverURL)/user-groups/groups?username=\(encodedUserName)"
 
     guard let url = URL(string: urlString) else {
@@ -83,28 +97,41 @@ func fetchGroups(forUser userName: String, completion: @escaping ([String]?, Err
         return
     }
 
-    URLSession.shared.dataTask(with: url) { data, response, error in
-        if let error = error {
-            completion(nil, error)
-            return
+    URLSession.shared
+        .dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            guard let data = data else {
+                completion(nil, NSError(domain: "", code: -1, userInfo: nil))
+                return
+            }
+            let groupNames = try? JSONDecoder().decode([String].self, from: data)
+            completion(groupNames, nil)
         }
-        guard let data = data else {
-            completion(nil, NSError(domain: "", code: -1, userInfo: nil))
-            return
-        }
-        let groupNames = try? JSONDecoder().decode([String].self, from: data)
-        completion(groupNames, nil)
-    }.resume()
+        .resume()
 }
 
-func addUserToGroup(userName: String, groupName: String, completion: @escaping (Bool, Error?) -> Void) {
-    guard let encodedUserName = userName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-          let encodedGroupName = groupName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else{
+func addUserToGroup(
+    userName: String,
+    groupName: String,
+    completion: @escaping (Bool, Error?) -> Void
+) {
+    guard
+        let encodedUserName = userName.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        ),
+        let encodedGroupName = groupName.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        )
+    else {
         completion(false, NSError(domain: "", code: -1, userInfo: nil))
         return
     }
 
-    let urlString = "\(serverURL)/user-groups/add?username=\(encodedUserName)&groupname=\(encodedGroupName)"
+    let urlString =
+        "\(serverURL)/user-groups/add?username=\(encodedUserName)&groupname=\(encodedGroupName)"
 
     guard let url = URL(string: urlString) else {
         completion(false, NSError(domain: "", code: -1, userInfo: nil))
@@ -113,23 +140,37 @@ func addUserToGroup(userName: String, groupName: String, completion: @escaping (
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
 
-    URLSession.shared.dataTask(with: request) { _, _, error in
-        if let error = error {
-            completion(false, error)
-        } else {
-            completion(true, nil)
+    URLSession.shared
+        .dataTask(with: request) { _, _, error in
+            if let error = error {
+                completion(false, error)
+            }
+            else {
+                completion(true, nil)
+            }
         }
-    }.resume()
+        .resume()
 }
 
-func removeUserFromGroup(userName: String, groupName: String, completion: @escaping (Bool, Error?) -> Void) {
-    guard let encodedUserName = userName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-          let encodedGroupName = groupName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else{
+func removeUserFromGroup(
+    userName: String,
+    groupName: String,
+    completion: @escaping (Bool, Error?) -> Void
+) {
+    guard
+        let encodedUserName = userName.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        ),
+        let encodedGroupName = groupName.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        )
+    else {
         completion(false, NSError(domain: "", code: -1, userInfo: nil))
         return
     }
 
-    let urlString = "\(serverURL)/user-groups/remove?username=\(encodedUserName)&groupname=\(encodedGroupName)"
+    let urlString =
+        "\(serverURL)/user-groups/remove?username=\(encodedUserName)&groupname=\(encodedGroupName)"
 
     guard let url = URL(string: urlString) else {
         completion(false, NSError(domain: "", code: -1, userInfo: nil))
@@ -138,21 +179,28 @@ func removeUserFromGroup(userName: String, groupName: String, completion: @escap
     var request = URLRequest(url: url)
     request.httpMethod = "DELETE"
 
-    URLSession.shared.dataTask(with: request) { _, _, error in
-        if let error = error {
-            completion(false, error)
-        } else {
-            completion(true, nil)
+    URLSession.shared
+        .dataTask(with: request) { _, _, error in
+            if let error = error {
+                completion(false, error)
+            }
+            else {
+                completion(true, nil)
+            }
         }
-    }.resume()
+        .resume()
 }
 
 func fetchCategories(forUser userName: String, completion: @escaping ([String]?, Error?) -> Void) {
-    guard let encodedUserName = userName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+    guard
+        let encodedUserName = userName.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        )
+    else {
         completion(nil, NSError(domain: "", code: -1, userInfo: nil))
         return
     }
-    
+
     let urlString = "\(serverURL)/user-categories/categories?username=\(encodedUserName)"
 
     guard let url = URL(string: urlString) else {
@@ -160,28 +208,41 @@ func fetchCategories(forUser userName: String, completion: @escaping ([String]?,
         return
     }
 
-    URLSession.shared.dataTask(with: url) { data, response, error in
-        if let error = error {
-            completion(nil, error)
-            return
+    URLSession.shared
+        .dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            guard let data = data else {
+                completion(nil, NSError(domain: "", code: -1, userInfo: nil))
+                return
+            }
+            let categoryNames = try? JSONDecoder().decode([String].self, from: data)
+            completion(categoryNames, nil)
         }
-        guard let data = data else {
-            completion(nil, NSError(domain: "", code: -1, userInfo: nil))
-            return
-        }
-        let categoryNames = try? JSONDecoder().decode([String].self, from: data)
-        completion(categoryNames, nil)
-    }.resume()
+        .resume()
 }
 
-func addUserToCategory(userName: String, categoryName: String, completion: @escaping (Bool, Error?) -> Void) {
-    guard let encodedUserName = userName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-          let encodedCategoryName = categoryName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+func addUserToCategory(
+    userName: String,
+    categoryName: String,
+    completion: @escaping (Bool, Error?) -> Void
+) {
+    guard
+        let encodedUserName = userName.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        ),
+        let encodedCategoryName = categoryName.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        )
+    else {
         completion(false, NSError(domain: "", code: -1, userInfo: nil))
         return
     }
 
-    let urlString = "\(serverURL)/user-categories/add?username=\(encodedUserName)&categoryname=\(encodedCategoryName)"
+    let urlString =
+        "\(serverURL)/user-categories/add?username=\(encodedUserName)&categoryname=\(encodedCategoryName)"
 
     guard let url = URL(string: urlString) else {
         completion(false, NSError(domain: "", code: -1, userInfo: nil))
@@ -190,23 +251,37 @@ func addUserToCategory(userName: String, categoryName: String, completion: @esca
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
 
-    URLSession.shared.dataTask(with: request) { _, _, error in
-        if let error = error {
-            completion(false, error)
-        } else {
-            completion(true, nil)
+    URLSession.shared
+        .dataTask(with: request) { _, _, error in
+            if let error = error {
+                completion(false, error)
+            }
+            else {
+                completion(true, nil)
+            }
         }
-    }.resume()
+        .resume()
 }
 
-func removeUserFromCategory(userName: String, categoryName: String, completion: @escaping (Bool, Error?) -> Void) {
-    guard let encodedUserName = userName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-          let encodedCategoryName = categoryName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+func removeUserFromCategory(
+    userName: String,
+    categoryName: String,
+    completion: @escaping (Bool, Error?) -> Void
+) {
+    guard
+        let encodedUserName = userName.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        ),
+        let encodedCategoryName = categoryName.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        )
+    else {
         completion(false, NSError(domain: "", code: -1, userInfo: nil))
         return
     }
 
-    let urlString = "\(serverURL)/user-categories/remove?username=\(encodedUserName)&categoryname=\(encodedCategoryName)"
+    let urlString =
+        "\(serverURL)/user-categories/remove?username=\(encodedUserName)&categoryname=\(encodedCategoryName)"
 
     guard let url = URL(string: urlString) else {
         completion(false, NSError(domain: "", code: -1, userInfo: nil))
@@ -215,13 +290,16 @@ func removeUserFromCategory(userName: String, categoryName: String, completion: 
     var request = URLRequest(url: url)
     request.httpMethod = "DELETE"
 
-    URLSession.shared.dataTask(with: request) { _, _, error in
-        if let error = error {
-            completion(false, error)
-        } else {
-            completion(true, nil)
+    URLSession.shared
+        .dataTask(with: request) { _, _, error in
+            if let error = error {
+                completion(false, error)
+            }
+            else {
+                completion(true, nil)
+            }
         }
-    }.resume()
+        .resume()
 }
 
 struct CreateUserDTO: Codable {
@@ -238,25 +316,31 @@ func createUser(_ userDTO: CreateUserDTO, completion: @escaping (Bool, Error?) -
     request.httpBody = try? JSONEncoder().encode(userDTO)
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
-    URLSession.shared.dataTask(with: request) { data, response, error in
-        if let error = error {
-            completion(false, error)
-            return
+    URLSession.shared
+        .dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(false, error)
+                return
+            }
+            guard let _ = data else {
+                completion(false, NSError(domain: "", code: -1, userInfo: nil))
+                return
+            }
+            completion(true, nil)
         }
-        guard let _ = data else {
-            completion(false, NSError(domain: "", code: -1, userInfo: nil))
-            return
-        }
-        completion(true, nil)
-    }.resume()
+        .resume()
 }
 
 func fetchEvents(forUser userName: String, completion: @escaping ([String]?, Error?) -> Void) {
-    guard let encodedUserName = userName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+    guard
+        let encodedUserName = userName.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        )
+    else {
         completion(nil, NSError(domain: "", code: -1, userInfo: nil))
         return
     }
-    
+
     let urlString = "\(serverURL)/user-events/events?username=\(encodedUserName)"
 
     guard let url = URL(string: urlString) else {
@@ -264,28 +348,35 @@ func fetchEvents(forUser userName: String, completion: @escaping ([String]?, Err
         return
     }
 
-    URLSession.shared.dataTask(with: url) { data, response, error in
-        if let error = error {
-            completion(nil, error)
-            return
+    URLSession.shared
+        .dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            guard let data = data else {
+                completion(nil, NSError(domain: "", code: -1, userInfo: nil))
+                return
+            }
+            let eventids = try? JSONDecoder().decode([String].self, from: data)
+            completion(eventids, nil)
         }
-        guard let data = data else {
-            completion(nil, NSError(domain: "", code: -1, userInfo: nil))
-            return
-        }
-        let eventids = try? JSONDecoder().decode([String].self, from: data)
-        completion(eventids, nil)
-    }.resume()
+        .resume()
 }
 
 func addUserEvent(userName: String, eventid: String, completion: @escaping (Bool, Error?) -> Void) {
-    guard let encodedUserName = userName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-          let encodedEventId = eventid.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else{
+    guard
+        let encodedUserName = userName.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        ),
+        let encodedEventId = eventid.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+    else {
         completion(false, NSError(domain: "", code: -1, userInfo: nil))
         return
     }
 
-    let urlString = "\(serverURL)/user-events/add?username=\(encodedUserName)&eventid=\(encodedEventId)"
+    let urlString =
+        "\(serverURL)/user-events/add?username=\(encodedUserName)&eventid=\(encodedEventId)"
 
     guard let url = URL(string: urlString) else {
         completion(false, NSError(domain: "", code: -1, userInfo: nil))
@@ -294,23 +385,35 @@ func addUserEvent(userName: String, eventid: String, completion: @escaping (Bool
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
 
-    URLSession.shared.dataTask(with: request) { _, _, error in
-        if let error = error {
-            completion(false, error)
-        } else {
-            completion(true, nil)
+    URLSession.shared
+        .dataTask(with: request) { _, _, error in
+            if let error = error {
+                completion(false, error)
+            }
+            else {
+                completion(true, nil)
+            }
         }
-    }.resume()
+        .resume()
 }
 
-func removeUserEvent(userName: String, eventid: String, completion: @escaping (Bool, Error?) -> Void) {
-    guard let encodedUserName = userName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-          let encodedEventId = eventid.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else{
+func removeUserEvent(
+    userName: String,
+    eventid: String,
+    completion: @escaping (Bool, Error?) -> Void
+) {
+    guard
+        let encodedUserName = userName.addingPercentEncoding(
+            withAllowedCharacters: .urlQueryAllowed
+        ),
+        let encodedEventId = eventid.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+    else {
         completion(false, NSError(domain: "", code: -1, userInfo: nil))
         return
     }
 
-    let urlString = "\(serverURL)/user-events/remove?username=\(encodedUserName)&eventid=\(encodedEventId)"
+    let urlString =
+        "\(serverURL)/user-events/remove?username=\(encodedUserName)&eventid=\(encodedEventId)"
 
     guard let url = URL(string: urlString) else {
         completion(false, NSError(domain: "", code: -1, userInfo: nil))
@@ -319,11 +422,14 @@ func removeUserEvent(userName: String, eventid: String, completion: @escaping (B
     var request = URLRequest(url: url)
     request.httpMethod = "DELETE"
 
-    URLSession.shared.dataTask(with: request) { _, _, error in
-        if let error = error {
-            completion(false, error)
-        } else {
-            completion(true, nil)
+    URLSession.shared
+        .dataTask(with: request) { _, _, error in
+            if let error = error {
+                completion(false, error)
+            }
+            else {
+                completion(true, nil)
+            }
         }
-    }.resume()
+        .resume()
 }

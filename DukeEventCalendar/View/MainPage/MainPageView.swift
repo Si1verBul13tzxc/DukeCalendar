@@ -20,7 +20,7 @@ struct MainPageView: View {
                 List {
                     ForEach(datamodel.filteredEvents, id: \.id) { event in
                         NavigationLink {
-                            EventDetail(event: event, user: sampleUser)
+                            EventDetail(event: event)
                         } label: {
                             EventRowView(event: event)
                         }
