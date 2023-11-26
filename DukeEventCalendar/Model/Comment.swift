@@ -14,7 +14,6 @@ struct Comment:Hashable, Codable {
     let userid: String
     let content: String
     let time: Date
-//    let subComments: [Comment]?
     
     init(eventid: String, userid: String, content: String, time: Date, upperComment: UUID? = nil) {
         self.id = UUID()

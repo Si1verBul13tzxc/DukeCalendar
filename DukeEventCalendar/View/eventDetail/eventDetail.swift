@@ -10,7 +10,7 @@ import EventKitUI
 import SwiftUI
 
 struct EventDetail: View {
-    let event: Event
+    @StateObject var event: Event
 
     @EnvironmentObject var datamodel: DataModel
     @EnvironmentObject var user: User
@@ -23,7 +23,7 @@ struct EventDetail: View {
     @State var isWindowVisible = false
     @State var isCommentPublished = false
 
-    var isInterested:Bool{
+    var isInterested: Bool {
         user.interestedEvents.contains(self.event.id)
     }
 
@@ -33,21 +33,25 @@ struct EventDetail: View {
                 ScrollView {
                     ZStack {
                         VStack {
-                            EventImage(imgURL: event.image).scaledToFit()
-                                .transition(.opacity).scaledToFill().frame(height: 200).clipped()
+                            EventImage(imgURL: event.image)
+                                .scaledToFit()
+                                .transition(.opacity)
+                                .scaledToFill()
+                                .frame(height: 200)
+                                .clipped()
                             VStack(alignment: .leading) {
-                                Text(event.summary).font(.system(size: 28)).fontWeight(.heavy)  //summary
-                                Text(event.status.rawValue).font(.system(size: 12))
+                                Text(event.summary)
+                                    .font(.system(size: 28))
+                                    .fontWeight(.heavy)  //summary
+                                Text(event.status.rawValue)
+                                    .font(.system(size: 12))
                                     .foregroundColor(Color.gray)  //status
-
                                 SponsorInfo(
                                     user: user,
                                     sponsor: event.sponsor,
                                     co_sponsors: event.co_sponsors
                                 )
-
                                 Text("")
-
                                 Time_Loc_Desc(event: event)
                             }
                             .padding(.horizontal)
@@ -58,23 +62,24 @@ struct EventDetail: View {
                             }
 
                             Divider()
-                            commentList(replyTo: $replyTo, userid: user.userid, eventid: event.id)
+                            commentList(
+                                event: event,
+                                replyTo: $replyTo,
+                                userid: user.userid,
+                                eventid: event.id
+                            )
                         }
                         .toolbar {
                             ToolbarItem(placement: .navigationBarTrailing) {
-                                Button(action: {
+                                Button {
                                     saveToCalendar.toggle()
-                                }
-                                ) {
+                                } label: {
                                     Label("Add to calendar", systemImage: "calendar.badge.plus")
                                         .labelStyle(.iconOnly)
                                 }
-                                .sheet(
-                                    isPresented: $saveToCalendar,
-                                    content: {
-                                        EventEditViewController(dukeEvent: event)
-                                    }
-                                )
+                                .sheet(isPresented: $saveToCalendar) {
+                                    EventEditViewController(dukeEvent: event)
+                                }
                             }
 
                             ToolbarItem(placement: .navigationBarTrailing) {
@@ -109,6 +114,7 @@ struct EventDetail: View {
         .navigationBarHidden(true)
 
         newComment(
+            event: event,
             replyTo: $replyTo,
             isWindowVisible: $isWindowVisible,
             isCommentPublished: $isCommentPublished,
@@ -118,19 +124,20 @@ struct EventDetail: View {
     }
 
     var interestedButton: some View {
-        Group{// to suppress the "if" fake error below
-            if isInterested{
-                Button{
+        Group {  // to suppress the "if" fake error below
+            if isInterested {
+                Button {
                     self.user.rmInterested(event: event)
-                }label: {
+                } label: {
                     Label("Interested", systemImage: "star.fill")
                         .labelStyle(.iconOnly)
                 }
                 .tint(Color.yellow)
-            }else{
-                Button{
+            }
+            else {
+                Button {
                     self.user.setAsInterested(event: event)
-                }label: {
+                } label: {
                     Label("Not Interested", systemImage: "star")
                         .labelStyle(.iconOnly)
                 }

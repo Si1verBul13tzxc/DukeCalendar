@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct newComment: View {
-    //@Binding var comment: String
+    @ObservedObject var event:Event
     @EnvironmentObject var datamodel: DataModel
     @Binding var replyTo: Comment?
     @Binding var isWindowVisible: Bool
@@ -30,37 +30,41 @@ struct newComment: View {
                     }
                     .tint(.black)
                 }
-                .padding(.horizontal).padding(.vertical, 10.0)
+                .padding(.horizontal)
+                .padding(.vertical, 10.0)
                 .background(Color(red: 0.9, green: 0.9, blue: 0.9))
             }
             HStack {
                 TextField("", text: $input, prompt: Text("Add a comment..."))
-                    .disableAutocorrection(true).frame(height: 20.0)
-                    .textFieldStyle(.roundedBorder)  //.onSubmit {}
+                    .disableAutocorrection(true)
+                    .frame(height: 20.0)
+                    .textFieldStyle(.roundedBorder)
                     .onChange(of: replyTo) {
                         input = (replyTo != nil) ? "@\(replyTo!.userid) " : ""
                     }
                 if input != "" {
-                    Button(action: {
-                        if datamodel.addComment(
-                            comment: Comment(
-                                eventid: eventid,
-                                userid: userid,
-                                content: input,
-                                time: .now,
-                                upperComment: replyTo?.upperComment ?? replyTo?.id
-                            )
-                        ) {
-                            isCommentPublished = true
-                            hideKeyboard()
-                        }
-                        else {
-                            isCommentPublished = false
+                    Button {
+                        Task {
+                            if await event.addComment(
+                                comment: Comment(
+                                    eventid: eventid,
+                                    userid: userid,
+                                    content: input,
+                                    time: .now,
+                                    upperComment: replyTo?.upperComment ?? replyTo?.id
+                                )
+                            ) {
+                                isCommentPublished = true
+                                hideKeyboard()
+                            }
+                            else {
+                                isCommentPublished = false
+                            }
                         }
                         input = ""
                         replyTo = nil
                         isWindowVisible = true
-                    }) {
+                    } label: {
                         Label("Post", systemImage: "paperplane")
                             .labelStyle(.titleOnly)
                     }
@@ -71,9 +75,10 @@ struct newComment: View {
                 input = (replyTo != nil) ? "@\(replyTo!.userid)" : ""
             }
         }
-        .padding(.bottom, 20.0).padding(.top, 10)
+        .padding(.bottom, 20.0)
+        .padding(.top, 10)
     }
-    
+
     func hideKeyboard() {
         UIApplication.shared.sendAction(
             #selector(UIResponder.resignFirstResponder),
@@ -85,8 +90,8 @@ struct newComment: View {
 }
 
 #Preview {
-    //@State var visible = true
     newComment(
+        event:DataModel.sampleEvents![0],
         replyTo: .constant(sampleComment),
         isWindowVisible: .constant(true),
         isCommentPublished: .constant(true),

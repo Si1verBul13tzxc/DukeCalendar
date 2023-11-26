@@ -48,6 +48,7 @@ func createComment(_ comment: Comment, completion: @escaping (Comment?, Error?) 
             completion(nil, NSError(domain: "", code: -1, userInfo: nil))
             return
         }
+        print(String(data: data, encoding: .utf8)!)
         let createdComment = try? JSONDecoder().decode(Comment.self, from: data)
         completion(createdComment, nil)
     }.resume()
