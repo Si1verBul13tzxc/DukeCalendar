@@ -11,7 +11,6 @@ struct FilterPageView: View {
     @EnvironmentObject var datamodel: DataModel
     @StateObject var categoryTagRows = TagRowsSearchable()
     @StateObject var groupTagRows = TagRowsSearchable()
-    //@StateObject var savedTags = TagRows()
     var body: some View {
         NavigationView {
             ScrollView {

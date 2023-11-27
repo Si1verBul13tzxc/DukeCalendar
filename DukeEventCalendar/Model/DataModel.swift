@@ -16,7 +16,8 @@ class DataModel: ObservableObject {
     @Published var savedCateTags = TagRows()
     @Published var savedGroupTags = TagRows()
     @Published var isLoading = false
-    
+    var backupEvents: [Event]?
+
     var EventFilters: [EventFilter] {
         var filters: [EventFilter] = []
         filters.append(futureDaysFilter)
@@ -37,7 +38,20 @@ class DataModel: ObservableObject {
 
     init() {
         self.futureDays = 1.0
-        generateAndFetchEvents(groups: nil, categories: nil, futureDays: 30, dataModel: self)
+        generateAndFetchEvents(
+            groups: nil,
+            categories: nil,
+            futureDays: 30,
+            dataModel: self,
+            listType: .MainPageList
+        )
+        generateAndFetchEvents(
+            groups: nil,
+            categories: nil,
+            futureDays: 30,
+            dataModel: self,
+            listType: .BackUpList
+        )
         isLoading = true
     }
 
@@ -48,7 +62,15 @@ class DataModel: ObservableObject {
             groups: groups,
             categories: categories,
             futureDays: 30,
-            dataModel: self
+            dataModel: self,
+            listType: .MainPageList
+        )
+        generateAndFetchEvents(
+            groups: nil,
+            categories: nil,
+            futureDays: 30,
+            dataModel: self,
+            listType: .BackUpList
         )
         isLoading = true
     }
@@ -58,6 +80,7 @@ class DataModel: ObservableObject {
         do {
             let tmpEvents: [String: [Event]] = try load("events.json")
             self.dukeEvents = tmpEvents["events"]
+            self.backupEvents = tmpEvents["events"]
         }
         catch {
             print(error.localizedDescription)
@@ -100,65 +123,17 @@ class DataModel: ObservableObject {
     }
 
     func getGroupEvents(groupName: String) -> [Event] {
-        guard var events = self.dukeEvents else { return [] }
-        events = events.filter({
+        guard var events = self.backupEvents else { return [] }
+        events = events.filter {
             $0.sponsor == groupName
                 || (($0.co_sponsors != nil) && ($0.co_sponsors!.contains(groupName)))
-        })
+        }
         return events
     }
 
     func getEvent(eventid: String) -> Event? {
-        guard var events = self.dukeEvents else { return nil }
-        events = events.filter({ $0.id == eventid })
-        return events[0]
+        guard var events = self.backupEvents else { return nil }
+        events = events.filter { $0.id == eventid }
+        return events.first
     }
-    
-//    func addComment(comment: Comment) -> Bool {
-//        if self.comments == nil {
-//            self.comments = [comment]
-//        }
-//        else {
-//            self.comments!.append(comment)
-//        }
-//        return findComment(cmtid: comment.id)
-//    }
-//
-//    func getComments(eventid: String) -> [Comment] {
-//        if self.comments == nil {
-//            return []
-//        }
-//        else {
-//            return self.comments!.filter({ $0.eventid == eventid })
-//        }
-//    }
-//
-//    func findComment(cmtid: UUID) -> Bool {
-//        return self.comments?.filter({ $0.id == cmtid }) != nil
-//    }
-//    
-//    
-//    func deleteComment(cmtid: UUID) {
-//        self.comments = self.comments?.filter({($0.id != cmtid)&&($0.upperComment != cmtid)})
-////        if findComment(cmtid: cmtid){
-////            self.comments = self.comments?.filter({$0.id != cmtid})
-////        }
-////        else {
-////            return
-////        }
-//    }
-    
-//    func getSubComments(cmtid: UUID) -> [Comment] {
-//        if self.findComment(cmtid: cmtid) {
-//            return self.comments!.filter({$0.upperComment == cmtid})
-//        }
-//        return []
-//    }
-//    
-//    func getMainComments() -> [Comment] {
-//        if self.comments != nil {
-//            return self.comments!.filter({$0.upperComment == nil})
-//        }
-//        return []
-//    }
 }
