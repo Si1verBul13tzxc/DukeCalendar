@@ -81,11 +81,17 @@ func saveOptions(options: [String], withFileName fileName: String) {
     }
 }
 
+enum EventList{
+    case MainPageList
+    case BackUpList // for displaying interested events, etc.
+}
+
 func generateAndFetchEvents(
     groups: [String]?,
     categories: [String]?,
     futureDays: Int,
-    dataModel: DataModel
+    dataModel: DataModel,
+    listType: EventList
 ) {
     var components = URLComponents(string: "https://calendar.duke.edu/events/index.json")
 
@@ -127,12 +133,22 @@ func generateAndFetchEvents(
             return
         }
 
-        // 尝试将数据保存到本地文件
-        saveDataToLocalFile(data: data, filename: "events.json")
-        DispatchQueue.main.async {
-            dataModel.loadEvents()
-            dataModel.isLoading = false
-        }
+            let tmpEvents: [String: [Event]]? = try? JSONDecoder().decode([String:[Event]].self, from: data)
+            if let events = tmpEvents{
+                switch listType {
+                case .MainPageList:
+                    DispatchQueue.main.async {
+                        dataModel.dukeEvents = events["events"]
+                        dataModel.isLoading = false
+                    }
+                case .BackUpList:
+                    DispatchQueue.main.async {
+                        dataModel.backupEvents = events["events"]
+                    }
+                    // 尝试将数据保存到本地文件
+                    saveDataToLocalFile(data: data, filename: "events.json")
+                }
+            }
     }
 
     // 启动任务
