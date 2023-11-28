@@ -101,3 +101,12 @@ extension String{
 
 
 let sampleComment = Comment(eventid: sample_event.id, userid: "aoli", content: "This is a comment.", time: .now)
+
+func hideKeyboard() {
+    UIApplication.shared.sendAction(
+        #selector(UIResponder.resignFirstResponder),
+        to: nil,
+        from: nil,
+        for: nil
+    )
+}
