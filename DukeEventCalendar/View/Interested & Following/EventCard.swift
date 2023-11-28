@@ -8,31 +8,55 @@
 import SwiftUI
 
 struct EventCard: View {
-    //    @Binding var event: Event?
-    var event: Event
+    let event: Event
+    var theme: Theme {
+        return Theme[Int.random(in: 0...15)]
+    }
     var body: some View {
-        //        if event != nil{
         ZStack {
-            VStack {
+            RoundedRectangle(cornerRadius: 10)
+                .foregroundStyle(LinearGradient(colors: [theme.mainColor.opacity(0.6),theme.mainColor], startPoint: .top, endPoint: .bottom))
+                .overlay {
+                    RoundedRectangle(cornerRadius: 10).stroke(.ultraThinMaterial, lineWidth: 3)
+                }
+                .shadow(radius: 10)
+
+            VStack(
+                alignment: .leading
+            ) {
                 EventImage(imgURL: event.image)
                     .scaledToFit()
-                    .transition(.opacity)
-                    .scaledToFill()
-                    .frame(width: 200, height: 200)
-                    .clipped()
-                Text(event.summary).font(.system(size: 25))
+                    .frame(width: 260,height: 200)
+                    .shadow(radius: 10)
+                    .padding(.horizontal)
+                    .padding(.top)
+                Text(event.summary).font(.system(size: 22))
                     .fontWeight(.black)
-                    .padding(.horizontal, 45.0)
-                    .tint(.black)
+                    .padding(.horizontal)
+                VStack(alignment: .leading) {
+                    Label(dateToStringDate(time: event.start_timestamp), systemImage: "calendar")
+                    Label(
+                        "\(dateToStringTime(time: event.start_timestamp)) - \(dateToStringTime(time: event.end_timestamp))",
+                        systemImage: "clock"
+                    )
+                    if event.start_timestamp > Date.now {
+                        Text("Start In \(event.start_timestamp, style: .relative)")
+                    }
+                    else {
+                        Text("Started \(event.start_timestamp, style: .relative) ago")
+                    }
+                }
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 10).fill(.ultraThinMaterial))
+                .padding(.horizontal)
+                .padding(.bottom)
             }
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(Color(CGColor(gray: 0.3, alpha: 0.2)))
+            .foregroundStyle(Color(theme.accentColor))
         }
-        .frame(width: 300, height: 380)
-        //        }
+        .frame(width: 200, height: 260)
     }
 }
 
 #Preview {
-    EventCard(event: sampleEvents![6])
+    EventCard(event: sampleEvents![3])
 }
