@@ -18,7 +18,7 @@ struct singleComment: View {
 
     var body: some View {
         HStack {
-            singleImage(img: UIImage(named: "myPic.jpg")!, size: 50)
+            singleImage(img: UIImage(systemName: "person.circle.fill")!, size: 50)
                 .padding(.leading)  // TODO: CHANGE
             VStack(alignment: .leading) {
                 HStack {
@@ -40,7 +40,7 @@ struct singleComment: View {
                     Button("Reply") {
                         replyTo = comment
                     }
-                    .padding(.leading, 3.0)
+                    .padding(.horizontal, 3.0)
                     .font(.system(size: 12))
 
                     if comment.userid == userid {

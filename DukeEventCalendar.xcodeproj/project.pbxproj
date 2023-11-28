@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F812CE72B1592BB00AAE79F /* EventCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F812CE62B1592BB00AAE79F /* EventCard.swift */; };
+		4F812CE92B1592C200AAE79F /* EventCardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F812CE82B1592C200AAE79F /* EventCardImage.swift */; };
 		4FBDE9CC2B0480E7008CB150 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBDE9CB2B0480E7008CB150 /* Comment.swift */; };
 		4FBDE9D22B097201008CB150 /* EventImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBDE9D12B097201008CB150 /* EventImage.swift */; };
 		4FBDE9D62B09747B008CB150 /* SponsorInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FBDE9D52B09747B008CB150 /* SponsorInfo.swift */; };
@@ -76,6 +78,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F812CE62B1592BB00AAE79F /* EventCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCard.swift; sourceTree = "<group>"; };
+		4F812CE82B1592C200AAE79F /* EventCardImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCardImage.swift; sourceTree = "<group>"; };
 		4FBDE9CB2B0480E7008CB150 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		4FBDE9D12B097201008CB150 /* EventImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventImage.swift; sourceTree = "<group>"; };
 		4FBDE9D52B09747B008CB150 /* SponsorInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponsorInfo.swift; sourceTree = "<group>"; };
@@ -254,6 +258,8 @@
 		9C2907BE2B00594B0027B7F3 /* Interested & Following */ = {
 			isa = PBXGroup;
 			children = (
+				4F812CE62B1592BB00AAE79F /* EventCard.swift */,
+				4F812CE82B1592C200AAE79F /* EventCardImage.swift */,
 				9C2907BF2B00594B0027B7F3 /* FollowingGroups.swift */,
 				9C2907C02B00594B0027B7F3 /* InterestedEvents.swift */,
 			);
@@ -480,6 +486,7 @@
 				9C2907D42B00594B0027B7F3 /* commentList.swift in Sources */,
 				9C99762A2B045AF900ABB1DE /* CategoryTagDeletable.swift in Sources */,
 				9C2907E82B0059750027B7F3 /* utility.swift in Sources */,
+				4F812CE72B1592BB00AAE79F /* EventCard.swift in Sources */,
 				9CEB6F0E2B12691F009044C3 /* ProfilePage.swift in Sources */,
 				9C2907FE2B03290A0027B7F3 /* Theme.swift in Sources */,
 				9C1AD6FC2B047B2B00B3647A /* TagRowsView.swift in Sources */,
@@ -489,6 +496,7 @@
 				9C2907CD2B00594B0027B7F3 /* FilterPageView.swift in Sources */,
 				4FBDE9D22B097201008CB150 /* EventImage.swift in Sources */,
 				9C2907FC2B0321870027B7F3 /* CategoryTag.swift in Sources */,
+				4F812CE92B1592C200AAE79F /* EventCardImage.swift in Sources */,
 				9C2907DE2B00595D0027B7F3 /* Event.swift in Sources */,
 				9C2907D22B00594B0027B7F3 /* singleImage.swift in Sources */,
 				9CEC2BB72B09816B0053BD8A /* GroupTagDeletable.swift in Sources */,

@@ -62,10 +62,11 @@ struct newComment: View {
                             else {
                                 isCommentPublished = false
                             }
+                            input = ""
+                            replyTo = nil
+                            isWindowVisible = true
                         }
-                        input = ""
-                        replyTo = nil
-                        isWindowVisible = true
+
                     } label: {
                         Label("Post", systemImage: "paperplane")
                             .labelStyle(.titleOnly)
@@ -81,14 +82,6 @@ struct newComment: View {
         .padding(.top, 10)
     }
 
-    func hideKeyboard() {
-        UIApplication.shared.sendAction(
-            #selector(UIResponder.resignFirstResponder),
-            to: nil,
-            from: nil,
-            for: nil
-        )
-    }
 }
 
 #Preview {
