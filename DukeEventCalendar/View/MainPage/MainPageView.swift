@@ -11,7 +11,7 @@ struct MainPageView: View {
     @EnvironmentObject var datamodel: DataModel
     @EnvironmentObject var user: User
     var body: some View {
-        NavigationStack {
+        NavigationView {
             if datamodel.isLoading {
                 ProgressView()
                     .navigationTitle("Events")
@@ -28,7 +28,7 @@ struct MainPageView: View {
                 }
                 .listStyle(.inset)
                 .toolbarTitleDisplayMode(.automatic)
-                .navigationTitle("Welcome \(user.userid)!")
+                .navigationTitle("Events for \(user.userid) (\(datamodel.filteredEvents.count))")
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         NavigationLink {
