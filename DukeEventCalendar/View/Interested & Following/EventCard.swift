@@ -15,7 +15,13 @@ struct EventCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .foregroundStyle(LinearGradient(colors: [theme.mainColor.opacity(0.6),theme.mainColor], startPoint: .top, endPoint: .bottom))
+                .foregroundStyle(
+                    LinearGradient(
+                        colors: [theme.mainColor.opacity(0.6), theme.mainColor],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
                 .overlay {
                     RoundedRectangle(cornerRadius: 10).stroke(.ultraThinMaterial, lineWidth: 3)
                 }
@@ -26,11 +32,11 @@ struct EventCard: View {
             ) {
                 EventImage(imgURL: event.image)
                     .scaledToFit()
-                    .frame(width: 260,height: 200)
+                    .frame(width: 260, height: 160)
                     .shadow(radius: 10)
                     .padding(.horizontal)
                     .padding(.top)
-                Text(event.summary).font(.system(size: 22))
+                Text(event.summary).font(.system(size: 18))
                     .fontWeight(.black)
                     .padding(.horizontal)
                 VStack(alignment: .leading) {
@@ -53,7 +59,7 @@ struct EventCard: View {
             }
             .foregroundStyle(Color(theme.accentColor))
         }
-        .frame(width: 200, height: 260)
+        .frame(width: 260,height: 100)
     }
 }
 
