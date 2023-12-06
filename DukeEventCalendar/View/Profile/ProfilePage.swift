@@ -16,8 +16,8 @@ struct ProfilePage: View {
 
     var body: some View {
         VStack {
-            singleImage(img: UIImage(systemName: "person.circle.fill")!, size: 200)
-                .padding(.bottom)
+            PickablePhotoView()
+                .padding()
             Text(user.userid).font(.system(size: 30)).fontWeight(.heavy)
                 .padding(.horizontal, 20.0)
             HStack {
@@ -45,7 +45,7 @@ struct ProfilePage: View {
                     ForEach(user.notificationManager.notifiedNotifications, id: \.id) {
                         notification in
                         NotificationRowView(notification: notification)
-                            .padding()
+                            .padding(.top)
                             .transition(.slide)
                             .scrollTransition(axis: .vertical) { content, phase in
                                 content

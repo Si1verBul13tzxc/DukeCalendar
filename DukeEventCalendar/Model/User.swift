@@ -20,8 +20,8 @@ class User: ObservableObject {
                 notificationManager.notifications.append(LocalNotification(id: "1", title: "ok", subtitle: "okokok", datetime: Date.now + 1 , repeats: false))
                 notificationManager.notifications.append(LocalNotification(id: "2", title: "okasd", subtitle: "okasdaokok", datetime: Date.now + 2 , repeats: false))
                 notificationManager.notifications.append(LocalNotification(id: "3", title: "okasd", subtitle: "okoasdasdok", datetime: Date.now + 3 , repeats: false))
-                notificationManager.notifications.append(LocalNotification(id: "4", title: "okasd", subtitle: "okoasdasdok", datetime: Date.now + 4 , repeats: false))
-                notificationManager.notifications.append(LocalNotification(id: "5", title: "okasdasd", subtitle: "okoasdasdasdok", datetime: Date.now + 5 , repeats: false))
+                notificationManager.notifications.append(LocalNotification(id: "4", title: "okasd", subtitle: "okoasdasddssdok", datetime: Date.now + 4 , repeats: false))
+                notificationManager.notifications.append(LocalNotification(id: "5", title: "okasdasd", subtitle: "okoasdasdasddasssssssssssssssssssssss", datetime: Date.now + 5 , repeats: false))
                 notificationManager.schedule()
             }
         }

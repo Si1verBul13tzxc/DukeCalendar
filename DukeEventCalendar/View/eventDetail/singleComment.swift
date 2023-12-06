@@ -18,7 +18,7 @@ struct singleComment: View {
 
     var body: some View {
         HStack {
-            singleImage(img: UIImage(systemName: "person.circle.fill")!, size: 50)
+            singleImage(img: Image(systemName: "person.circle.fill"), size: 50)
                 .padding(.leading)  // TODO: CHANGE
             VStack(alignment: .leading) {
                 HStack {
