@@ -49,7 +49,7 @@ struct LogInPage: View {
         let userDTO = UserDTO(name: userName)
 
         createUser(userDTO) { result, error in
-            if result == true {
+            if result != nil {
                 DispatchQueue.main.async {
                     user.userid = userName
                     user.isLoggedin = true
