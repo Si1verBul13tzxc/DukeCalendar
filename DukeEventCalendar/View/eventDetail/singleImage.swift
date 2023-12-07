@@ -8,21 +8,20 @@
 import SwiftUI
 
 struct singleImage: View {
-    var img: UIImage
+    var img: Image = Image(systemName: "person.circle.fill")
     var size: Double
     var body: some View {
-        Image(uiImage: img)
+        img
             .resizable()
             .frame(width: size, height: size)
             .clipShape(Circle())
             .overlay {
                 Circle().stroke(.white, lineWidth: 4)
             }
-        .shadow(radius: 7)
+            .shadow(radius: 7)
     }
 }
 
 #Preview {
-    singleImage(img: UIImage(named: "myPic.jpg")!, size: 300)
+    singleImage(size: 300)
 }
-

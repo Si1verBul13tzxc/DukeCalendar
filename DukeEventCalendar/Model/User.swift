@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class User: ObservableObject {
     var userid: String = "" {
@@ -13,14 +14,32 @@ class User: ObservableObject {
             if(userid != ""){
                 getFollowings()  // update following groups at the beginning
                 getInterested()
+                // TODO:
+                //dummy methods:
+                notificationManager.cancelNotifications()
+                notificationManager.notifications.append(LocalNotification(id: "1", title: "ok", subtitle: "okokok", datetime: Date.now + 1 , repeats: false))
+                notificationManager.notifications.append(LocalNotification(id: "2", title: "okasd", subtitle: "okasdaokok", datetime: Date.now + 2 , repeats: false))
+                notificationManager.notifications.append(LocalNotification(id: "3", title: "okasd", subtitle: "okoasdasdok", datetime: Date.now + 3 , repeats: false))
+                notificationManager.notifications.append(LocalNotification(id: "4", title: "okasd", subtitle: "okoasdasddssdok", datetime: Date.now + 4 , repeats: false))
+                notificationManager.notifications.append(LocalNotification(id: "5", title: "okasdasd", subtitle: "okoasdasdasddasssssssssssssssssssssss", datetime: Date.now + 5 , repeats: false))
+                notificationManager.schedule()
             }
         }
     }
     @Published var interestedEvents: [String] = []  //event id string
     @Published var followingGroups: [String] = []
     @Published var isLoggedin: Bool = false
-
-    init() {}
+    @Published var notificationManager = LocalNotificationManager()
+    
+    var anyCancellable: AnyCancellable? = nil
+    
+    init(){
+        anyCancellable = notificationManager.objectWillChange.sink{ [weak self] (_) in
+            self?.objectWillChange.send()
+        }
+        // Ensure changes in notificationManager will be observed
+        // By default, Nested models does not work yet in SwiftUI
+    }
 
     func getInterested() {
         fetchEvents(forUser: self.userid) { res, error in

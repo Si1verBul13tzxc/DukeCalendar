@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FilterPageView: View {
     @EnvironmentObject var datamodel: DataModel
+    @EnvironmentObject var user: User
     @StateObject var categoryTagRows = TagRowsSearchable()
     @StateObject var groupTagRows = TagRowsSearchable()
     var body: some View {
@@ -59,14 +60,45 @@ struct FilterPageView: View {
 
     var categoriesEdit: some View {
         Group {
+            VStack(alignment: .leading) {
+                Text("Add Categories")
+                    .font(.title2)
+                    .padding(.bottom, -2)
+                Button {
+                    Task {
+                        await datamodel.loadUserFollowedCatesForTags(user: user.userid)
+                    }
+                } label: {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundStyle(.primary)
+                        .frame(width: 220, height: 22)
+                        .overlay {
+                            Text("Load My Categories")
+                                .foregroundStyle(.white)
+                        }
+                }
+                Button {
+                    Task {
+                        await datamodel.saveUserCurrentCates(user: user.userid)
+                    }
+                } label: {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundStyle(.primary)
+                        .frame(width: 220, height: 22)
+                        .overlay {
+                            Text("Save Current Categories")
+                                .foregroundStyle(.white)
+                        }
+                }
+            }
             SearchBarView(
                 searchFieldDefault: "Search Categories",
                 searchText: $categoryTagRows.tagText
             )
-            Text("Added Categories")
             TagRowsDeletableView(tagType: .Category, tagRows: datamodel.savedCateTags)
             Divider()
-            Text("Category Suggestions:")
+            Text("Category Suggestions")
+                .foregroundStyle(.secondary)
             if categoryTagRows.tagText == "" {
                 TagRowsAddableView(
                     tagType: .Category,
@@ -86,11 +118,28 @@ struct FilterPageView: View {
 
     var groupEdit: some View {
         Group {
+            VStack(alignment: .leading) {
+                Text("Add Groups")
+                    .font(.title2)
+                    .padding(.bottom, -2)
+                Button {
+                    Task {
+                        await datamodel.loadUserFollowedGroupsForTags(user: user.userid)
+                    }
+                } label: {
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundStyle(.primary)
+                        .frame(width: 220, height: 22)
+                        .overlay {
+                            Text("Load My Followed Groups")
+                                .foregroundStyle(.white)
+                        }
+                }
+            }
             SearchBarView(
                 searchFieldDefault: "Search Groups",
                 searchText: $groupTagRows.tagText
             )
-            Text("Added Groups")
             TagRowsDeletableView(tagType: .Group, tagRows: datamodel.savedGroupTags)
             Divider()
             TagRowsAddableView(
@@ -105,4 +154,5 @@ struct FilterPageView: View {
 #Preview {
     FilterPageView()
         .environmentObject(DataModel())
+        .environmentObject(User())
 }

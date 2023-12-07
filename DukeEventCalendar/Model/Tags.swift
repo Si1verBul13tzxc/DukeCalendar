@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum TagType{
+enum TagType {
     case Category
     case Group
 }
@@ -71,8 +71,11 @@ class TagRows: ObservableObject {
     }
 
     func addTags(tagNames: [String]) {
-        for name in tagNames {
-            tags.append(Tag(name: name))
+        DispatchQueue.main.async {
+            for name in tagNames {
+                self.tags.append(Tag(name: name))
+            }
+            self.tagText = ""
         }
     }
 
