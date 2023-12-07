@@ -307,9 +307,9 @@ struct UserDTO: Codable {
     var avatar: String? = nil
 }
 
-func createUser(_ userDTO: UserDTO, completion: @escaping (Bool, Error?) -> Void) {
+func createUser(_ userDTO: UserDTO, completion: @escaping (UserDTO?, Error?) -> Void) {
     guard let url = URL(string: "\(serverURL)/users") else {
-        completion(false, NSError(domain: "", code: -1, userInfo: nil))
+        completion(nil, NSError(domain: "", code: -1, userInfo: nil))
         return
     }
     var request = URLRequest(url: url)
@@ -320,14 +320,15 @@ func createUser(_ userDTO: UserDTO, completion: @escaping (Bool, Error?) -> Void
     URLSession.shared
         .dataTask(with: request) { data, response, error in
             if let error = error {
-                completion(false, error)
+                completion(nil, error)
                 return
             }
-            guard let _ = data else {
-                completion(false, NSError(domain: "", code: -1, userInfo: nil))
+            guard let data = data else {
+                completion(nil, NSError(domain: "", code: -1, userInfo: nil))
                 return
             }
-            completion(true, nil)
+            let userDTO = try? JSONDecoder().decode(UserDTO.self, from: data)
+            completion(userDTO, nil)
         }
         .resume()
 }
