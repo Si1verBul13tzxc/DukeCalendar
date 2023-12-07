@@ -302,11 +302,12 @@ func removeUserFromCategory(
         .resume()
 }
 
-struct CreateUserDTO: Codable {
+struct UserDTO: Codable {
     let name: String
+    var avatar: String? = nil
 }
 
-func createUser(_ userDTO: CreateUserDTO, completion: @escaping (Bool, Error?) -> Void) {
+func createUser(_ userDTO: UserDTO, completion: @escaping (Bool, Error?) -> Void) {
     guard let url = URL(string: "\(serverURL)/users") else {
         completion(false, NSError(domain: "", code: -1, userInfo: nil))
         return
@@ -430,6 +431,83 @@ func removeUserEvent(
             else {
                 completion(true, nil)
             }
+        }
+        .resume()
+}
+func updateUserAvatar(_ userDTO: UserDTO, completion: @escaping (Bool, Error?) -> Void) {
+    guard let url = URL(string: "\(serverURL)/users/updateAvatar") else {
+        completion(false, NSError(domain: "", code: -1, userInfo: nil))
+        return
+    }
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.httpBody = try? JSONEncoder().encode(userDTO)
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+    URLSession.shared
+        .dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(false, error)
+                return
+            }
+            guard let _ = data else {
+                completion(false, NSError(domain: "", code: -1, userInfo: nil))
+                return
+            }
+            completion(true, nil)
+        }
+        .resume()
+}
+
+func getEventInterestedUserNum(_ eventID: String, completion: @escaping (Int, Error?) -> Void){
+    guard let url = URL(string: "\(serverURL)/user-events/userNum?eventid=\(eventID)") else {
+        completion(-1, NSError(domain: "", code: -1, userInfo: nil))
+        return
+    }
+
+    URLSession.shared
+        .dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(-1, error)
+                return
+            }
+            guard let data = data else {
+                completion(-1, NSError(domain: "", code: -1, userInfo: nil))
+                return
+            }
+            guard let num = try? JSONDecoder().decode(Int.self, from: data) else{
+                completion(-1, NSError(domain: "", code: -1, userInfo: nil))
+                return
+
+            }
+            return completion(num, nil)
+        }
+        .resume()
+    
+}
+
+func getEventContent(_ eventID: String, completion: @escaping (Event?, Error?) -> Void){
+    guard let url = URL(string: "\(serverURL)/user-events/eventContent?eventid=\(eventID)") else {
+        completion(nil, NSError(domain: "", code: -1, userInfo: nil))
+        return
+    }
+
+    URLSession.shared
+        .dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            guard let data = data else {
+                completion(nil, NSError(domain: "", code: -1, userInfo: nil))
+                return
+            }
+            guard let event = try? JSONDecoder().decode(Event.self, from: data) else{
+                completion(nil, NSError(domain: "", code: -1, userInfo: nil))
+                return
+
+            }
+            return completion(event, nil)
         }
         .resume()
 }

@@ -46,9 +46,9 @@ struct LogInPage: View {
             msg = "Username cannot be empty"
             return
         }
-        let dto = CreateUserDTO(name: userName)
+        let userDTO = UserDTO(name: userName)
 
-        createUser(dto) { result, error in
+        createUser(userDTO) { result, error in
             if result == true {
                 DispatchQueue.main.async {
                     user.userid = userName
