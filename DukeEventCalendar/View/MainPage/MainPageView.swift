@@ -28,7 +28,7 @@ struct MainPageView: View {
                 }
                 .listStyle(.inset)
                 .toolbarTitleDisplayMode(.automatic)
-                .navigationTitle("Events for \(user.userid) (\(datamodel.filteredEvents.count))")
+                .navigationTitle("Events (\(datamodel.filteredEvents.count))")
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         NavigationLink {

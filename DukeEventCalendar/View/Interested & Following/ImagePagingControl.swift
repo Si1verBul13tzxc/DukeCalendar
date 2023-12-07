@@ -9,17 +9,20 @@ import SwiftUI
 
 struct ImagePagingControl: View {
     @EnvironmentObject var datamodel: DataModel
+    @EnvironmentObject var user: User
     let test_data: [Event] = [
         DataModel.sampleEvents![0], DataModel.sampleEvents![1], DataModel.sampleEvents![2],
     ]  // for preview
     let data: [String]
     let activePageID: String?
+    @State var needLoading: Bool = false
+    
     var body: some View {
         ScrollViewReader { value in  //for auto scroll to my position
             ScrollView(.horizontal) {
                 HStack {
                     ForEach(data, id: \.self) { event_id in
-                        if let event = datamodel.getEvent(eventid: event_id) {
+                        if let event = user.getEvent(id: event_id) {
                             EventCardImage(imgURL: event.image)
                                 .scrollTransition(axis: .horizontal) { content, phase in
                                     content
@@ -49,7 +52,9 @@ struct ImagePagingControl: View {
 
 #Preview {
     ImagePagingControl(
-        data: [], activePageID: ""
+        data: [],
+        activePageID: ""
     )
     .environmentObject(DataModel())
+    .environmentObject(User())
 }

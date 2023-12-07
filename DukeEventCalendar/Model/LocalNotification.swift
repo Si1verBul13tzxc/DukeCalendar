@@ -10,12 +10,24 @@ import UserNotifications
 
 //Adapted from https://medium.com/@setukanani_6029/local-notifications-with-swift-57d2e340dd1a
 class LocalNotificationManager: NSObject, UNUserNotificationCenterDelegate, ObservableObject {
-    var notifications = [LocalNotification]()
+    private var notifications = [LocalNotification: Bool]()  // notificcation: have been scheduled
     @Published var notifiedNotifications = [LocalNotification]()
 
     override init() {
         super.init()
         UNUserNotificationCenter.current().delegate = self
+    }
+
+    //append it and schedule it.
+    func appendNotification(n: LocalNotification) {
+        if notifications.keys.contains(n) {
+            return
+        }
+        else {
+            notifications[n] = false
+            n.schedule()
+            notifications[n] = true
+        }
     }
 
     //Handle with notification when the app is running foreground
@@ -29,12 +41,17 @@ class LocalNotificationManager: NSObject, UNUserNotificationCenterDelegate, Obse
         print("In App: Notification ID = \(id)")
         let content = notification.request.content
         notifiedNotifications.append(
-            LocalNotification(id: id, title: content.title, subtitle: content.body,datetime: notification.date)
+            LocalNotification(
+                id: id,
+                title: content.title,
+                subtitle: content.body,
+                datetime: notification.date
+            )
         )
         completionHandler([.banner, .sound])
     }
 
-    //Handle with notificaiton when the app is
+    //Handle with notificaiton when the app is at background
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
@@ -44,7 +61,12 @@ class LocalNotificationManager: NSObject, UNUserNotificationCenterDelegate, Obse
         print("Background: Notification ID = \(id)")
         let content = response.notification.request.content
         notifiedNotifications.append(
-            LocalNotification(id: id, title: content.title, subtitle: content.body,datetime: response.notification.date)
+            LocalNotification(
+                id: id,
+                title: content.title,
+                subtitle: content.body,
+                datetime: response.notification.date
+            )
         )
         completionHandler()
     }
@@ -64,30 +86,43 @@ class LocalNotificationManager: NSObject, UNUserNotificationCenterDelegate, Obse
             }
     }
 
+    //For reset notification when a new user login
     func cancelNotifications() {
-        for notification in notifications {
+        for notification in notifications.keys {
             notification.remove()
         }
-        notifications = []
+        notifications = [:]
+    }
+
+    //Cancel a single notification
+    func cancelNotification(id: String) {
+        for n in notifications.keys {
+            if n.id == id {
+                n.remove()
+            }
+        }
     }
 
     private func requestAuthorization() {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
                 if granted == true && error == nil {
-
                 }
             }
     }
 
     private func scheduleNotifications() {
-        for notification in notifications {
+        for (notification, scheduled) in notifications {
+            if scheduled {
+                continue
+            }
             notification.schedule()
+            notifications[notification] = true
         }
     }
 }
 
-struct LocalNotification {
+struct LocalNotification: Hashable {
     var id: String
     var title: String
     var subtitle: String
@@ -113,7 +148,6 @@ struct LocalNotification {
         content.title = title
         content.body = subtitle
         content.sound = .default
-        content.badge = 1
         let triggerDateTime = Calendar.current.dateComponents(
             [.hour, .minute, .second],
             from: datetime

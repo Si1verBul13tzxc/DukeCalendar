@@ -131,11 +131,11 @@ class DataModel: ObservableObject {
         return events
     }
 
-    func getEvent(eventid: String) -> Event? {
-        guard var events = self.backupEvents else { return nil }
-        events = events.filter { $0.id == eventid }
-        return events.first
-    }
+//    func getEvent(eventid: String) -> Event? {
+//        guard var events = self.backupEvents else { return nil }
+//        events = events.filter { $0.id == eventid }
+//        return events.first
+//    }
 
     //An async version for fetch groups
     func fetchGroupsAsync(user: String) async -> [String]? {
