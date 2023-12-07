@@ -16,7 +16,29 @@ struct InterestedEvents: View {
     @EnvironmentObject var datamodel: DataModel
     @EnvironmentObject var user: User
     @State private var pickerType = EventPicker.future
-    @State var eventPicked: Event?
+    //@State var eventPicked: Event?
+
+    var futureEvents: [String] {
+        return user.interestedEvents.filter { id in
+            if let event = user.getEvent(id: id) {
+                return event.start_timestamp > Date.now
+            }
+            else {
+                return false
+            }
+        }
+    }
+
+    var pastEvents: [String] {
+        return user.interestedEvents.filter { id in
+            if let event = user.getEvent(id: id) {
+                return event.start_timestamp < Date.now
+            }
+            else {
+                return false
+            }
+        }
+    }
 
     var body: some View {
         NavigationView {
@@ -28,13 +50,20 @@ struct InterestedEvents: View {
                 }
                 .pickerStyle(.segmented)
                 .padding()
-                EventCarouselView(data: user.interestedEvents)
+                if pickerType == .future {
+                    EventCarouselView(data: futureEvents, pickerType: .future)
+                }
+                else {
+                    EventCarouselView(data: pastEvents, pickerType: .past)
+                }
             }
             .navigationTitle("Interested Events")
             .navigationBarTitleDisplayMode(.inline)
         }
-        .onAppear{
-            user.getInterested()
+        .onAppear {
+            Task {
+                await user.getInterested()
+            }
         }
     }
 }
