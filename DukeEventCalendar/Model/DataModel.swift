@@ -136,4 +136,78 @@ class DataModel: ObservableObject {
         events = events.filter { $0.id == eventid }
         return events.first
     }
+
+    //An async version for fetch groups
+    func fetchGroupsAsync(user: String) async -> [String]? {
+        await withCheckedContinuation { continuation in
+            fetchGroups(forUser: user) { groups, error in
+                if let groups = groups {
+                    continuation.resume(returning: groups)
+                }
+                else {
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    continuation.resume(returning: nil)
+                }
+
+            }
+
+        }
+    }
+
+    //For use in filter page.
+    func loadUserFollowedGroupsForTags(user: String) async {
+        let groups = await fetchGroupsAsync(user: user)
+        if let groups = groups {
+            self.savedGroupTags.tags = []
+            self.savedGroupTags.addTags(tagNames: groups)
+        }
+    }
+
+    //An async version for fetch categories
+    func fetchCategoriesAsync(user: String) async -> [String]? {
+        await withCheckedContinuation { continuation in
+            fetchCategories(forUser: user) { cates, error in
+                if let cates = cates {
+                    continuation.resume(returning: cates)
+                }
+                else {
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    continuation.resume(returning: nil)
+                }
+            }
+        }
+    }
+
+    //For use in filter page.
+    func loadUserFollowedCatesForTags(user: String) async {
+        let cates = await fetchCategoriesAsync(user: user)
+        if let cates = cates {
+            self.savedCateTags.tags = []
+            self.savedCateTags.addTags(tagNames: cates)
+        }
+    }
+
+    func saveUserCurrentCates(user: String) async {
+        let cates = await fetchCategoriesAsync(user: user)
+        if let cates = cates {
+            for c in cates {
+                removeUserFromCategory(userName: user, categoryName: c) { res, error in
+                    if res {
+                        print("remove categories \(c) from server")
+                    }
+                }
+            }
+        }
+        for c in self.savedCateTags.tags {
+            addUserToCategory(userName: user, categoryName: c.name) { res, error in
+                if res {
+                    print("add categories \(c) to server")
+                }
+            }
+        }
+    }
 }
