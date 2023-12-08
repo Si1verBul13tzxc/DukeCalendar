@@ -1,7 +1,7 @@
 # Duke Event Calendar
 - For Duke students to be better engaged with campus events and connect with each other.
 
-- By Yu Wu, Xincheng Zhong, Aoli Zhou
+- By Yu Wu(yw541@duke.edu), Xincheng Zhong(xz353@duke.edu), Aoli Zhou(az161@duke.edu)
 -  Task Breakdown: 
 https://docs.google.com/spreadsheets/d/1I9JvUu8_3zd9J_S5GnvwtkzJzSwUi4LVppxqawC8gDc/edit?usp=sharing
 
