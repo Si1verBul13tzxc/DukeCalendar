@@ -9,8 +9,8 @@ import SwiftUI
 
 struct singleComment: View {
     @EnvironmentObject var datamodel: DataModel
-    @ObservedObject var event:Event
-    
+    @ObservedObject var event: Event
+
     @Binding var replyTo: Comment?
     var comment: Comment
     //let time = "2023-10-01 4:00PM" ??? why not delete it?? @aoli
@@ -18,8 +18,8 @@ struct singleComment: View {
 
     var body: some View {
         HStack {
-            singleImage(img: Image(systemName: "person.circle.fill"), size: 50)
-                .padding(.leading)  // TODO: CHANGE
+            UserAvatar(name: comment.userid, size: 50)
+                .padding(.leading)
             VStack(alignment: .leading) {
                 HStack {
                     Text(comment.userid)
@@ -57,6 +57,11 @@ struct singleComment: View {
 }
 
 #Preview {
-    singleComment(event:DataModel.sampleEvents![0],replyTo: .constant(nil), comment: sampleComment, userid: User.sampleUser.userid)
-        .environmentObject(DataModel())
+    singleComment(
+        event: DataModel.sampleEvents![0],
+        replyTo: .constant(nil),
+        comment: sampleComment,
+        userid: User.sampleUser.userid
+    )
+    .environmentObject(DataModel())
 }

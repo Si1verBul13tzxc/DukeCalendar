@@ -304,7 +304,7 @@ func removeUserFromCategory(
 
 struct UserDTO: Codable {
     let name: String
-    var avatar: String? = nil
+    var avatar: String?
 }
 
 func createUser(_ userDTO: UserDTO, completion: @escaping (UserDTO?, Error?) -> Void) {
@@ -327,6 +327,7 @@ func createUser(_ userDTO: UserDTO, completion: @escaping (UserDTO?, Error?) -> 
                 completion(nil, NSError(domain: "", code: -1, userInfo: nil))
                 return
             }
+            print(String(data: data, encoding: .utf8)!)
             let userDTO = try? JSONDecoder().decode(UserDTO.self, from: data)
             completion(userDTO, nil)
         }
@@ -435,6 +436,7 @@ func removeUserEvent(
         }
         .resume()
 }
+
 func updateUserAvatar(_ userDTO: UserDTO, completion: @escaping (Bool, Error?) -> Void) {
     guard let url = URL(string: "\(serverURL)/users/updateAvatar") else {
         completion(false, NSError(domain: "", code: -1, userInfo: nil))
@@ -460,7 +462,7 @@ func updateUserAvatar(_ userDTO: UserDTO, completion: @escaping (Bool, Error?) -
         .resume()
 }
 
-func getEventInterestedUserNum(_ eventID: String, completion: @escaping (Int, Error?) -> Void){
+func getEventInterestedUserNum(_ eventID: String, completion: @escaping (Int, Error?) -> Void) {
     guard let url = URL(string: "\(serverURL)/user-events/userNum?eventid=\(eventID)") else {
         completion(-1, NSError(domain: "", code: -1, userInfo: nil))
         return
@@ -476,7 +478,7 @@ func getEventInterestedUserNum(_ eventID: String, completion: @escaping (Int, Er
                 completion(-1, NSError(domain: "", code: -1, userInfo: nil))
                 return
             }
-            guard let num = try? JSONDecoder().decode(Int.self, from: data) else{
+            guard let num = try? JSONDecoder().decode(Int.self, from: data) else {
                 completion(-1, NSError(domain: "", code: -1, userInfo: nil))
                 return
 
@@ -484,10 +486,10 @@ func getEventInterestedUserNum(_ eventID: String, completion: @escaping (Int, Er
             return completion(num, nil)
         }
         .resume()
-    
+
 }
 
-func getEventContent(_ eventID: String, completion: @escaping (Event?, Error?) -> Void){
+func getEventContent(_ eventID: String, completion: @escaping (Event?, Error?) -> Void) {
     guard let url = URL(string: "\(serverURL)/user-events/eventContent?eventid=\(eventID)") else {
         completion(nil, NSError(domain: "", code: -1, userInfo: nil))
         return
@@ -503,7 +505,7 @@ func getEventContent(_ eventID: String, completion: @escaping (Event?, Error?) -
                 completion(nil, NSError(domain: "", code: -1, userInfo: nil))
                 return
             }
-            guard let event = try? JSONDecoder().decode(Event.self, from: data) else{
+            guard let event = try? JSONDecoder().decode(Event.self, from: data) else {
                 completion(nil, NSError(domain: "", code: -1, userInfo: nil))
                 return
 

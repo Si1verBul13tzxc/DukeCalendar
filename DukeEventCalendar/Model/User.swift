@@ -63,6 +63,7 @@ class User: ObservableObject {
     @Published var isLoggedin: Bool = false
     @Published var notificationManager = LocalNotificationManager()
     @Published var needLoading: Bool = false
+    var picture: String?
     var interestedEventsEntity: [Event] = []
 
     var anyCancellable: AnyCancellable? = nil

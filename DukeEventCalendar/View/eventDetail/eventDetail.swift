@@ -22,7 +22,7 @@ struct EventDetail: View {
     @State var replyTo: Comment?
     @State var isWindowVisible = false
     @State var isCommentPublished = false
-
+    @State var interestedNum = 0
     var isInterested: Bool {
         user.interestedEvents.contains(self.event.id)
     }
@@ -51,7 +51,18 @@ struct EventDetail: View {
                                     sponsor: event.sponsor,
                                     co_sponsors: event.co_sponsors
                                 )
-                                Text("")
+                                Label(
+                                    "\(interestedNum) people mark as interested",
+                                    systemImage: "person.3.fill"
+                                )
+                                .foregroundStyle(.secondary)
+                                .onAppear {
+                                    getEventInterestedUserNum(event.id) { res, _ in
+                                        DispatchQueue.main.async {
+                                            self.interestedNum = res
+                                        }
+                                    }
+                                }
                                 Time_Loc_Desc(event: event)
                             }
                             .padding(.horizontal)
@@ -112,7 +123,7 @@ struct EventDetail: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarHidden(true)
-        .onAppear{
+        .onAppear {
             self.event.fetchCommentsFromServer()
         }
 
@@ -131,6 +142,7 @@ struct EventDetail: View {
             if isInterested {
                 Button {
                     self.user.rmInterested(event: event)
+                    self.interestedNum -= 1
                 } label: {
                     Label("Interested", systemImage: "star.fill")
                         .labelStyle(.iconOnly)
@@ -140,6 +152,7 @@ struct EventDetail: View {
             else {
                 Button {
                     self.user.setAsInterested(event: event)
+                    self.interestedNum += 1
                 } label: {
                     Label("Not Interested", systemImage: "star")
                         .labelStyle(.iconOnly)

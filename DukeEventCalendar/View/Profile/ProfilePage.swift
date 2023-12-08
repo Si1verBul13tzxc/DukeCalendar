@@ -16,8 +16,9 @@ struct ProfilePage: View {
 
     var body: some View {
         VStack {
-            PickablePhotoView()
-                .padding()
+            //            PickablePhotoView()
+            //                .padding()
+            UserAvatar(name: user.userid, size: 180)
             Text(user.userid).font(.system(size: 30)).fontWeight(.heavy)
                 .padding(.horizontal, 20.0)
             HStack {
