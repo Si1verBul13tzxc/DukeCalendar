@@ -29,6 +29,11 @@ By Yu Wu, Xincheng Zhong, Aoli Zhou
 ## Notifications
 - messages from developer team
 - Before a event set as interested start
+![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/noti.png?ref_type=heads){width=200}
+![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/noti_on_lock.png?ref_type=heads){width=200}
+![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/noti_on_interested.png?ref_type=heads){width=200}
+
+
 
 
 # Setup
