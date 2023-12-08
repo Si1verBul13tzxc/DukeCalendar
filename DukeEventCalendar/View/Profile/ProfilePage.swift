@@ -18,7 +18,7 @@ struct ProfilePage: View {
         VStack {
             //            PickablePhotoView()
             //                .padding()
-            AsyncImage(url: URL(string: "https://ui-avatars.com/api/?name=az161&background=random"))
+            UserAvatar(name: user.userid, size: 180)
             Text(user.userid).font(.system(size: 30)).fontWeight(.heavy)
                 .padding(.horizontal, 20.0)
             HStack {
