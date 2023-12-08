@@ -38,7 +38,7 @@ struct LogInPage: View {
             .padding(.top, 200.0)
             .padding(.horizontal, 30)
         }
-        
+
     }
 
     private func loginOrSignUp() {
@@ -52,6 +52,8 @@ struct LogInPage: View {
             if result != nil {
                 DispatchQueue.main.async {
                     user.userid = userName
+                    user.picture = result!.avatar
+                    print("user picture size: \(String(describing: user.picture?.count))")
                     user.isLoggedin = true
                 }
             }
