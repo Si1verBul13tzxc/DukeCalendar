@@ -7,6 +7,7 @@ By [Yu Wu](yu.wu@duke.edu), [Xincheng Zhong](xz353@duke.edu), [Aoli Zhou](az161@
 # Fetch & filter campus events 
 - pull-down to refresh
 - press right-top button to filter the events by category / sponsor(group) / time.
+![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/mainpage.jpeg?ref_type=heads)
 - on filter page, category could be saved.
 - remove the filter tag by long-pressing it and press the cross
 
