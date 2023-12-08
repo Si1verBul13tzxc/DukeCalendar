@@ -2,6 +2,8 @@
 - For Duke students to be better engaged with campus events and connect with each other.
 
 By Yu Wu, Xincheng Zhong, Aoli Zhou
+## Task Breakdown 
+https://docs.google.com/spreadsheets/d/1I9JvUu8_3zd9J_S5GnvwtkzJzSwUi4LVppxqawC8gDc/edit?usp=sharing
 
 # Key Features
 ## Fetch & filter campus events 
@@ -53,7 +55,6 @@ For testing convenience, no password is needed, you may type in any username as 
 ![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/loginpage.jpeg?ref_type=heads){width=250}
 ![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/profilepage.png?ref_type=heads){width=250}
 
-# Task Breakdown 
-https://docs.google.com/spreadsheets/d/1I9JvUu8_3zd9J_S5GnvwtkzJzSwUi4LVppxqawC8gDc/edit?usp=sharing
 
-
+# Notes
+Server code and its README: https://gitlab.oit.duke.edu/yw541/ece564project_server
