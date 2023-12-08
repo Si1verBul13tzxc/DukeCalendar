@@ -50,7 +50,7 @@ https://docs.google.com/spreadsheets/d/1I9JvUu8_3zd9J_S5GnvwtkzJzSwUi4LVppxqawC8
 **Feel free to contact the developer team if you encounter any problem**
 
 # Login Info
-For testing convenience, no password is needed, you may type in any username as you want. The server will generate the account automatically if the username has not been registered.
+For testing convenience, no password is needed, you may type in any username as you want. The server will generate the account automatically if the username has not been registered. 
 
 ![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/loginpage.jpeg?ref_type=heads){width=250}
 ![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/profilepage.png?ref_type=heads){width=250}
