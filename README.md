@@ -35,7 +35,7 @@ https://docs.google.com/spreadsheets/d/1I9JvUu8_3zd9J_S5GnvwtkzJzSwUi4LVppxqawC8
 
 ## Notifications
 - Messages from developer team
-- Before a event set as interested start
+- Events start notification: 30 minites before a event set as interested start
 
 ![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/noti.png?ref_type=heads){width=250}
 ![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/noti_on_lock.png?ref_type=heads){width=250}
