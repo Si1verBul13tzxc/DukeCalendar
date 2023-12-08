@@ -2,7 +2,7 @@
 - For Duke students to be better engaged with campus events and connect with each other.
 
 - By Yu Wu, Xincheng Zhong, Aoli Zhou
--  Task Breakdown 
+-  Task Breakdown: 
 https://docs.google.com/spreadsheets/d/1I9JvUu8_3zd9J_S5GnvwtkzJzSwUi4LVppxqawC8gDc/edit?usp=sharing
 
 # Key Features
@@ -45,8 +45,9 @@ https://docs.google.com/spreadsheets/d/1I9JvUu8_3zd9J_S5GnvwtkzJzSwUi4LVppxqawC8
 
 
 # Setup
-- Clone this Git repo to your laptop
+- Clone this Git repo to your laptop, open the DukeEventCalendar.xcodeproj file in Xcode and run it
 - Open the app and allow the notification
+**Feel free to contact the developer team if you encounter any problem**
 
 # Login Info
 For testing convenience, no password is needed, you may type in any username as you want. The server will generate the account automatically if the username has not been registered.
