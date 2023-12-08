@@ -24,6 +24,8 @@ By Yu Wu, Xincheng Zhong, Aoli Zhou
 - comment below any event
 - delete a comment made by yourself, or reply to others
 
+![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/%20comment.png?ref_type=heads){width=200}
+
 ## Notifications
 - messages from developer team
 - Before a event set as interested start
