@@ -45,6 +45,7 @@ https://docs.google.com/spreadsheets/d/1I9JvUu8_3zd9J_S5GnvwtkzJzSwUi4LVppxqawC8
 
 
 # Setup
+- Upgrade your running system above iOS 17.
 - Clone this Git repo to your laptop, open the DukeEventCalendar.xcodeproj file in Xcode and run it
 - Open the app and allow the notification
 **Feel free to contact the developer team if you encounter any problem**
