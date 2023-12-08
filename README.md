@@ -8,9 +8,11 @@ By Yu Wu, Xincheng Zhong, Aoli Zhou
 - pull-down to refresh
 - press right-top button to filter the events by category / sponsor(group) / time.
  
-![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/refresh.png?ref_type=heads){width=300}
+![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/refresh.png?ref_type=heads){width=200}
 - on filter page, category could be saved.
 - remove the filter tag by long-pressing it and press the cross
+
+![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/filterpage.jpeg?ref_type=heads){width=200}
 
 ## Event details
 - check detailed information, some with registration page or map page if the API provides these information
@@ -35,7 +37,7 @@ By Yu Wu, Xincheng Zhong, Aoli Zhou
 # Login info
 For testing convenience, no password is needed, you may type in any username as you want. The server will generate the account automatically if the username has not been registered.
 
-![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/loginpage.jpeg?ref_type=heads){width=300}
+![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/loginpage.jpeg?ref_type=heads){width=200}
 
 # Task Breakdown 
 https://docs.google.com/spreadsheets/d/1I9JvUu8_3zd9J_S5GnvwtkzJzSwUi4LVppxqawC8gDc/edit?usp=sharing
