@@ -34,6 +34,7 @@ By Yu Wu, Xincheng Zhong, Aoli Zhou
 
 # Login info
 For testing convenience, no password is needed, you may type in any username as you want. The server will generate the account automatically if the username has not been registered.
+
 ![alt text](https://gitlab.oit.duke.edu/kits/ECE-564-01-F23/projects/new-bee/-/raw/main/ReadmeImg/loginpage.jpeg?ref_type=heads){width=300}
 
 # Task Breakdown 
