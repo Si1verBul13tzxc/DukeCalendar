@@ -1,3 +1,40 @@
 ## Duke Event Calendar
+- For Duke students to be better engaged with campus events and connect with each other.
 
-- Task Breakdown: https://docs.google.com/spreadsheets/d/1I9JvUu8_3zd9J_S5GnvwtkzJzSwUi4LVppxqawC8gDc/edit?usp=sharing
+By [Yu Wu](yu.wu@duke.edu), [Xincheng Zhong](xz353@duke.edu), [Aoli Zhou](az161@duke.edu)
+
+## Key Features
+# Fetch & filter campus events 
+- pull-down to refresh
+- press right-top button to filter the events by category / sponsor(group) / time.
+- on filter page, category could be saved.
+- remove the filter tag by long-pressing it and press the cross
+
+# Event details
+- check detailed information, some with registration page or map page if the API provides these information
+- add any event to iphone calendar
+- set any event as interested or cancel it
+- enter any sponsor page and follow / unfollow it
+
+# Comment
+- comment below any event
+- delete a comment made by yourself, or reply to others
+
+# Notifications
+- messages from developer team
+- Before a event set as interested start
+
+
+## Setup
+1. Clone this Git repo to your laptop
+2. Add a widget
+2. Open the app
+3. Allow the notification request
+
+## Login info
+For testing convenience, no password is needed, you may type in any username as you want. The server will generate the account automatically if the username has not been registered.
+
+## Task Breakdown 
+https://docs.google.com/spreadsheets/d/1I9JvUu8_3zd9J_S5GnvwtkzJzSwUi4LVppxqawC8gDc/edit?usp=sharing
+
+
