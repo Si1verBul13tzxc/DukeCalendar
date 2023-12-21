@@ -10,7 +10,7 @@ https://docs.google.com/spreadsheets/d/1I9JvUu8_3zd9J_S5GnvwtkzJzSwUi4LVppxqawC8
 - Pull-down to refresh
 - Press right-top button to filter the events by category / sponsor(group) / time.
  
-![alt text](https://github.com/Si1verBul13tzxc/DukeCalendar/blob/main/ReadmeImg/%20comment.png?ref_type=heads){width=250}
+![alt text](https://github.com/Si1verBul13tzxc/DukeCalendar/blob/main/ReadmeImg/refresh.png?ref_type=heads){width=250}
 - On filter page, category could be saved.
 - Remove the filter tag by long-pressing it and press the cross
 
